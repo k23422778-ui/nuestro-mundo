@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ARCHIVO #001 — HIKARI</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      background:
+        radial-gradient(circle at center, #181818 0%, #080808 45%, #020202 100%);
+      color: #d8d8d8;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* =========================
+       AMBIENTE GENERAL
+       ========================= */
+
+    .room {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .room::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          ellipse at center,
+          rgba(255,255,255,0.05),
+          transparent 65%
+        );
+      pointer-events: none;
+    }
+
+    /* =========================
+       MONITOR
+       ========================= */
+
+    .monitor {
+      position: relative;
+      width: min(900px, 94vw);
+      aspect-ratio: 16 / 10;
+      padding: 18px;
+      border-radius: 22px;
+      background:
+        linear-gradient(
+          145deg,
+          #292929,
+          #111111 45%,
+          #080808
+        );
+
+      box-shadow:
+        0 40px 100px rgba(0,0,0,0.9),
+        inset 0 0 0 2px #303030,
+        inset 0 0 30px rgba(0,0,0,0.9);
+
+      animation: monitorAppear 1.8s ease-out;
+    }
+
+    .monitor::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 26px;
+      border: 1px solid #343434;
+      pointer-events: none;
+    }
+
+    .screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 12px;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          #242424 0%,
+          #101010 55%,
+          #050505 100%
+        );
+
+      box-shadow:
+        inset 0 0 50px rgba(0,0,0,0.95),
+        inset 0 0 12px rgba(255,255,255,0.04);
+
+      animation: screenFlicker 5s infinite;
+    }
+
+    /* =========================
+       CURVATURA CRT
+       ========================= */
+
+    .screen::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      pointer-events: none;
+
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          rgba(255,255,255,0.025) 0px,
+          rgba(255,255,255,0.025) 1px,
+          transparent 2px,
+          transparent 4px
+        );
+
+      mix-blend-mode: screen;
+    }
+
+    .screen::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 11;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          transparent 45%,
+          rgba(0,0,0,0.75) 100%
+        );
+    }
+
+    /* =========================
+       GLITCH / RUIDO
+       ========================= */
+
+    .noise {
+      position: absolute;
+      inset: 0;
+      z-index: 9;
+      pointer-events: none;
+      opacity: 0.06;
+
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent 0px,
+          rgba(255,255,255,0.3) 1px,
+          transparent 2px
+        );
+
+      animation: noiseMove 0.15s infinite;
+    }
+
+    .scanline {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      z-index: 8;
+
+      background: rgba(220,220,220,0.08);
+
+      box-shadow:
+        0 0 12px rgba(255,255,255,0.08);
+
+      animation: scan 6s linear infinite;
+    }
+
+    /* =========================
+       INTERFAZ
+       ========================= */
+
+    .interface {
+      position: relative;
+      z-index: 5;
+      height: 100%;
+      padding: 6% 8%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      font-size: clamp(0.65rem, 1.5vw, 0.9rem);
+      letter-spacing: 2px;
+
+      color: #aaa;
+    }
+
+    .online {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #8f1717;
+
+      box-shadow:
+        0 0 8px rgba(180,20,20,0.8);
+
+      animation: blink 2s infinite;
+    }
+
+    /* =========================
+       CONTENIDO PRINCIPAL
+       ========================= */
+
+    .content {
+      text-align: center;
+      transform: translateY(-2%);
+    }
+
+    .classification {
+      color: #888;
+      font-size: clamp(0.7rem, 2vw, 1rem);
+      letter-spacing: 4px;
+      margin-bottom: 18px;
+    }
+
+    .file-number {
+      color: #b7b7b7;
+      font-size: clamp(0.65rem, 1.5vw, 0.9rem);
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .subject {
+      position: relative;
+      display: inline-block;
+
+      font-size: clamp(2.8rem, 11vw, 6rem);
+      letter-spacing: 8px;
+      font-weight: normal;
+
+      color: #d7d7d7;
+
+      text-shadow:
+        0 0 10px rgba(255,255,255,0.08),
+        2px 0 rgba(120,0,0,0.35);
+
+      animation: subtleGlitch 6s infinite;
+    }
+
+    .status {
+      margin-top: 12px;
+
+      font-size: clamp(0.7rem, 2vw, 1rem);
+      letter-spacing: 3px;
+
+      color: #a7a7a7;
+    }
+
+    .status strong {
+      color: #9d2020;
+      font-weight: normal;
+    }
+
+    /* =========================
+       ANOMALÍA
+       ========================= */
+
+    .warning {
+      margin-top: 35px;
+
+      display: inline-block;
+
+      border: 1px solid #541717;
+      padding: 14px 25px;
+
+      color: #aaa;
+
+      background: rgba(70,0,0,0.08);
+
+      box-shadow:
+        inset 0 0 20px rgba(100,0,0,0.08),
+        0 0 15px rgba(80,0,0,0.08);
+
+      animation: warningPulse 3s infinite;
+    }
+
+    .warning-title {
+      color: #9d2020;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .warning-text {
+      font-size: clamp(0.8rem, 2vw, 1rem);
+      letter-spacing: 1px;
+    }
+
+    /* =========================
+       BOTÓN
+       ========================= */
+
+    .start {
+      align-self: center;
+
+      padding: 13px 30px;
+
+      border: 1px solid #666;
+      background: rgba(0,0,0,0.55);
+
+      color: #cfcfcf;
+
+      font-family: inherit;
+      font-size: clamp(0.7rem, 2vw, 0.95rem);
+      letter-spacing: 3px;
+
+      cursor: pointer;
+
+      transition:
+        background 0.25s ease,
+        border 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .start:hover {
+      background: rgba(110,0,0,0.2);
+      border-color: #9d2020;
+
+      box-shadow:
+        0 0 18px rgba(120,0,0,0.25);
+
+      transform: translateY(-2px);
+    }
+
+    .start:active {
+      transform: scale(0.97);
+    }
+
+    /* =========================
+       PARTE INFERIOR
+       ========================= */
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: #666;
+
+      font-size: clamp(0.55rem, 1.3vw, 0.75rem);
+      letter-spacing: 2px;
+    }
+
+    .signal {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .bars {
+      display: flex;
+      gap: 2px;
+    }
+
+    .bar {
+      width: 4px;
+      height: 10px;
+      background: #555;
+    }
+
+    .bar:nth-child(4) {
+      background: #8f1717;
+    }
+
+    /* =========================
+       ANIMACIONES
+       ========================= */
+
+    @keyframes monitorAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes screenFlicker {
+      0%, 100% {
+        opacity: 1;
+      }
+
+      48% {
+        opacity: 1;
+      }
+
+      49% {
+        opacity: 0.94;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      83% {
+        opacity: 1;
+      }
+
+      84% {
+        opacity: 0.96;
+      }
+    }
+
+    @keyframes noiseMove {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(4px);
+      }
+    }
+
+    @keyframes scan {
+      from {
+        top: -5%;
+      }
+
+      to {
+        top: 105%;
+      }
+    }
+
+    @keyframes blink {
+      0%, 45% {
+        opacity: 1;
+      }
+
+      50%, 55% {
+        opacity: 0.25;
+      }
+
+      60%, 100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes warningPulse {
+      0%, 100% {
+        opacity: 0.85;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes subtleGlitch {
+      0%, 94%, 100% {
+        transform: translateX(0);
+      }
+
+      95% {
+        transform: translateX(-2px);
+      }
+
+      96% {
+        transform: translateX(2px);
+      }
+
+      97% {
+        transform: translateX(0);
+      }
+    }
+
+    /* =========================
+       MÓVIL
+       ========================= */
+
+    @media (max-width: 600px) {
+
+      .room {
+        padding: 10px;
+      }
+
+      .monitor {
+        width: 96vw;
+        aspect-ratio: 9 / 15;
+        padding: 12px;
+        border-radius: 18px;
+      }
+
+      .screen {
+        border-radius: 9px;
+      }
+
+      .interface {
+        padding: 8% 7%;
+      }
+
+      .top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .subject {
+        letter-spacing: 5px;
+      }
+
+      .warning {
+        width: 100%;
+        padding: 13px 10px;
+      }
+
+      .bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .start {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="room">
+
+    <div class="monitor">
+
+      <div class="screen">
+
+        <div class="noise"></div>
+        <div class="scanline"></div>
+
+        <div class="interface">
+
+          <div class="top">
+
+            <div>
+              SECURE TERMINAL // 01
+            </div>
+
+            <div class="online">
+              <span class="indicator"></span>
+              SYSTEM ONLINE
+            </div>
+
+          </div>
+
+
+          <div class="content">
+
+            <div class="classification">
+              ARCHIVO CLASIFICADO
+            </div>
+
+            <div class="file-number">
+              ARCHIVO #001
+            </div>
+
+            <h1 class="subject">
+              HIKARI
+            </h1>
+
+            <div class="status">
+              ESTADO:
+              <strong>IRREMPLAZABLE</strong>
+            </div>
+
+
+            <div class="warning">
+
+              <div class="warning-title">
+                ⚠ ANOMALÍA DETECTADA
+              </div>
+
+              <div class="warning-text">
+                Una que no quiero curar.
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <button class="start" onclick="startInvestigation()">
+            [ INICIAR INVESTIGACIÓN ]
+          </button>
+
+
+          <div class="bottom">
+
+            <div>
+              SYSTEM // CLASSIFIED
+            </div>
+
+            <div class="signal">
+              SIGNAL
+
+              <div class="bars">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </div>
+
+              87%
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function startInvestigation() {
+
+      const screen = document.querySelector(".screen");
+
+      screen.style.transition = "filter 0.15s ease";
+      screen.style.filter = "brightness(2) contrast(1.4)";
+
+      setTimeout(() => {
+        screen.style.filter = "brightness(0.2)";
+      }, 120);
+
+      setTimeout(() => {
+        screen.style.filter = "brightness(1)";
+        alert("INVESTIGACIÓN INICIADA // HIKARI ❤️");
+      }, 500);
+
+    }
+
+  </script>
+
+</body>
+</html>
