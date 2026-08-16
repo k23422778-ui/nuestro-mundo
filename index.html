@@ -694,7 +694,7 @@ function showMainMenu() {
   `;
 }
 function startGame() {
-  alert("STARTGAME FUNCIONA");
+  
 document.querySelector(".content").innerHTML = `
   <div class="mainMenu">
     <h1>🔎 INVESTIGACIÓN INICIADA</h1>
@@ -706,18 +706,33 @@ document.querySelector(".content").innerHTML = `
     <button onclick="answerCorrect()">Tu forma de ser ❤️</button>
     <button onclick="answerWrong()">Tu dinero 💰</button>
     <button onclick="answerWrong()">Tus memes 😂</button>
-<h2>Pregunta 2</h2>
-<p>¿Cuándo nos conocimos?</p>
 
-<button onclick="answerWrong()">14 de febrero de 2026</button>
-<button onclick="answerCorrect2()">17 de mayo de 2026 ❤️</button>
-<button onclick="answerWrong()">25 de mayo de 2026</button>
+
     <p id="gameMessage"></p>
   `;
 }
   function answerCorrect() {
-  document.getElementById("gameMessage").innerHTML =
-    "✅ RESPUESTA CORRECTA<br><br>Sabía que me conocías... ❤️";
+  document.getElementById("gameMessage").innerHTML = `
+    ✅ RESPUESTA CORRECTA<br><br>
+    Sabía que me conocías... ❤️<br><br>
+    <button onclick="showQuestion2()">CONTINUAR →</button>
+  `;
+}
+function showQuestion2() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>🔎 INVESTIGACIÓN CONTINÚA</h1>
+
+      <h2>Pregunta 2</h2>
+      <p>¿Cuándo nos conocimos?</p>
+
+      <button onclick="answerWrong()">14 de febrero de 2026</button>
+      <button onclick="answerCorrect2()">17 de mayo de 2026 ❤️</button>
+      <button onclick="answerWrong()">25 de mayo de 2026</button>
+
+      <p id="gameMessage"></p>
+    </div>
+  `;
 }
   function answerCorrect2() {
   document.getElementById("gameMessage").innerHTML =
