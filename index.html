@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ig<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -674,14 +674,26 @@
   </script>
 
 <div id="startMenu">
-  <button id="startButton" onclick="alert('HIKARI DATABASE // ACCESS GRANTED')">INICIAR ARCHIVO</button>
+  <button id="startButton" onclick="showMainMenu()">INICIAR INVESTIGACIÓN</button>
 </div>
 <script>
 const startButton = document.getElementById("startButton");
+<script>
+const startButton = document.getElementById("startButton");
 
-startButton.addEventListener("click", () => {
-  alert("HIKARI DATABASE // ACCESS GRANTED");
-});
+function showMainMenu() {
+  document.getElementById("startMenu").innerHTML = `
+    <div class="mainMenu">
+      <h1>HIKARI DATABASE</h1>
+      <p>ARCHIVO CLASIFICADO</p>
+
+      <button onclick="startGame()">INICIAR INVESTIGACIÓN</button>
+      <button onclick="alert('ARCHIVES // PRÓXIMAMENTE')">ARCHIVOS</button>
+      <button onclick="alert('MEMORY DATABASE // PRÓXIMAMENTE')">MEMORY DATABASE</button>
+    </div>
+  `;
+}
+
 </script>
 </body>
 </html>
