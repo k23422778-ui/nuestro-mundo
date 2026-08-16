@@ -702,7 +702,7 @@ function showArchives() {
 
       <button onclick="showArchive1()">ARCHIVO #001 — HIKARI</button>
       <button onclick="showArchive2()">ARCHIVO #002 — EL COMIENZO</button>
-      <button>ARCHIVO #003 — FRECUENCIA ANORMAL</button>
+      <button onclick="showArchive3()">ARCHIVO #003 — FRECUENCIA ANORMAL</button>
       <button>ARCHIVO #004 — COMPATIBILIDAD</button>
       <button>ARCHIVO #005 — CAMBIO DE ESTADO</button>
       <button>ARCHIVO #006 — SIN DEFINIR</button>
@@ -758,6 +758,57 @@ function showArchive2() {
       <p>
         A veces, los errores terminan siendo lo mejor que nos pudo pasar.
       </p>
+
+      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+    </div>
+  `;
+}
+  function showArchive3() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>📁 ARCHIVO #003</h1>
+      <h2>FRECUENCIA ANORMAL</h2>
+
+      <p>ESTADO: ANOMALÍA DETECTADA</p>
+
+      <p>
+        Después del primer contacto se comenzó a registrar
+        una actividad fuera de los parámetros normales.
+      </p>
+
+      <p>REGISTRO DEL SISTEMA:</p>
+
+      <p>
+        Frecuencia de pensamiento: CONSTANTE.<br>
+        Frecuencia de sonrisas: ELEVADA.<br>
+        Necesidad de hablar con Hikari: INCONTROLABLE.
+      </p>
+
+      <p>
+        Se intentó determinar la causa de la anomalía.
+      </p>
+
+      <p>RESULTADO: SIN EXPLICACIÓN LÓGICA.</p>
+
+      <p>
+        Cada conversación aumentaba la conexión.<br>
+        Cada momento juntos hacía más difícil ignorarla.
+      </p>
+
+      <h2>⚠️ CONCLUSIÓN DEL SISTEMA:</h2>
+
+      <p>
+        La presencia de Hikari genera una alteración
+        emocional permanente.
+      </p>
+
+      <h2>DIAGNÓSTICO:</h2>
+
+      <p>ENAMORAMIENTO SEVERO. ❤️</p>
+
+      <p>TRATAMIENTO RECOMENDADO:</p>
+
+      <h2>Seguir queriéndola. ❤️</h2>
 
       <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
     </div>
