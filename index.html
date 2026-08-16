@@ -704,7 +704,7 @@ function showArchives() {
       <button onclick="showArchive2()">ARCHIVO #002 — EL COMIENZO</button>
       <button onclick="showArchive3()">ARCHIVO #003 — FRECUENCIA ANORMAL</button>
       <button onclick="showArchive4()">ARCHIVO #004 — COMPATIBILIDAD</button>
-      <button>ARCHIVO #005 — CAMBIO DE ESTADO</button>
+      <button onclick="showArchive5()">ARCHIVO #005 — CAMBIO DE ESTADO</button>
       <button>ARCHIVO #006 — SIN DEFINIR</button>
       <button>ARCHIVO #007 — PRIMER ENCUENTRO</button>
 
@@ -859,6 +859,61 @@ function showArchive2() {
       <h2>
         Definitivamente están hechos el uno para el otro.
       </h2>
+
+      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+    </div>
+  `;
+}
+  function showArchive5() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>📁 ARCHIVO #005</h1>
+      <h2>CAMBIO DE ESTADO</h2>
+
+      <p>ESTADO INICIAL: DESCONOCIDA</p>
+      <p>ESTADO ACTUAL: INDISPENSABLE</p>
+
+      <p>REGISTRO DE CAMBIOS:</p>
+
+      <p>
+        Día 1: Persona desconocida.<br>
+        Primeras conversaciones: INTERÉS DETECTADO.<br>
+        Primeras risas: CONEXIÓN DETECTADA.<br>
+        Más conversaciones: VÍNCULO EN AUMENTO.
+      </p>
+
+      <p>
+        El sistema registró un cambio progresivo
+        en la importancia de Hikari.
+      </p>
+
+      <p>
+        Lo que comenzó como una simple conversación
+        terminó convirtiéndose en algo mucho más grande.
+      </p>
+
+      <h2>⚠️ CAMBIO DE ESTADO DETECTADO</h2>
+
+      <p>
+        Hikari dejó de ser simplemente alguien.
+      </p>
+
+      <p>
+        Se convirtió en alguien que importa.<br>
+        Alguien que hace falta.<br>
+        Alguien que provoca sonrisas.<br>
+        Alguien que quiero tener a mi lado.
+      </p>
+
+      <p>ESTADO FINAL:</p>
+
+      <h2>PERSONA ESPECIAL ❤️</h2>
+
+      <p>
+        Nivel de importancia: MÁXIMO.
+      </p>
+
+      <h2>RESULTADO: IRREMPLAZABLE.</h2>
 
       <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
     </div>
