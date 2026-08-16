@@ -700,8 +700,8 @@ function showArchives() {
       <h1>📁 HIKARI DATABASE</h1>
       <p>ARCHIVOS DE HISTORIA</p>
 
-      <button>ARCHIVO #001 — HIKARI</button>
-      <button>ARCHIVO #002 — EL COMIENZO</button>
+      <button onclick="showArchive1()">ARCHIVO #001 — HIKARI</button>
+      <button onclick="showArchive2()">ARCHIVO #002 — EL COMIENZO</button>
       <button>ARCHIVO #003 — FRECUENCIA ANORMAL</button>
       <button>ARCHIVO #004 — COMPATIBILIDAD</button>
       <button>ARCHIVO #005 — CAMBIO DE ESTADO</button>
@@ -713,8 +713,86 @@ function showArchives() {
     </div>
   `;
 }
+function showArchive2() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>📁 ARCHIVO #002</h1>
+      <h2>EL COMIENZO</h2>
 
+      <p>FECHA: 17 / 05 / 2026</p>
+      <p>ORIGEN: INSTAGRAM</p>
 
+      <p>REGISTRO RECUPERADO:</p>
+
+      <p>
+        Todo comenzó de una manera bastante inesperada.
+      </p>
+
+      <p>
+        Una nota de Instagram.<br>
+        Una palabra escrita por error.<br>
+        Y una persona que decidió preguntar qué significaba.
+      </p>
+
+      <p>
+        Hikari me mandó mensaje porque tenía una duda sobre aquella nota.
+      </p>
+
+      <p>
+        Yo probablemente no tenía ni idea de que una simple equivocación
+        iba a terminar llevándome hasta ella.
+      </p>
+
+      <p>
+        Pero pasó.
+      </p>
+
+      <p>
+        Una pregunta se convirtió en una conversación.<br>
+        La conversación se convirtió en muchas más.
+      </p>
+
+      <h2>Y así comenzó nuestra historia. ❤️</h2>
+
+      <p>
+        A veces, los errores terminan siendo lo mejor que nos pudo pasar.
+      </p>
+
+      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+    </div>
+  `;
+}
+function showArchive1() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>📁 ARCHIVO #001</h1>
+      <h2>HIKARI</h2>
+
+      <p>ESTADO: IRREMPLAZABLE</p>
+
+      <p>
+        Se intentó identificar una característica específica
+        responsable del vínculo emocional.
+      </p>
+
+      <p>RESULTADO: ERROR.</p>
+
+      <p>
+        Se analizaron sus gestos.<br>
+        Su forma de hablar.<br>
+        Su personalidad.
+      </p>
+
+      <p>CONCLUSIÓN:</p>
+
+      <h2>Es simplemente ella. ❤️</h2>
+
+      <p>RESULTADO: PERFECTA</p>
+
+      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+    </div>
+  `;
+}
   function startGame() {
   
 document.querySelector(".content").innerHTML = `
