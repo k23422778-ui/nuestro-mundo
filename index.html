@@ -678,8 +678,6 @@ ig<!DOCTYPE html>
 </div>
 <script>
 const startButton = document.getElementById("startButton");
-<script>
-const startButton = document.getElementById("startButton");
 
 function showMainMenu() {
   document.getElementById("startMenu").innerHTML = `
@@ -707,7 +705,17 @@ document.getElementById("startMenu").innerHTML = `
     <button onclick="answerWrong()">Tus memes 😂</button>
 
     <p id="gameMessage"></p>
-  `;}  
+  `;
+}
+  function answerCorrect() {
+  document.getElementById("gameMessage").innerHTML =
+    "✅ RESPUESTA CORRECTA<br><br>Sabía que me conocías... ❤️";
+}
+
+function answerWrong() {
+  document.getElementById("gameMessage").innerHTML =
+    "❌ RESPUESTA INCORRECTA<br><br>Vuelve a intentarlo 😭";
+}
 </script>
 </body>
 </html>
