@@ -688,12 +688,33 @@ function showMainMenu() {
       <p>ARCHIVO CLASIFICADO</p>
 
       <button onclick="startGame()">INICIAR INVESTIGACIÓN</button>
-      <button onclick="alert('ARCHIVES // PRÓXIMAMENTE')">ARCHIVOS</button>
+      <button onclick="showArchives()">ARCHIVOS</button>
       <button onclick="alert('MEMORY DATABASE // PRÓXIMAMENTE')">MEMORY DATABASE</button>
     </div>
   `;
 }
-function startGame() {
+function showArchives() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>📁 HIKARI DATABASE</h1>
+      <p>ARCHIVOS DE HISTORIA</p>
+
+      <button>ARCHIVO #001 — HIKARI</button>
+      <button>ARCHIVO #002 — EL COMIENZO</button>
+      <button>ARCHIVO #003 — FRECUENCIA ANORMAL</button>
+      <button>ARCHIVO #004 — COMPATIBILIDAD</button>
+      <button>ARCHIVO #005 — CAMBIO DE ESTADO</button>
+      <button>ARCHIVO #006 — SIN DEFINIR</button>
+      <button>ARCHIVO #007 — PRIMER ENCUENTRO</button>
+
+      <br><br>
+      <button onclick="showMainMenu()">← VOLVER</button>
+    </div>
+  `;
+}
+
+
+  function startGame() {
   
 document.querySelector(".content").innerHTML = `
   <div class="mainMenu">
