@@ -1275,80 +1275,104 @@ function showArchive2() {
   function showMemory5() {
   document.querySelector(".content").innerHTML = `
     <div class="mainMenu">
-      <h1>🔒 MEMORIA CLASIFICADA</h1>
-      <h2>❤️ ARCHIVO SECRETO</h2>
+      <h1>🔓 ACCESS GRANTED</h1>
+      <p>CLASSIFIED MEMORY</p>
 
-      <p>ACCESO: AUTORIZADO</p>
-      <p>ESTADO: MEMORIA DESBLOQUEADA</p>
+      <p id="loadingText">RECUPERANDO MEMORIA...</p>
 
-      <p>
-        Se analizaron todos los recuerdos registrados.
-      </p>
+      <div id="secretContent" style="display:none;">
 
-      <p>
-        El primer mensaje.<br>
-        Las primeras conversaciones.<br>
-        Las primeras risas.<br>
-        El día en que comenzó todo.
-      </p>
+        <h2>❤️ ARCHIVO SECRETO</h2>
 
-      <p>
-        Pero después de analizar cada registro,
-        el sistema encontró algo que no podía
-        clasificarse como una simple memoria.
-      </p>
+        <p>ACCESO: AUTORIZADO</p>
+        <p>ESTADO: MEMORIA DESBLOQUEADA</p>
 
-      <h2>⚠️ ANOMALÍA DETECTADA</h2>
+        <p>
+          Se analizaron todos los recuerdos registrados.
+        </p>
 
-      <p>
-        El recuerdo más importante
-        todavía no ha terminado de escribirse.
-      </p>
+        <p>
+          El primer mensaje.<br>
+          Las primeras conversaciones.<br>
+          Las primeras risas.<br>
+          El día en que comenzó todo.
+        </p>
 
-      <p>
-        Porque nuestra historia
-        no terminó el 17 de mayo de 2026.
-      </p>
+        <p>
+          Pero después de analizar cada registro,
+          el sistema encontró algo que no podía
+          clasificarse como una simple memoria.
+        </p>
 
-      <p>
-        Ese día solamente fue el comienzo.
-      </p>
+        <h2>⚠️ ANOMALÍA DETECTADA</h2>
 
-      <h2>❤️ REGISTRO ACTUAL</h2>
+        <p>
+          El recuerdo más importante
+          todavía no ha terminado de escribirse.
+        </p>
 
-      <p>
-        Hikari sigue siendo una parte
-        demasiado importante de mi vida.
-      </p>
+        <p>
+          Porque nuestra historia
+          no terminó el 17 de mayo de 2026.
+        </p>
 
-      <p>
-        Y mientras sigamos creando recuerdos,
-        este archivo seguirá creciendo.
-      </p>
+        <p>
+          Ese día solamente fue el comienzo.
+        </p>
 
-      <h2>MEMORIA SECRETA:</h2>
+        <h2>❤️ REGISTRO ACTUAL</h2>
 
-      <h2>❤️ TÚ.</h2>
+        <p>
+          Hikari sigue siendo una parte
+          demasiado importante de mi vida.
+        </p>
 
-      <p>
-        No existe una fecha para este recuerdo.
-      </p>
+        <p>
+          Y mientras sigamos creando recuerdos,
+          este archivo seguirá creciendo.
+        </p>
 
-      <p>
-        Porque no pertenece al pasado.
-      </p>
+        <h2>MEMORIA SECRETA:</h2>
 
-      <p>
-        Sigue ocurriendo.
-      </p>
+        <h2>❤️ TÚ.</h2>
 
-      <h2>FIN DEL ARCHIVO.</h2>
+        <p>
+          No existe una fecha para este recuerdo.
+        </p>
 
-      <p>ESTADO: ❤️ SIEMPRE.</p>
+        <p>
+          Porque no pertenece al pasado.
+        </p>
 
-      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+        <p>
+          Sigue ocurriendo.
+        </p>
+
+        <h2>FIN DEL ARCHIVO.</h2>
+
+        <p>ESTADO: ❤️ SIEMPRE.</p>
+
+        <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+
+      </div>
     </div>
   `;
+
+  setTimeout(() => {
+    document.getElementById("loadingText").innerHTML =
+      "████████████████ 100%";
+
+    setTimeout(() => {
+      document.getElementById("loadingText").innerHTML =
+        "🔓 MEMORIA RECUPERADA";
+
+      setTimeout(() => {
+        document.getElementById("secretContent").style.display = "block";
+      }, 1000);
+
+    }, 1000);
+
+  }, 2000);
 }
 function openSecretMemory() {
   if (!secretMemoryUnlocked) {
