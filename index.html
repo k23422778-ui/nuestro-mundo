@@ -1074,9 +1074,9 @@ function showArchive2() {
       <button onclick="showMemory2()">❤️ PRIMERA CONEXIÓN</button>
       <button onclick="showMemory3()">😂 PRIMERAS RISAS</button>
       <button onclick="showMemory4()">📅 17 / 05 / 2026</button>
-      <button onclick="openSecretMemory()">🔒 MEMORIA SECRETA</button>
-      <br><br>
-
+     <button onclick="openSecretMemory()">
+  ${secretMemoryUnlocked ? "🔓 MEMORIA SECRETA — DESBLOQUEADA" : "🔒 MEMORIA SECRETA — BLOQUEADA"}
+</button>
       <button onclick="showMainMenu()">← VOLVER</button>
     </div>
   `;
@@ -1350,7 +1350,7 @@ function showArchive2() {
     </div>
   `;
 }
-  function openSecretMemory() {
+function openSecretMemory() {
   if (!secretMemoryUnlocked) {
     alert("🔒 MEMORIA BLOQUEADA\n\nCompleta la INVESTIGACIÓN para desbloquearla.");
     return;
@@ -1358,7 +1358,7 @@ function showArchive2() {
 
   showMemory5();
 }
-function showArchive1() {
+  function showArchive1() {
   document.querySelector(".content").innerHTML = `
     <div class="mainMenu">
       <h1>📁 ARCHIVO #001</h1>
