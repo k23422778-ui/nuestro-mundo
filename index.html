@@ -705,7 +705,7 @@ function showArchives() {
       <button onclick="showArchive3()">ARCHIVO #003 — FRECUENCIA ANORMAL</button>
       <button onclick="showArchive4()">ARCHIVO #004 — COMPATIBILIDAD</button>
       <button onclick="showArchive5()">ARCHIVO #005 — CAMBIO DE ESTADO</button>
-      <button>ARCHIVO #006 — SIN DEFINIR</button>
+<button onclick="showArchive6()">ARCHIVO #006 — SIN DEFINIR</button>
       <button>ARCHIVO #007 — PRIMER ENCUENTRO</button>
 
       <br><br>
@@ -914,6 +914,63 @@ function showArchive2() {
       </p>
 
       <h2>RESULTADO: IRREMPLAZABLE.</h2>
+
+      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+    </div>
+  `;
+}
+  function showArchive6() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>📁 ARCHIVO #006</h1>
+      <h2>SIN DEFINIR</h2>
+
+      <p>ESTADO: CLASIFICACIÓN IMPOSIBLE</p>
+
+      <p>
+        El sistema intentó determinar exactamente
+        qué representa Hikari para el sujeto.
+      </p>
+
+      <p>ANÁLISIS INICIADO...</p>
+
+      <p>
+        Amiga: RESULTADO INCOMPLETO.<br>
+        Persona especial: RESULTADO INCOMPLETO.<br>
+        Amor: RESULTADO INSUFICIENTE.<br>
+        Persona favorita: DATOS INSUFICIENTES.
+      </p>
+
+      <h2>⚠️ ERROR</h2>
+
+      <p>
+        Ninguna categoría existente parece ser
+        suficiente para describir el vínculo.
+      </p>
+
+      <p>
+        Se intentó crear una nueva categoría.
+      </p>
+
+      <p>RESULTADO: IMPOSIBLE.</p>
+
+      <h2>ARCHIVO SIN DEFINIR.</h2>
+
+      <p>
+        Quizá el problema no es encontrar una palabra
+        que lo explique.
+      </p>
+
+      <p>
+        Quizá simplemente hay cosas que no necesitan
+        una definición.
+      </p>
+
+      <h2>❤️ HIKARI = ALGO QUE NO SE PUEDE EXPLICAR.</h2>
+
+      <p>ESTADO FINAL:</p>
+
+      <h2>CLASIFICACIÓN: IMPOSIBLE</h2>
 
       <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
     </div>
