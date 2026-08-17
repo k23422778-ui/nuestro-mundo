@@ -1467,18 +1467,64 @@ function openSecretMemory() {
           Y esta historia todavía se está escribiendo.
         </p>
 
-        <h2>💗 ESTADO DEL SISTEMA</h2>
+<h2>⚠️ ERROR CRÍTICO</h2>
 
-        <h1>SIEMPRE JUNTOS ❤️</h1>
+<p>
+  VARIABLE NO RECONOCIDA:
+</p>
 
-        <p>
-          FIN DEL ANÁLISIS.
-        </p>
+<h1>❤️ AMOR</h1>
 
-        <button onclick="showMainMenu()">
-          ← VOLVER AL MENÚ
-        </button>
+<p>
+  El sistema intentó calcular
+  la importancia de Hikari.
+</p>
 
+<p>
+  Se analizaron todos los recuerdos.<br>
+  Todas las conversaciones.<br>
+  Todos los momentos.
+</p>
+
+<p>
+  RESULTADO:
+</p>
+
+<h1>❌ IMPOSIBLE DE CALCULAR</h1>
+
+<p>
+  No existe una unidad de medida
+  suficientemente grande para expresar
+  lo importante que es.
+</p>
+
+<h2>💗 CONCLUSIÓN</h2>
+
+<p>
+  Hikari no puede ser clasificada
+  como una simple memoria.
+</p>
+
+<p>
+  Ella es parte de la historia.
+</p>
+
+<p>
+  Y esta historia todavía
+  se está escribiendo.
+</p>
+
+<h2>⚠️ SISTEMA INESTABLE</h2>
+
+<p>
+  Se ha detectado un último registro.
+</p>
+
+<br>
+
+<button onclick="showFinalMessage()">
+  💌 ABRIR ÚLTIMO REGISTRO
+</button>
       </div>
     </div>
   `;
@@ -1517,6 +1563,114 @@ function openSecretMemory() {
     }, 1000);
 
   }, 1000);
+}
+  function showFinalMessage() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+
+      <h1>💌 ÚLTIMO REGISTRO</h1>
+
+      <p>ARCHIVO: FINAL_001</p>
+      <p>DESTINATARIA: HIKARI ❤️</p>
+      <p>ESTADO: REGISTRO PERMANENTE</p>
+
+      <br>
+
+      <h2>❤️ PARA TI</h2>
+
+      <p>
+        Si llegaste hasta aquí,
+        significa que encontraste todos los archivos.
+      </p>
+
+      <p>
+        Pero hay algo que ningún sistema,
+        ninguna memoria y ningún archivo
+        puede explicar.
+      </p>
+
+      <p>
+        Lo mucho que te quiero.
+      </p>
+
+      <p>
+        Desde aquel 17 de mayo de 2026,
+        cuando todo comenzó con algo
+        tan pequeño como una conversación,
+        jamás imaginé que terminarías
+        siendo una persona tan importante para mí.
+      </p>
+
+      <p>
+        Hemos creado recuerdos,
+        hemos reído,
+        hemos hablado durante horas
+        y hemos vivido momentos
+        que quiero guardar para siempre.
+      </p>
+
+      <p>
+        Y si pudiera volver al principio
+        y repetir todo otra vez,
+        volvería a elegir conocerte.
+      </p>
+
+      <h2>❤️ PORQUE TE ELIJO A TI.</h2>
+
+      <p>
+        No porque nuestra historia sea perfecta,
+        sino porque es nuestra.
+      </p>
+
+      <p>
+        Y todavía nos quedan
+        muchísimos recuerdos por crear.
+      </p>
+
+      <p>
+        Así que este archivo no tiene
+        realmente un final.
+      </p>
+
+      <p>
+        Porque mientras sigamos juntos,
+        siempre habrá una nueva página
+        que escribir.
+      </p>
+
+      <br>
+
+      <h1>❤️ HIKARI ❤️</h1>
+
+      <p>
+        Gracias por existir.
+      </p>
+
+      <p>
+        Gracias por formar parte de mi vida.
+      </p>
+
+      <p>
+        Y sobre todo...
+        gracias por ser tú.
+      </p>
+
+      <h2>TE AMO. ❤️</h2>
+
+      <br>
+
+      <p>ARCHIVO FINALIZADO.</p>
+
+      <p>ESTADO:</p>
+
+      <h1>❤️ SIEMPRE</h1>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER AL MENÚ
+      </button>
+
+    </div>
+  `;
 }
   function showArchive1() {
   document.querySelector(".content").innerHTML = `
