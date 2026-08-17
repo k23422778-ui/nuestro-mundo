@@ -2,98 +2,141 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>ARCHIVO #001 — HIKARI</title>
 
 <style>
+
+/* =========================================================
+   FUENTE
+========================================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
+html,
+body{
   width:100%;
   height:100%;
 }
 
 body{
   overflow:hidden;
+
   background:
-    radial-gradient(circle at center,#181818 0%,#080808 45%,#020202 100%);
+    radial-gradient(
+      circle at center,
+      #171717 0%,
+      #080808 48%,
+      #010101 100%
+    );
+
   color:#d8d8d8;
+
   font-family:'Share Tech Mono',monospace;
 }
 
-/* =========================
-   AMBIENTE
-========================= */
+
+/* =========================================================
+   HABITACIÓN
+========================================================= */
 
 .room{
   position:fixed;
   inset:0;
+
   display:flex;
   justify-content:center;
   align-items:center;
-  padding:20px;
+
+  padding:15px;
 }
 
 .room::before{
   content:"";
+
   position:absolute;
   inset:0;
+
+  pointer-events:none;
+
   background:
     radial-gradient(
       ellipse at center,
-      rgba(255,255,255,.05),
+      rgba(255,255,255,.055),
       transparent 65%
     );
-  pointer-events:none;
 }
 
-/* =========================
+
+/* =========================================================
    MONITOR
-========================= */
+========================================================= */
 
 .monitor{
   position:relative;
-  width:min(900px,94vw);
-  height:min(720px,94vh);
-  padding:18px;
+
+  width:min(920px,96vw);
+  height:min(760px,96vh);
+
+  padding:16px;
+
   border-radius:22px;
+
   background:
     linear-gradient(
       145deg,
-      #292929,
+      #2b2b2b,
       #111 45%,
-      #080808
+      #070707
     );
 
   box-shadow:
-    0 40px 100px rgba(0,0,0,.9),
+    0 40px 100px rgba(0,0,0,.95),
     inset 0 0 0 2px #303030,
-    inset 0 0 30px rgba(0,0,0,.9);
+    inset 0 0 35px rgba(0,0,0,.95);
 
-  animation:monitorAppear 1.8s ease-out;
+  animation:monitorAppear 1.5s ease-out;
 }
 
 .monitor::before{
   content:"";
+
   position:absolute;
   inset:-5px;
-  border-radius:26px;
+
+  border-radius:27px;
+
   border:1px solid #343434;
+
   pointer-events:none;
 }
 
+
+/* =========================================================
+   PANTALLA
+========================================================= */
+
 .screen{
   position:relative;
+
   width:100%;
   height:100%;
+
   overflow:hidden;
+
   border-radius:12px;
 
   background:
@@ -106,16 +149,24 @@ body{
 
   box-shadow:
     inset 0 0 50px rgba(0,0,0,.95),
-    inset 0 0 12px rgba(255,255,255,.04);
+    inset 0 0 15px rgba(255,255,255,.04);
 
   animation:screenFlicker 5s infinite;
 }
 
+
+/* =========================================================
+   EFECTO CRT
+========================================================= */
+
 .screen::before{
   content:"";
+
   position:absolute;
   inset:0;
-  z-index:10;
+
+  z-index:50;
+
   pointer-events:none;
 
   background:
@@ -132,29 +183,36 @@ body{
 
 .screen::after{
   content:"";
+
   position:absolute;
   inset:0;
-  z-index:11;
+
+  z-index:51;
+
   pointer-events:none;
 
   background:
     radial-gradient(
       ellipse at center,
       transparent 45%,
-      rgba(0,0,0,.75) 100%
+      rgba(0,0,0,.78) 100%
     );
 }
 
-/* =========================
+
+/* =========================================================
    RUIDO
-========================= */
+========================================================= */
 
 .noise{
   position:absolute;
   inset:0;
-  z-index:9;
+
+  z-index:40;
+
   pointer-events:none;
-  opacity:.06;
+
+  opacity:.07;
 
   background-image:
     repeating-linear-gradient(
@@ -169,10 +227,13 @@ body{
 
 .scanline{
   position:absolute;
+
   left:0;
+
   width:100%;
   height:2px;
-  z-index:8;
+
+  z-index:39;
 
   background:rgba(220,220,220,.08);
 
@@ -182,42 +243,58 @@ body{
   animation:scan 6s linear infinite;
 }
 
-/* =========================
+
+/* =========================================================
    INTERFAZ
-========================= */
+========================================================= */
 
 .interface{
   position:relative;
-  z-index:5;
+
+  z-index:10;
+
   height:100%;
-  padding:6% 8%;
+
+  padding:5% 7%;
 
   display:flex;
   flex-direction:column;
+
   justify-content:space-between;
 }
 
+
+/* =========================================================
+   TOP
+========================================================= */
+
 .top{
   display:flex;
+
   justify-content:space-between;
   align-items:center;
 
-  font-size:clamp(.65rem,1.5vw,.9rem);
+  font-size:clamp(.62rem,1.5vw,.9rem);
+
   letter-spacing:2px;
 
-  color:#aaa;
+  color:#999;
 }
 
 .online{
   display:flex;
+
   align-items:center;
+
   gap:8px;
 }
 
 .indicator{
   width:7px;
   height:7px;
+
   border-radius:50%;
+
   background:#8f1717;
 
   box-shadow:
@@ -226,17 +303,23 @@ body{
   animation:blink 2s infinite;
 }
 
-/* =========================
+
+/* =========================================================
    CONTENIDO
-========================= */
+========================================================= */
 
 .content{
   text-align:center;
+
   width:100%;
-  height:65%;
+  height:68%;
+
   overflow-y:auto;
+
   padding:20px;
+
   scrollbar-width:thin;
+
   scrollbar-color:#555 transparent;
 }
 
@@ -248,26 +331,40 @@ body{
   background:#555;
 }
 
+
+/* =========================================================
+   TEXTO PRINCIPAL
+========================================================= */
+
 .classification{
   color:#888;
+
   font-size:clamp(.7rem,2vw,1rem);
+
   letter-spacing:4px;
+
   margin-bottom:18px;
 }
 
 .file-number{
   color:#b7b7b7;
+
   font-size:clamp(.65rem,1.5vw,.9rem);
+
   letter-spacing:3px;
+
   margin-bottom:8px;
 }
 
 .subject{
   position:relative;
+
   display:inline-block;
 
   font-size:clamp(2.8rem,11vw,6rem);
+
   letter-spacing:8px;
+
   font-weight:normal;
 
   color:#d7d7d7;
@@ -283,25 +380,30 @@ body{
   margin-top:12px;
 
   font-size:clamp(.7rem,2vw,1rem);
+
   letter-spacing:3px;
 
   color:#a7a7a7;
 }
 
 .status strong{
-  color:#9d2020;
+  color:#a11e1e;
+
   font-weight:normal;
 }
 
-/* =========================
+
+/* =========================================================
    WARNING
-========================= */
+========================================================= */
 
 .warning{
   margin-top:35px;
+
   display:inline-block;
 
   border:1px solid #541717;
+
   padding:14px 25px;
 
   color:#aaa;
@@ -317,44 +419,94 @@ body{
 
 .warning-title{
   color:#9d2020;
+
   font-size:.75rem;
+
   letter-spacing:3px;
+
   margin-bottom:8px;
 }
 
 .warning-text{
   font-size:clamp(.8rem,2vw,1rem);
+
   letter-spacing:1px;
 }
 
-/* =========================
+
+/* =========================================================
    BOTONES
-========================= */
+========================================================= */
 
 button{
   padding:12px 22px;
+
   margin:7px;
 
   border:1px solid #666;
-  background:rgba(0,0,0,.55);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(30,30,30,.8),
+      rgba(0,0,0,.75)
+    );
 
   color:#cfcfcf;
 
   font-family:inherit;
-  font-size:clamp(.7rem,2vw,.9rem);
+
+  font-size:clamp(.68rem,2vw,.9rem);
+
   letter-spacing:2px;
 
   cursor:pointer;
 
   transition:
-    background .25s ease,
-    border .25s ease,
-    transform .25s ease,
-    box-shadow .25s ease;
+    background .2s ease,
+    border .2s ease,
+    transform .15s ease,
+    box-shadow .2s ease;
+
+  position:relative;
+
+  overflow:hidden;
+}
+
+button::after{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-120%;
+
+  width:80%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.08),
+      transparent
+    );
+
+  transition:left .4s ease;
+}
+
+button:hover::after{
+  left:130%;
 }
 
 button:hover{
-  background:rgba(110,0,0,.2);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(80,0,0,.35),
+      rgba(20,0,0,.8)
+    );
+
   border-color:#9d2020;
 
   box-shadow:
@@ -364,39 +516,108 @@ button:hover{
 }
 
 button:active{
-  transform:scale(.97);
+  transform:scale(.96);
 }
 
-/* =========================
+
+/* =========================================================
+   EFECTO RESIDENT EVIL / BIOHAZARD
+========================================================= */
+
+.screen.buttonImpact{
+  animation:
+    buttonShake .22s linear,
+    redPulse .35s ease-out;
+}
+
+.screen.buttonImpact::after{
+  box-shadow:
+    inset 0 0 120px rgba(140,0,0,.8);
+}
+
+.biohazardFlash{
+  position:fixed;
+
+  inset:0;
+
+  z-index:999;
+
+  pointer-events:none;
+
+  background:
+    rgba(130,0,0,.28);
+
+  opacity:0;
+
+  animation:biohazardFlash .35s ease-out;
+}
+
+.glitchOverlay{
+  position:fixed;
+
+  inset:0;
+
+  z-index:998;
+
+  pointer-events:none;
+
+  opacity:0;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(180,0,0,.12) 2px,
+      transparent 4px
+    );
+
+  animation:glitchFlash .25s linear;
+}
+
+
+/* =========================================================
    MENU
-========================= */
+========================================================= */
 
 .mainMenu{
   width:100%;
+
   max-width:760px;
+
   margin:0 auto;
+
   padding:10px 5px 40px;
 }
 
 .mainMenu h1{
   color:#ddd;
+
   font-size:clamp(1.5rem,5vw,2.5rem);
+
   letter-spacing:3px;
+
   margin-bottom:15px;
 }
 
 .mainMenu h2{
   color:#aaa;
+
   font-size:clamp(1rem,3vw,1.5rem);
+
   letter-spacing:2px;
+
   margin:18px 0;
 }
 
 .mainMenu p{
   color:#b5b5b5;
+
   font-size:clamp(.78rem,2vw,.98rem);
+
   line-height:1.8;
+
   margin:10px auto;
+
   max-width:700px;
 }
 
@@ -404,35 +625,132 @@ button:active{
   display:inline-block;
 }
 
-/* =========================
+
+/* =========================================================
+   MENU PRINCIPAL — TERMINAL
+========================================================= */
+
+.menuHeader{
+  border-bottom:1px solid #3b3b3b;
+
+  padding-bottom:15px;
+
+  margin-bottom:20px;
+}
+
+.menuHeader h1{
+  margin-bottom:5px;
+}
+
+.menuStatus{
+  color:#777;
+
+  font-size:.7rem;
+
+  letter-spacing:2px;
+}
+
+.menuGrid{
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:12px;
+
+  margin-top:25px;
+}
+
+.menuButton{
+  min-height:75px;
+
+  margin:0 !important;
+
+  display:flex !important;
+
+  align-items:center;
+
+  justify-content:center;
+
+  flex-direction:column;
+
+  gap:6px;
+
+  border-color:#4b4b4b;
+}
+
+.menuButton .icon{
+  font-size:1.5rem;
+}
+
+.menuButton .label{
+  font-size:.75rem;
+
+  letter-spacing:2px;
+}
+
+.menuButton:hover{
+  border-color:#9d2020;
+}
+
+
+/* =========================================================
+   SEPARADOR
+========================================================= */
+
+.separator{
+  width:80%;
+
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #555,
+      transparent
+    );
+
+  margin:25px auto;
+}
+
+
+/* =========================================================
    PARTE INFERIOR
-========================= */
+========================================================= */
 
 .bottom{
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
 
   color:#666;
 
   font-size:clamp(.55rem,1.3vw,.75rem);
+
   letter-spacing:2px;
 }
 
 .signal{
   display:flex;
+
   align-items:center;
+
   gap:8px;
 }
 
 .bars{
   display:flex;
+
   gap:2px;
 }
 
 .bar{
   width:4px;
+
   height:10px;
+
   background:#555;
 }
 
@@ -440,87 +758,300 @@ button:active{
   background:#8f1717;
 }
 
-/* =========================
+
+/* =========================================================
+   PROGRESO
+========================================================= */
+
+.progressBox{
+  width:90%;
+
+  max-width:450px;
+
+  margin:25px auto;
+
+  border:1px solid #3c3c3c;
+
+  padding:15px;
+}
+
+.progressBar{
+  width:100%;
+
+  height:10px;
+
+  background:#111;
+
+  border:1px solid #444;
+
+  margin-top:10px;
+}
+
+.progressFill{
+  width:0%;
+
+  height:100%;
+
+  background:#8f1717;
+
+  box-shadow:
+    0 0 10px rgba(150,0,0,.5);
+
+  transition:width .4s ease;
+}
+
+
+/* =========================================================
    ANIMACIONES
-========================= */
+========================================================= */
 
 @keyframes monitorAppear{
+
   from{
     opacity:0;
+
     transform:scale(.96);
   }
 
   to{
     opacity:1;
+
     transform:scale(1);
   }
+
 }
 
 @keyframes screenFlicker{
-  0%,100%{opacity:1}
-  48%{opacity:1}
-  49%{opacity:.94}
-  50%{opacity:1}
-  83%{opacity:1}
-  84%{opacity:.96}
+
+  0%,100%{
+    opacity:1;
+  }
+
+  48%{
+    opacity:1;
+  }
+
+  49%{
+    opacity:.94;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  83%{
+    opacity:1;
+  }
+
+  84%{
+    opacity:.96;
+  }
+
 }
 
 @keyframes noiseMove{
-  0%{transform:translateY(0)}
-  100%{transform:translateY(4px)}
+
+  0%{
+    transform:translateY(0);
+  }
+
+  100%{
+    transform:translateY(4px);
+  }
+
 }
 
 @keyframes scan{
-  from{top:-5%}
-  to{top:105%}
+
+  from{
+    top:-5%;
+  }
+
+  to{
+    top:105%;
+  }
+
 }
 
 @keyframes blink{
-  0%,45%{opacity:1}
-  50%,55%{opacity:.25}
-  60%,100%{opacity:1}
+
+  0%,45%{
+    opacity:1;
+  }
+
+  50%,55%{
+    opacity:.25;
+  }
+
+  60%,100%{
+    opacity:1;
+  }
+
 }
 
 @keyframes warningPulse{
-  0%,100%{opacity:.85}
-  50%{opacity:1}
+
+  0%,100%{
+    opacity:.85;
+  }
+
+  50%{
+    opacity:1;
+  }
+
 }
 
 @keyframes subtleGlitch{
-  0%,94%,100%{transform:translateX(0)}
-  95%{transform:translateX(-2px)}
-  96%{transform:translateX(2px)}
-  97%{transform:translateX(0)}
+
+  0%,94%,100%{
+    transform:translateX(0);
+  }
+
+  95%{
+    transform:translateX(-2px);
+  }
+
+  96%{
+    transform:translateX(2px);
+  }
+
+  97%{
+    transform:translateX(0);
+  }
+
 }
 
-/* =========================
+@keyframes buttonShake{
+
+  0%{
+    transform:translate(0,0);
+  }
+
+  20%{
+    transform:translate(-3px,1px);
+  }
+
+  40%{
+    transform:translate(3px,-1px);
+  }
+
+  60%{
+    transform:translate(-2px,0);
+  }
+
+  80%{
+    transform:translate(2px,1px);
+  }
+
+  100%{
+    transform:translate(0,0);
+  }
+
+}
+
+@keyframes redPulse{
+
+  0%{
+    box-shadow:
+      inset 0 0 50px rgba(0,0,0,.95);
+  }
+
+  45%{
+    box-shadow:
+      inset 0 0 150px rgba(120,0,0,.55);
+  }
+
+  100%{
+    box-shadow:
+      inset 0 0 50px rgba(0,0,0,.95);
+  }
+
+}
+
+@keyframes biohazardFlash{
+
+  0%{
+    opacity:0;
+  }
+
+  25%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+  }
+
+}
+
+@keyframes glitchFlash{
+
+  0%{
+    opacity:0;
+
+    transform:translateX(0);
+  }
+
+  20%{
+    opacity:1;
+
+    transform:translateX(-4px);
+  }
+
+  40%{
+    opacity:.5;
+
+    transform:translateX(5px);
+  }
+
+  60%{
+    opacity:1;
+
+    transform:translateX(-2px);
+  }
+
+  100%{
+    opacity:0;
+
+    transform:translateX(0);
+  }
+
+}
+
+
+/* =========================================================
    MÓVIL
-========================= */
+========================================================= */
 
 @media(max-width:600px){
 
   .room{
-    padding:8px;
+    padding:7px;
   }
 
   .monitor{
-    width:96vw;
-    height:96vh;
-    padding:12px;
-    border-radius:18px;
+    width:97vw;
+
+    height:97vh;
+
+    padding:10px;
+
+    border-radius:17px;
   }
 
   .screen{
-    border-radius:9px;
+    border-radius:8px;
   }
 
   .interface{
-    padding:8% 5%;
+    padding:7% 4%;
   }
 
   .top{
     flex-direction:column;
+
     align-items:flex-start;
+
     gap:8px;
   }
 
@@ -528,37 +1059,92 @@ button:active{
     letter-spacing:5px;
   }
 
+  .content{
+    padding:15px 8px;
+  }
+
   .warning{
     width:100%;
+
     padding:13px 10px;
   }
 
   .bottom{
     flex-direction:column;
+
     align-items:flex-start;
+
     gap:8px;
   }
 
   button{
-    width:90%;
+    width:92%;
+
     margin:6px auto;
   }
+
+  .menuGrid{
+    grid-template-columns:1fr 1fr;
+
+    gap:8px;
+  }
+
+  .menuButton{
+    width:100%;
+
+    min-height:82px;
+  }
+
+  .menuButton .icon{
+    font-size:1.3rem;
+  }
+
+  .menuButton .label{
+    font-size:.62rem;
+  }
+
 }
+
+
+/* =========================================================
+   MÓVIL MUY PEQUEÑO
+========================================================= */
+
+@media(max-width:380px){
+
+  .menuGrid{
+    grid-template-columns:1fr;
+  }
+
+  .menuButton{
+    min-height:65px;
+  }
+
+}
+
 </style>
 </head>
 
+
 <body>
+
 
 <div class="room">
 
   <div class="monitor">
 
-    <div class="screen">
+    <div class="screen" id="screen">
 
       <div class="noise"></div>
+
       <div class="scanline"></div>
 
       <div class="interface">
+
+
+        <!-- =================================================
+             PARTE SUPERIOR
+        ================================================== -->
 
         <div class="top">
 
@@ -567,64 +1153,113 @@ button:active{
           </div>
 
           <div class="online">
+
             <span class="indicator"></span>
+
             SYSTEM ONLINE
+
           </div>
 
         </div>
 
+
+        <!-- =================================================
+             CONTENIDO
+        ================================================== -->
+
         <div class="content" id="content">
 
+
+          <!-- ===============================================
+               PANTALLA INICIAL
+          ================================================ -->
+
           <div class="classification">
+
             ARCHIVO CLASIFICADO
+
           </div>
+
 
           <div class="file-number">
+
             ARCHIVO #001
+
           </div>
+
 
           <h1 class="subject">
+
             HIKARI
+
           </h1>
 
+
           <div class="status">
+
             ESTADO:
-            <strong>IRREMPLAZABLE</strong>
+
+            <strong>
+              IRREMPLAZABLE
+            </strong>
+
           </div>
+
 
           <div class="warning">
 
             <div class="warning-title">
+
               ⚠ ANOMALÍA DETECTADA
+
             </div>
 
             <div class="warning-text">
+
               Una que no quiero curar.
+
             </div>
 
           </div>
 
+
+          <br><br>
+
+
+          <button onclick="startGame()">
+
+            [ INICIAR INVESTIGACIÓN ]
+
+          </button>
+
+
         </div>
 
-        <button onclick="startGame()">
-          [ INICIAR INVESTIGACIÓN ]
-        </button>
+
+        <!-- =================================================
+             PARTE INFERIOR
+        ================================================== -->
 
         <div class="bottom">
 
           <div>
+
             SYSTEM // CLASSIFIED
+
           </div>
+
 
           <div class="signal">
 
             SIGNAL
 
             <div class="bars">
+
               <span class="bar"></span>
               <span class="bar"></span>
               <span class="bar"></span>
               <span class="bar"></span>
+
             </div>
 
             87%
@@ -633,133 +1268,395 @@ button:active{
 
         </div>
 
+
       </div>
+
     </div>
+
   </div>
+
 </div>
+
 
 <script>
 
-/* =====================================================
-   ESTADO DEL SISTEMA
-===================================================== */
+/* =========================================================
+   VARIABLES
+========================================================= */
 
 let secretMemoryUnlocked = false;
 
 
-/* =====================================================
-   UTILIDADES
-===================================================== */
+/* =========================================================
+   EFECTO DE BOTÓN
+========================================================= */
 
-function setContent(html){
-  document.getElementById("content").innerHTML = html;
-  document.getElementById("content").scrollTop = 0;
+function buttonEffect(){
+
+  const screen =
+    document.getElementById("screen");
+
+  if(screen){
+
+    screen.classList.remove("buttonImpact");
+
+    void screen.offsetWidth;
+
+    screen.classList.add("buttonImpact");
+
+  }
+
+
+  const flash =
+    document.createElement("div");
+
+  flash.className =
+    "biohazardFlash";
+
+  document.body.appendChild(flash);
+
+
+  const glitch =
+    document.createElement("div");
+
+  glitch.className =
+    "glitchOverlay";
+
+  document.body.appendChild(glitch);
+
+
+  setTimeout(() => {
+
+    flash.remove();
+
+    glitch.remove();
+
+  },500);
+
+
+  playTerminalSound();
+
 }
 
 
-/* =====================================================
+/* =========================================================
+   SONIDO
+========================================================= */
+
+function playTerminalSound(){
+
+  try{
+
+    const AudioContext =
+      window.AudioContext ||
+      window.webkitAudioContext;
+
+    if(!AudioContext){
+      return;
+    }
+
+    const ctx =
+      new AudioContext();
+
+    const oscillator =
+      ctx.createOscillator();
+
+    const gain =
+      ctx.createGain();
+
+    oscillator.type =
+      "square";
+
+    oscillator.frequency.setValueAtTime(
+      120,
+      ctx.currentTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      55,
+      ctx.currentTime + .12
+    );
+
+    gain.gain.setValueAtTime(
+      .05,
+      ctx.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      ctx.currentTime + .12
+    );
+
+    oscillator.connect(gain);
+
+    gain.connect(ctx.destination);
+
+    oscillator.start();
+
+    oscillator.stop(
+      ctx.currentTime + .12
+    );
+
+  }catch(error){
+
+    console.log("Audio unavailable.");
+
+  }
+
+}
+
+
+/* =========================================================
+   UTILIDAD DE CONTENIDO
+========================================================= */
+
+function setContent(html){
+
+  document.getElementById(
+    "content"
+  ).innerHTML = html;
+
+  document.getElementById(
+    "content"
+  ).scrollTop = 0;
+
+}
+
+
+/* =========================================================
    MENÚ PRINCIPAL
-===================================================== */
+========================================================= */
 
 function showMainMenu(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🖥️ HIKARI DATABASE</h1>
+
+      <div class="menuHeader">
+
+        <h1>
+          🖥️ HIKARI DATABASE
+        </h1>
+
+        <div class="menuStatus">
+
+          BIOHAZARD ARCHIVE SYSTEM //
+          STATUS: OPERATIVO
+
+        </div>
+
+      </div>
+
 
       <p>
+
         SISTEMA CENTRAL DE ARCHIVOS
+
       </p>
+
 
       <p>
-        ESTADO: OPERATIVO
+
+        IDENTIDAD:
+        <strong>HIKARI</strong>
+
       </p>
 
-      <br>
 
-      <button onclick="startGame()">
-        🔎 INICIAR INVESTIGACIÓN
-      </button>
+      <div class="separator"></div>
 
-      <button onclick="showArchives()">
-        📁 ARCHIVOS
-      </button>
 
-      <button onclick="showMemoryDatabase()">
-        🧠 MEMORY DATABASE
-      </button>
+      <h2>
 
-      <button onclick="showInventory()">
-        🎒 INVENTORY
-      </button>
+        MAIN TERMINAL
+
+      </h2>
+
+
+      <!-- ===============================================
+           TODAS LAS PESTAÑAS
+      ================================================ -->
+
+      <div class="menuGrid">
+
+
+        <button
+          class="menuButton"
+          onclick="showArchives()"
+        >
+
+          <div class="icon">
+            📁
+          </div>
+
+          <div class="label">
+            ARCHIVOS
+          </div>
+
+        </button>
+
+
+        <button
+          class="menuButton"
+          onclick="showMemoryDatabase()"
+        >
+
+          <div class="icon">
+            🧠
+          </div>
+
+          <div class="label">
+            MEMORY DATABASE
+          </div>
+
+        </button>
+
+
+        <button
+          class="menuButton"
+          onclick="startGame()"
+        >
+
+          <div class="icon">
+            🔎
+          </div>
+
+          <div class="label">
+            INVESTIGACIÓN
+          </div>
+
+        </button>
+
+
+        <button
+          class="menuButton"
+          onclick="showInventory()"
+        >
+
+          <div class="icon">
+            🎒
+          </div>
+
+          <div class="label">
+            INVENTORY
+          </div>
+
+        </button>
+
+
+      </div>
+
+
+      <div class="separator"></div>
+
+
+      <p>
+
+        ⚠ ACCESO RESTRINGIDO
+
+      </p>
+
+
+      <p>
+
+        Algunos registros requieren
+        autorización especial.
+
+      </p>
+
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVOS
-===================================================== */
+========================================================= */
 
 function showArchives(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>📁 HIKARI DATABASE</h1>
+      <h1>
+        📁 HIKARI DATABASE
+      </h1>
 
-      <p>ARCHIVOS DE HISTORIA</p>
+      <p>
+        ARCHIVOS DE HISTORIA
+      </p>
+
+      <p>
+        REGISTROS DISPONIBLES: 07
+      </p>
+
 
       <button onclick="showArchive1()">
         ARCHIVO #001 — HIKARI
       </button>
 
+
       <button onclick="showArchive2()">
         ARCHIVO #002 — EL COMIENZO
       </button>
+
 
       <button onclick="showArchive3()">
         ARCHIVO #003 — FRECUENCIA ANORMAL
       </button>
 
+
       <button onclick="showArchive4()">
         ARCHIVO #004 — COMPATIBILIDAD
       </button>
+
 
       <button onclick="showArchive5()">
         ARCHIVO #005 — CAMBIO DE ESTADO
       </button>
 
+
       <button onclick="showArchive6()">
         ARCHIVO #006 — SIN DEFINIR
       </button>
+
 
       <button onclick="showArchive7()">
         ARCHIVO #007 — PRIMER ENCUENTRO
       </button>
 
+
       <br><br>
 
+
       <button onclick="showMainMenu()">
-        ← VOLVER
+        ← VOLVER AL MENÚ
       </button>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 001
-===================================================== */
+========================================================= */
 
 function showArchive1(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -776,7 +1673,9 @@ function showArchive1(){
         responsable del vínculo emocional.
       </p>
 
-      <p>RESULTADO: ERROR.</p>
+      <p>
+        RESULTADO: ERROR.
+      </p>
 
       <p>
         Se analizaron sus gestos.<br>
@@ -784,11 +1683,17 @@ function showArchive1(){
         Su personalidad.
       </p>
 
-      <p>CONCLUSIÓN:</p>
+      <p>
+        CONCLUSIÓN:
+      </p>
 
-      <h2>Es simplemente ella. ❤️</h2>
+      <h2>
+        Es simplemente ella. ❤️
+      </h2>
 
-      <p>RESULTADO: PERFECTA</p>
+      <p>
+        RESULTADO: PERFECTA
+      </p>
 
       <button onclick="showArchives()">
         ← VOLVER A ARCHIVOS
@@ -797,14 +1702,17 @@ function showArchive1(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 002
-===================================================== */
+========================================================= */
 
 function showArchive2(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -849,7 +1757,9 @@ function showArchive2(){
         La conversación se convirtió en muchas más.
       </p>
 
-      <h2>Y así comenzó nuestra historia. ❤️</h2>
+      <h2>
+        Y así comenzó nuestra historia. ❤️
+      </h2>
 
       <p>
         A veces, los errores terminan siendo lo mejor
@@ -863,14 +1773,17 @@ function showArchive2(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 003
-===================================================== */
+========================================================= */
 
 function showArchive3(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -880,14 +1793,18 @@ function showArchive3(){
 
       <h2>FRECUENCIA ANORMAL</h2>
 
-      <p>ESTADO: ANOMALÍA DETECTADA</p>
+      <p>
+        ESTADO: ANOMALÍA DETECTADA
+      </p>
 
       <p>
         Después del primer contacto se comenzó a registrar
         una actividad fuera de los parámetros normales.
       </p>
 
-      <p>REGISTRO DEL SISTEMA:</p>
+      <p>
+        REGISTRO DEL SISTEMA:
+      </p>
 
       <p>
         Frecuencia de pensamiento: CONSTANTE.<br>
@@ -899,27 +1816,39 @@ function showArchive3(){
         Se intentó determinar la causa de la anomalía.
       </p>
 
-      <p>RESULTADO: SIN EXPLICACIÓN LÓGICA.</p>
+      <p>
+        RESULTADO: SIN EXPLICACIÓN LÓGICA.
+      </p>
 
       <p>
         Cada conversación aumentaba la conexión.<br>
         Cada momento juntos hacía más difícil ignorarla.
       </p>
 
-      <h2>⚠️ CONCLUSIÓN DEL SISTEMA:</h2>
+      <h2>
+        ⚠️ CONCLUSIÓN DEL SISTEMA:
+      </h2>
 
       <p>
         La presencia de Hikari genera una alteración
         emocional permanente.
       </p>
 
-      <h2>DIAGNÓSTICO:</h2>
+      <h2>
+        DIAGNÓSTICO:
+      </h2>
 
-      <p>ENAMORAMIENTO SEVERO. ❤️</p>
+      <p>
+        ENAMORAMIENTO SEVERO. ❤️
+      </p>
 
-      <p>TRATAMIENTO RECOMENDADO:</p>
+      <p>
+        TRATAMIENTO RECOMENDADO:
+      </p>
 
-      <h2>Seguir queriéndola. ❤️</h2>
+      <h2>
+        Seguir queriéndola. ❤️
+      </h2>
 
       <button onclick="showArchives()">
         ← VOLVER A ARCHIVOS
@@ -928,14 +1857,17 @@ function showArchive3(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 004
-===================================================== */
+========================================================= */
 
 function showArchive4(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -945,14 +1877,18 @@ function showArchive4(){
 
       <h2>COMPATIBILIDAD</h2>
 
-      <p>ESTADO: ANÁLISIS COMPLETADO</p>
+      <p>
+        ESTADO: ANÁLISIS COMPLETADO
+      </p>
 
       <p>
         Se inició un análisis de compatibilidad
         entre Hikari y el sujeto.
       </p>
 
-      <p>RESULTADOS:</p>
+      <p>
+        RESULTADOS:
+      </p>
 
       <p>
         Compatibilidad emocional: 100% ❤️<br>
@@ -968,21 +1904,30 @@ function showArchive4(){
         una incompatibilidad significativa.
       </p>
 
-      <p>RESULTADO: NINGUNA DETECTADA.</p>
+      <p>
+        RESULTADO: NINGUNA DETECTADA.
+      </p>
 
-      <h2>⚠️ ERROR DEL SISTEMA</h2>
+      <h2>
+        ⚠️ ERROR DEL SISTEMA
+      </h2>
 
       <p>
         Los resultados superan los parámetros
         establecidos para una relación normal.
       </p>
 
-      <h2>COMPATIBILIDAD: 100% ❤️</h2>
+      <h2>
+        COMPATIBILIDAD: 100% ❤️
+      </h2>
 
-      <p>VEREDICTO FINAL:</p>
+      <p>
+        VEREDICTO FINAL:
+      </p>
 
       <h2>
-        Definitivamente están hechos el uno para el otro.
+        Definitivamente están hechos
+        el uno para el otro.
       </h2>
 
       <button onclick="showArchives()">
@@ -992,14 +1937,17 @@ function showArchive4(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 005
-===================================================== */
+========================================================= */
 
 function showArchive5(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1009,11 +1957,17 @@ function showArchive5(){
 
       <h2>CAMBIO DE ESTADO</h2>
 
-      <p>ESTADO INICIAL: DESCONOCIDA</p>
+      <p>
+        ESTADO INICIAL: DESCONOCIDA
+      </p>
 
-      <p>ESTADO ACTUAL: INDISPENSABLE</p>
+      <p>
+        ESTADO ACTUAL: INDISPENSABLE
+      </p>
 
-      <p>REGISTRO DE CAMBIOS:</p>
+      <p>
+        REGISTRO DE CAMBIOS:
+      </p>
 
       <p>
         Día 1: Persona desconocida.<br>
@@ -1032,7 +1986,9 @@ function showArchive5(){
         terminó convirtiéndose en algo mucho más grande.
       </p>
 
-      <h2>⚠️ CAMBIO DE ESTADO DETECTADO</h2>
+      <h2>
+        ⚠️ CAMBIO DE ESTADO DETECTADO
+      </h2>
 
       <p>
         Hikari dejó de ser simplemente alguien.
@@ -1045,15 +2001,21 @@ function showArchive5(){
         Alguien que quiero tener a mi lado.
       </p>
 
-      <p>ESTADO FINAL:</p>
+      <p>
+        ESTADO FINAL:
+      </p>
 
-      <h2>PERSONA ESPECIAL ❤️</h2>
+      <h2>
+        PERSONA ESPECIAL ❤️
+      </h2>
 
       <p>
         Nivel de importancia: MÁXIMO.
       </p>
 
-      <h2>RESULTADO: IRREMPLAZABLE.</h2>
+      <h2>
+        RESULTADO: IRREMPLAZABLE.
+      </h2>
 
       <button onclick="showArchives()">
         ← VOLVER A ARCHIVOS
@@ -1062,14 +2024,17 @@ function showArchive5(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 006
-===================================================== */
+========================================================= */
 
 function showArchive6(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1079,14 +2044,18 @@ function showArchive6(){
 
       <h2>SIN DEFINIR</h2>
 
-      <p>ESTADO: CLASIFICACIÓN IMPOSIBLE</p>
+      <p>
+        ESTADO: CLASIFICACIÓN IMPOSIBLE
+      </p>
 
       <p>
         El sistema intentó determinar exactamente
         qué representa Hikari para el sujeto.
       </p>
 
-      <p>ANÁLISIS INICIADO...</p>
+      <p>
+        ANÁLISIS INICIADO...
+      </p>
 
       <p>
         Amiga: RESULTADO INCOMPLETO.<br>
@@ -1095,7 +2064,9 @@ function showArchive6(){
         Persona favorita: DATOS INSUFICIENTES.
       </p>
 
-      <h2>⚠️ ERROR</h2>
+      <h2>
+        ⚠️ ERROR
+      </h2>
 
       <p>
         Ninguna categoría existente parece ser
@@ -1106,9 +2077,13 @@ function showArchive6(){
         Se intentó crear una nueva categoría.
       </p>
 
-      <p>RESULTADO: IMPOSIBLE.</p>
+      <p>
+        RESULTADO: IMPOSIBLE.
+      </p>
 
-      <h2>ARCHIVO SIN DEFINIR.</h2>
+      <h2>
+        ARCHIVO SIN DEFINIR.
+      </h2>
 
       <p>
         Quizá el problema no es encontrar una palabra
@@ -1124,9 +2099,13 @@ function showArchive6(){
         ❤️ HIKARI = ALGO QUE NO SE PUEDE EXPLICAR.
       </h2>
 
-      <p>ESTADO FINAL:</p>
+      <p>
+        ESTADO FINAL:
+      </p>
 
-      <h2>CLASIFICACIÓN: IMPOSIBLE</h2>
+      <h2>
+        CLASIFICACIÓN: IMPOSIBLE
+      </h2>
 
       <button onclick="showArchives()">
         ← VOLVER A ARCHIVOS
@@ -1135,14 +2114,17 @@ function showArchive6(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ARCHIVO 007
-===================================================== */
+========================================================= */
 
 function showArchive7(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1152,13 +2134,21 @@ function showArchive7(){
 
       <h2>PRIMER ENCUENTRO</h2>
 
-      <p>FECHA: 17 / 05 / 2026</p>
+      <p>
+        FECHA: 17 / 05 / 2026
+      </p>
 
-      <p>UBICACIÓN DEL REGISTRO: INSTAGRAM</p>
+      <p>
+        UBICACIÓN DEL REGISTRO: INSTAGRAM
+      </p>
 
-      <p>ESTADO: ARCHIVO RECUPERADO</p>
+      <p>
+        ESTADO: ARCHIVO RECUPERADO
+      </p>
 
-      <p>INICIO DEL REGISTRO...</p>
+      <p>
+        INICIO DEL REGISTRO...
+      </p>
 
       <p>
         No hubo una entrada dramática.<br>
@@ -1187,7 +2177,9 @@ function showArchive7(){
         de algo que ninguno de los dos sabía que necesitaba.
       </p>
 
-      <h2>⚠️ MOMENTO CRÍTICO DETECTADO</h2>
+      <h2>
+        ⚠️ MOMENTO CRÍTICO DETECTADO
+      </h2>
 
       <p>
         Una conversación comenzó.
@@ -1205,7 +2197,9 @@ function showArchive7(){
         y comenzó a sentirse como algo necesario.
       </p>
 
-      <h2>REGISTRO FINAL</h2>
+      <h2>
+        REGISTRO FINAL
+      </h2>
 
       <p>
         El 17 de mayo de 2026
@@ -1216,7 +2210,9 @@ function showArchive7(){
         Fue el día en que comenzó nuestra historia.
       </p>
 
-      <h2>❤️ ARCHIVO #007 — EVENTO IRREPETIBLE</h2>
+      <h2>
+        ❤️ ARCHIVO #007 — EVENTO IRREPETIBLE
+      </h2>
 
       <p>
         IMPORTANCIA DEL EVENTO: MÁXIMA.
@@ -1228,7 +2224,9 @@ function showArchive7(){
         SIENDO MUCHO MÁS IMPORTANTE DE LO ESPERADO.
       </p>
 
-      <h2>FIN DEL REGISTRO. ❤️</h2>
+      <h2>
+        FIN DEL REGISTRO. ❤️
+      </h2>
 
       <button onclick="showArchives()">
         ← VOLVER A ARCHIVOS
@@ -1237,62 +2235,89 @@ function showArchive7(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MEMORY DATABASE
-===================================================== */
+========================================================= */
 
 function showMemoryDatabase(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🧠 MEMORY DATABASE</h1>
+      <h1>
+        🧠 MEMORY DATABASE
+      </h1>
 
-      <p>BASE DE DATOS DE RECUERDOS</p>
+      <p>
+        BASE DE DATOS DE RECUERDOS
+      </p>
 
-      <p>ESTADO: ACCESO AUTORIZADO ❤️</p>
+      <p>
+        ESTADO: ACCESO AUTORIZADO ❤️
+      </p>
+
 
       <button onclick="showMemory1()">
         💬 PRIMER CONTACTO
       </button>
 
+
       <button onclick="showMemory2()">
         ❤️ PRIMERA CONEXIÓN
       </button>
+
 
       <button onclick="showMemory3()">
         😂 PRIMERAS RISAS
       </button>
 
+
       <button onclick="showMemory4()">
         📅 17 / 05 / 2026
       </button>
 
+
       <button onclick="openSecretMemory()">
-        ${secretMemoryUnlocked
-          ? "🔓 MEMORIA SECRETA — DESBLOQUEADA"
-          : "🔒 MEMORIA SECRETA — BLOQUEADA"}
+
+        ${
+          secretMemoryUnlocked
+          ?
+          "🔓 MEMORIA SECRETA — DESBLOQUEADA"
+          :
+          "🔒 MEMORIA SECRETA — BLOQUEADA"
+        }
+
       </button>
 
+
+      <br><br>
+
+
       <button onclick="showMainMenu()">
-        ← VOLVER
+        ← VOLVER AL MENÚ
       </button>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MEMORIA 001
-===================================================== */
+========================================================= */
 
 function showMemory1(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1302,7 +2327,9 @@ function showMemory1(){
 
       <h2>💬 PRIMER CONTACTO</h2>
 
-      <p>ESTADO: RECUERDO RECUPERADO</p>
+      <p>
+        ESTADO: RECUERDO RECUPERADO
+      </p>
 
       <p>
         Todo comenzó con algo tan pequeño
@@ -1310,15 +2337,25 @@ function showMemory1(){
         imaginaba lo que iba a provocar.
       </p>
 
-      <p>Una nota de Instagram.</p>
+      <p>
+        Una nota de Instagram.
+      </p>
 
-      <p>Una duda.</p>
+      <p>
+        Una duda.
+      </p>
 
-      <p>Un mensaje.</p>
+      <p>
+        Un mensaje.
+      </p>
 
-      <p>Y de repente... ahí estaba ella.</p>
+      <p>
+        Y de repente... ahí estaba ella.
+      </p>
 
-      <h2>❤️ EL PRIMER MENSAJE.</h2>
+      <h2>
+        ❤️ EL PRIMER MENSAJE.
+      </h2>
 
       <p>
         Un momento aparentemente normal
@@ -1326,7 +2363,9 @@ function showMemory1(){
         en el inicio de algo increíble.
       </p>
 
-      <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
+      <p>
+        IMPORTANCIA DEL RECUERDO: MÁXIMA.
+      </p>
 
       <button onclick="showMemoryDatabase()">
         ← VOLVER A MEMORIAS
@@ -1335,14 +2374,17 @@ function showMemory1(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MEMORIA 002
-===================================================== */
+========================================================= */
 
 function showMemory2(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1352,7 +2394,9 @@ function showMemory2(){
 
       <h2>PRIMERA CONEXIÓN</h2>
 
-      <p>ESTADO: RECUERDO RECUPERADO</p>
+      <p>
+        ESTADO: RECUERDO RECUPERADO
+      </p>
 
       <p>
         Lo que comenzó como un simple mensaje
@@ -1385,14 +2429,18 @@ function showMemory2(){
         para continuar la conversación.
       </p>
 
-      <h2>❤️ CONEXIÓN DETECTADA.</h2>
+      <h2>
+        ❤️ CONEXIÓN DETECTADA.
+      </h2>
 
       <p>
         Sin darnos cuenta,
         aquella conversación dejó de ser casual.
       </p>
 
-      <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
+      <p>
+        IMPORTANCIA DEL RECUERDO: MÁXIMA.
+      </p>
 
       <button onclick="showMemoryDatabase()">
         ← VOLVER A MEMORIAS
@@ -1401,14 +2449,17 @@ function showMemory2(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MEMORIA 003
-===================================================== */
+========================================================= */
 
 function showMemory3(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1418,7 +2469,9 @@ function showMemory3(){
 
       <h2>PRIMERAS RISAS</h2>
 
-      <p>ESTADO: RECUERDO RECUPERADO</p>
+      <p>
+        ESTADO: RECUERDO RECUPERADO
+      </p>
 
       <p>
         En algún momento las conversaciones
@@ -1443,7 +2496,9 @@ function showMemory3(){
         no pudo ignorar:
       </p>
 
-      <h2>SONRISAS FRECUENTES.</h2>
+      <h2>
+        SONRISAS FRECUENTES.
+      </h2>
 
       <p>
         Cada conversación conseguía sacar
@@ -1456,9 +2511,13 @@ function showMemory3(){
         favoritas del día.
       </p>
 
-      <h2>RECUERDO GUARDADO.</h2>
+      <h2>
+        RECUERDO GUARDADO.
+      </h2>
 
-      <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
+      <p>
+        IMPORTANCIA DEL RECUERDO: MÁXIMA.
+      </p>
 
       <button onclick="showMemoryDatabase()">
         ← VOLVER A MEMORIAS
@@ -1467,14 +2526,17 @@ function showMemory3(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MEMORIA 004
-===================================================== */
+========================================================= */
 
 function showMemory4(){
+
+  buttonEffect();
 
   setContent(`
 
@@ -1484,7 +2546,9 @@ function showMemory4(){
 
       <h2>📅 17 / 05 / 2026</h2>
 
-      <p>ESTADO: EVENTO FUNDAMENTAL</p>
+      <p>
+        ESTADO: EVENTO FUNDAMENTAL
+      </p>
 
       <p>
         Hay fechas que parecen cualquier día
@@ -1513,7 +2577,9 @@ function showMemory4(){
         el comienzo de nuestra historia.
       </p>
 
-      <h2>FECHA REGISTRADA</h2>
+      <h2>
+        FECHA REGISTRADA
+      </h2>
 
       <p>
         17 DE MAYO DE 2026
@@ -1523,7 +2589,9 @@ function showMemory4(){
         IMPORTANCIA DEL EVENTO: INFINITA.
       </p>
 
-      <h2>ESTE DÍA NO SE OLVIDA.</h2>
+      <h2>
+        ESTE DÍA NO SE OLVIDA.
+      </h2>
 
       <button onclick="showMemoryDatabase()">
         ← VOLVER A MEMORIAS
@@ -1532,14 +2600,17 @@ function showMemory4(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    MEMORIA SECRETA
-===================================================== */
+========================================================= */
 
 function openSecretMemory(){
+
+  buttonEffect();
 
   if(!secretMemoryUnlocked){
 
@@ -1552,30 +2623,50 @@ function openSecretMemory(){
   }
 
   showMemory5();
+
 }
 
 
+/* =========================================================
+   MEMORIA 005
+========================================================= */
+
 function showMemory5(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>ACCESS GRANTED</h1>
+      <h1>
+        ACCESS GRANTED
+      </h1>
 
-      <p>CLASSIFIED MEMORY</p>
+      <p>
+        CLASSIFIED MEMORY
+      </p>
 
       <p id="loadingText">
         RECUPERANDO MEMORIA...
       </p>
 
-      <div id="secretContent" style="display:none;">
+      <div
+        id="secretContent"
+        style="display:none;"
+      >
 
-        <h2>ARCHIVO SECRETO</h2>
+        <h2>
+          ARCHIVO SECRETO
+        </h2>
 
-        <p>ACCESO: AUTORIZADO</p>
+        <p>
+          ACCESO: AUTORIZADO
+        </p>
 
-        <p>ESTADO: MEMORIA DESBLOQUEADA</p>
+        <p>
+          ESTADO: MEMORIA DESBLOQUEADA
+        </p>
 
         <p>
           Se analizaron todos los recuerdos registrados.
@@ -1594,7 +2685,9 @@ function showMemory5(){
           clasificarse como una simple memoria.
         </p>
 
-        <h2>⚠️ ANOMALÍA DETECTADA</h2>
+        <h2>
+          ⚠️ ANOMALÍA DETECTADA
+        </h2>
 
         <p>
           El recuerdo más importante
@@ -1610,7 +2703,9 @@ function showMemory5(){
           Ese día solamente fue el comienzo.
         </p>
 
-        <h2>REGISTRO ACTUAL</h2>
+        <h2>
+          REGISTRO ACTUAL
+        </h2>
 
         <p>
           Hikari sigue siendo una parte
@@ -1622,9 +2717,13 @@ function showMemory5(){
           este archivo seguirá creciendo.
         </p>
 
-        <h2>MEMORIA SECRETA:</h2>
+        <h2>
+          MEMORIA SECRETA:
+        </h2>
 
-        <h2>❤️ TÚ.</h2>
+        <h2>
+          ❤️ TÚ.
+        </h2>
 
         <p>
           No existe una fecha para este recuerdo.
@@ -1638,9 +2737,13 @@ function showMemory5(){
           Sigue ocurriendo.
         </p>
 
-        <h2>FIN DEL ARCHIVO.</h2>
+        <h2>
+          FIN DEL ARCHIVO.
+        </h2>
 
-        <p>ESTADO: ❤️ SIEMPRE.</p>
+        <p>
+          ESTADO: ❤️ SIEMPRE.
+        </p>
 
         <button onclick="showMemoryDatabase()">
           ← VOLVER A MEMORIAS
@@ -1658,79 +2761,117 @@ function showMemory5(){
 
   `);
 
+
   let progress = 0;
 
-  const interval = setInterval(() => {
 
-    progress += 25;
+  const interval =
+    setInterval(() => {
 
-    const bars =
-      "█".repeat(progress / 6.25) +
-      "░".repeat(16 - progress / 6.25);
+      progress += 25;
 
-    const loading = document.getElementById("loadingText");
 
-    if(!loading){
-      clearInterval(interval);
-      return;
-    }
+      const loading =
+        document.getElementById(
+          "loadingText"
+        );
 
-    loading.innerHTML =
-      bars + " " + progress + "%";
 
-    if(progress >= 100){
+      if(!loading){
 
-      clearInterval(interval);
+        clearInterval(interval);
 
-      setTimeout(() => {
+        return;
 
-        const loadingFinal =
-          document.getElementById("loadingText");
+      }
 
-        if(loadingFinal){
-          loadingFinal.innerHTML =
-            "🔓 MEMORIA RECUPERADA";
-        }
+
+      loading.innerHTML =
+
+        "█".repeat(progress / 6.25) +
+
+        "░".repeat(
+          16 - progress / 6.25
+        ) +
+
+        " " +
+
+        progress +
+
+        "%";
+
+
+      if(progress >= 100){
+
+        clearInterval(interval);
+
 
         setTimeout(() => {
 
-          const secret =
-            document.getElementById("secretContent");
+          loading.innerHTML =
+            "🔓 MEMORIA RECUPERADA";
 
-          if(secret){
-            secret.style.display = "block";
-          }
 
-        },1200);
+          setTimeout(() => {
 
-      },700);
-    }
+            const secret =
+              document.getElementById(
+                "secretContent"
+              );
 
-  },1000);
+
+            if(secret){
+
+              secret.style.display =
+                "block";
+
+            }
+
+          },1200);
+
+
+        },700);
+
+      }
+
+    },1000);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    SISTEMA FINAL
-===================================================== */
+========================================================= */
 
 function showFinalSystem(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🖥️ SISTEMA FINAL</h1>
+      <h1>
+        🖥️ SISTEMA FINAL
+      </h1>
 
-      <p>ANALIZANDO TODOS LOS ARCHIVOS...</p>
+      <p>
+        ANALIZANDO TODOS LOS ARCHIVOS...
+      </p>
 
       <p id="finalLoading">
         INICIANDO ANÁLISIS...
       </p>
 
-      <div id="finalContent" style="display:none;">
 
-        <h2>✅ ANÁLISIS COMPLETADO</h2>
+      <div
+        id="finalContent"
+        style="display:none;"
+      >
+
+        <h2>
+          ✅ ANÁLISIS COMPLETADO
+        </h2>
 
         <p>
           Todos los archivos han sido revisados.
@@ -1743,16 +2884,22 @@ function showFinalSystem(){
           Todos los momentos.
         </p>
 
-        <h2>⚠️ RESULTADO FINAL</h2>
+        <h2>
+          ⚠️ RESULTADO FINAL
+        </h2>
 
         <p>
           El sistema intentó determinar
           qué tan importante es Hikari.
         </p>
 
-        <p>RESULTADO:</p>
+        <p>
+          RESULTADO:
+        </p>
 
-        <h1>❤️ INCALCULABLE</h1>
+        <h1>
+          ❤️ INCALCULABLE
+        </h1>
 
         <p>
           No existe una cifra suficientemente grande.
@@ -1762,7 +2909,9 @@ function showFinalSystem(){
           No existe una categoría capaz de describirlo.
         </p>
 
-        <h2>❤️ CONCLUSIÓN</h2>
+        <h2>
+          ❤️ CONCLUSIÓN
+        </h2>
 
         <p>
           Hikari no es simplemente un recuerdo.
@@ -1776,13 +2925,17 @@ function showFinalSystem(){
           Y esta historia todavía se está escribiendo.
         </p>
 
-        <h2>⚠️ ERROR CRÍTICO</h2>
+        <h2>
+          ⚠️ ERROR CRÍTICO
+        </h2>
 
         <p>
           VARIABLE NO RECONOCIDA:
         </p>
 
-        <h1>❤️ AMOR</h1>
+        <h1>
+          ❤️ AMOR
+        </h1>
 
         <p>
           El sistema intentó calcular
@@ -1795,9 +2948,13 @@ function showFinalSystem(){
           Todos los momentos.
         </p>
 
-        <p>RESULTADO:</p>
+        <p>
+          RESULTADO:
+        </p>
 
-        <h1>❌ IMPOSIBLE DE CALCULAR</h1>
+        <h1>
+          ❌ IMPOSIBLE DE CALCULAR
+        </h1>
 
         <p>
           No existe una unidad de medida
@@ -1805,7 +2962,9 @@ function showFinalSystem(){
           lo importante que es.
         </p>
 
-        <h2>💗 CONCLUSIÓN</h2>
+        <h2>
+          💗 CONCLUSIÓN
+        </h2>
 
         <p>
           Hikari no puede ser clasificada
@@ -1821,7 +2980,9 @@ function showFinalSystem(){
           se está escribiendo.
         </p>
 
-        <h2>⚠️ SISTEMA INESTABLE</h2>
+        <h2>
+          ⚠️ SISTEMA INESTABLE
+        </h2>
 
         <p>
           Se ha detectado un último registro.
@@ -1839,72 +3000,109 @@ function showFinalSystem(){
 
   `);
 
+
   let progress = 0;
 
-  const interval = setInterval(() => {
 
-    progress += 25;
+  const interval =
+    setInterval(() => {
 
-    const bars =
-      "█".repeat(progress / 6.25) +
-      "░".repeat(16 - progress / 6.25);
+      progress += 25;
 
-    const loading =
-      document.getElementById("finalLoading");
 
-    if(!loading){
-      clearInterval(interval);
-      return;
-    }
+      const loading =
+        document.getElementById(
+          "finalLoading"
+        );
 
-    loading.innerHTML =
-      bars + " " + progress + "%";
 
-    if(progress >= 100){
+      if(!loading){
 
-      clearInterval(interval);
+        clearInterval(interval);
 
-      setTimeout(() => {
+        return;
 
-        loading.innerHTML =
-          "✅ ANÁLISIS COMPLETADO";
+      }
+
+
+      loading.innerHTML =
+
+        "█".repeat(progress / 6.25) +
+
+        "░".repeat(
+          16 - progress / 6.25
+        ) +
+
+        " " +
+
+        progress +
+
+        "%";
+
+
+      if(progress >= 100){
+
+        clearInterval(interval);
+
 
         setTimeout(() => {
 
-          document.getElementById(
-            "finalContent"
-          ).style.display = "block";
+          loading.innerHTML =
+            "✅ ANÁLISIS COMPLETADO";
 
-        },1200);
 
-      },700);
-    }
+          setTimeout(() => {
 
-  },1000);
+            document.getElementById(
+              "finalContent"
+            ).style.display =
+              "block";
+
+          },1200);
+
+
+        },700);
+
+      }
+
+    },1000);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    ÚLTIMO REGISTRO
-===================================================== */
+========================================================= */
 
 function showFinalMessage(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>💌 ÚLTIMO REGISTRO</h1>
+      <h1>
+        💌 ÚLTIMO REGISTRO
+      </h1>
 
-      <p>ARCHIVO: FINAL_001</p>
+      <p>
+        ARCHIVO: FINAL_001
+      </p>
 
-      <p>DESTINATARIA: HIKARI ❤️</p>
+      <p>
+        DESTINATARIA: HIKARI ❤️
+      </p>
 
-      <p>ESTADO: REGISTRO PERMANENTE</p>
+      <p>
+        ESTADO: REGISTRO PERMANENTE
+      </p>
 
       <br>
 
-      <h2>❤️ PARA TI</h2>
+      <h2>
+        ❤️ PARA TI
+      </h2>
 
       <p>
         Si llegaste hasta aquí,
@@ -1943,7 +3141,9 @@ function showFinalMessage(){
         volvería a elegir conocerte.
       </p>
 
-      <h2>❤️ PORQUE TE ELIJO A TI.</h2>
+      <h2>
+        ❤️ PORQUE TE ELIJO A TI.
+      </h2>
 
       <p>
         No porque nuestra historia sea perfecta,
@@ -1968,7 +3168,9 @@ function showFinalMessage(){
 
       <br>
 
-      <h1>❤️ HIKARI ❤️</h1>
+      <h1>
+        ❤️ HIKARI ❤️
+      </h1>
 
       <p>
         Gracias por existir.
@@ -1983,15 +3185,23 @@ function showFinalMessage(){
         gracias por ser tú.
       </p>
 
-      <h2>TE AMO. ❤️</h2>
+      <h2>
+        TE AMO. ❤️
+      </h2>
 
       <br>
 
-      <p>ARCHIVO FINALIZADO.</p>
+      <p>
+        ARCHIVO FINALIZADO.
+      </p>
 
-      <p>ESTADO:</p>
+      <p>
+        ESTADO:
+      </p>
 
-      <h1>❤️ SIEMPRE</h1>
+      <h1>
+        ❤️ SIEMPRE
+      </h1>
 
       <button onclick="showMainMenu()">
         ← VOLVER AL MENÚ
@@ -2000,44 +3210,59 @@ function showFinalMessage(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    INVENTORY
-===================================================== */
+========================================================= */
 
 function showInventory(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>INVENTORY</h1>
+      <h1>
+        🎒 INVENTORY
+      </h1>
 
-      <p>BIOHAZARD ARCHIVE SYSTEM</p>
+      <p>
+        BIOHAZARD ARCHIVE SYSTEM
+      </p>
 
-      <p>ITEMS: 04</p>
+      <p>
+        ITEMS: 04
+      </p>
 
       <br>
+
 
       <button onclick="showItem1()">
         ITEM #001 — PHOTOGRAPH
       </button>
 
+
       <button onclick="showItem2()">
         ITEM #002 — FIRST MESSAGE
       </button>
+
 
       <button onclick="showItem3()">
         ITEM #003 — MEMORY FILE
       </button>
 
+
       <button onclick="showItem4()">
         ITEM #004 — UNKNOWN
       </button>
 
+
       <br><br>
+
 
       <button onclick="showMainMenu()">
         ← RETURN TO SYSTEM
@@ -2046,24 +3271,33 @@ function showInventory(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
-   INVENTORY ITEMS
-===================================================== */
+/* =========================================================
+   ITEM 001
+========================================================= */
 
 function showItem1(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>ITEM #001</h1>
+      <h1>
+        ITEM #001
+      </h1>
 
-      <h2>PHOTOGRAPH</h2>
+      <h2>
+        PHOTOGRAPH
+      </h2>
 
-      <p>ESTADO: ARCHIVO PENDIENTE</p>
+      <p>
+        ESTADO: ARCHIVO PENDIENTE
+      </p>
 
       <p>
         Un registro visual será añadido
@@ -2077,20 +3311,33 @@ function showItem1(){
     </div>
 
   `);
+
 }
 
 
+/* =========================================================
+   ITEM 002
+========================================================= */
+
 function showItem2(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>ITEM #002</h1>
+      <h1>
+        ITEM #002
+      </h1>
 
-      <h2>FIRST MESSAGE</h2>
+      <h2>
+        FIRST MESSAGE
+      </h2>
 
-      <p>ESTADO: RECUPERADO</p>
+      <p>
+        ESTADO: RECUPERADO
+      </p>
 
       <p>
         El primer contacto comenzó
@@ -2098,7 +3345,9 @@ function showItem2(){
         una duda y un mensaje.
       </p>
 
-      <h2>❤️ 17 / 05 / 2026</h2>
+      <h2>
+        ❤️ 17 / 05 / 2026
+      </h2>
 
       <button onclick="showInventory()">
         ← RETURN TO INVENTORY
@@ -2107,20 +3356,33 @@ function showItem2(){
     </div>
 
   `);
+
 }
 
 
+/* =========================================================
+   ITEM 003
+========================================================= */
+
 function showItem3(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>ITEM #003</h1>
+      <h1>
+        ITEM #003
+      </h1>
 
-      <h2>MEMORY FILE</h2>
+      <h2>
+        MEMORY FILE
+      </h2>
 
-      <p>ESTADO: ACTIVO</p>
+      <p>
+        ESTADO: ACTIVO
+      </p>
 
       <p>
         Todos los recuerdos relacionados
@@ -2138,27 +3400,42 @@ function showItem3(){
     </div>
 
   `);
+
 }
 
 
+/* =========================================================
+   ITEM 004
+========================================================= */
+
 function showItem4(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>ITEM #004</h1>
+      <h1>
+        ITEM #004
+      </h1>
 
-      <h2>UNKNOWN</h2>
+      <h2>
+        UNKNOWN
+      </h2>
 
-      <p>ESTADO: DESCONOCIDO</p>
+      <p>
+        ESTADO: DESCONOCIDO
+      </p>
 
       <p>
         El sistema no puede determinar
         qué contiene este registro.
       </p>
 
-      <h2>⚠️ ARCHIVO NO CLASIFICADO</h2>
+      <h2>
+        ⚠️ ARCHIVO NO CLASIFICADO
+      </h2>
 
       <button onclick="showInventory()">
         ← RETURN TO INVENTORY
@@ -2167,20 +3444,25 @@ function showItem4(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    INVESTIGACIÓN
-===================================================== */
+========================================================= */
 
 function startGame(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🔎 INVESTIGACIÓN INICIADA</h1>
+      <h1>
+        🔎 INVESTIGACIÓN INICIADA
+      </h1>
 
       <p>
         Has encontrado un archivo clasificado.
@@ -2191,43 +3473,56 @@ function startGame(){
         responde correctamente.
       </p>
 
-      <h2>Pregunta 1</h2>
+      <h2>
+        Pregunta 1
+      </h2>
 
       <p>
         ¿Cómo comenzó realmente nuestra historia?
       </p>
 
+
       <button onclick="answerCorrect()">
         Todo comenzó por una nota de Instagram
       </button>
 
+
       <button onclick="answerWrong()">
-        Nos conocimos por una conversación que empezó de la nada
+        Nos conocimos por una conversación
+        que empezó de la nada
       </button>
+
 
       <button onclick="answerWrong()">
         Yo fui quien decidió hablarte primero
       </button>
 
+
       <button onclick="answerWrong()">
         Nos conocimos gracias a alguien más
       </button>
+
 
       <p id="gameMessage"></p>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESPUESTA 1
-===================================================== */
+========================================================= */
 
 function answerCorrect(){
 
-  document.getElementById("gameMessage").innerHTML = `
+  buttonEffect();
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
 
     RESPUESTA CORRECTA ❤️
 
@@ -2242,58 +3537,75 @@ function answerCorrect(){
     </button>
 
   `;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PREGUNTA 2
-===================================================== */
+========================================================= */
 
 function showQuestion2(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🔎 INVESTIGACIÓN CONTINÚA</h1>
+      <h1>
+        🔎 INVESTIGACIÓN CONTINÚA
+      </h1>
 
-      <h2>Pregunta 2</h2>
+      <h2>
+        Pregunta 2
+      </h2>
 
       <p>
         ¿Cuándo nos conocimos?
       </p>
 
+
       <button onclick="answerWrong()">
         14 de febrero de 2026
       </button>
+
 
       <button onclick="answerCorrect3()">
         17 de mayo de 2026 ❤️
       </button>
 
+
       <button onclick="answerWrong()">
         25 de mayo de 2026
       </button>
 
+
       <button onclick="answerWrong()">
         17 de junio de 2026
       </button>
+
 
       <p id="gameMessage"></p>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESPUESTA 2
-===================================================== */
+========================================================= */
 
 function answerCorrect3(){
 
-  document.getElementById("gameMessage").innerHTML = `
+  buttonEffect();
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
 
     RESPUESTA CORRECTA ❤️
 
@@ -2313,59 +3625,77 @@ function answerCorrect3(){
     </button>
 
   `;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PREGUNTA 3
-===================================================== */
+========================================================= */
 
 function showQuestion3(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🔎 INVESTIGACIÓN CONTINÚA</h1>
+      <h1>
+        🔎 INVESTIGACIÓN CONTINÚA
+      </h1>
 
-      <h2>Pregunta 3</h2>
+      <h2>
+        Pregunta 3
+      </h2>
 
       <p>
         ¿Qué fue lo que hizo que nuestra conversación
         comenzara a convertirse en algo importante?
       </p>
 
+
       <button onclick="answerWrong()">
         La curiosidad de conocernos
       </button>
+
 
       <button onclick="answerCorrect4()">
         La forma en que empezamos a conectar
       </button>
 
+
       <button onclick="answerWrong()">
         Que teníamos muchas cosas en común
       </button>
 
+
       <button onclick="answerWrong()">
-        Que simplemente coincidimos en el momento correcto
+        Que simplemente coincidimos
+        en el momento correcto
       </button>
+
 
       <p id="gameMessage"></p>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESPUESTA 3
-===================================================== */
+========================================================= */
 
 function answerCorrect4(){
 
-  document.getElementById("gameMessage").innerHTML = `
+  buttonEffect();
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
 
     RESPUESTA CORRECTA ❤️
 
@@ -2384,58 +3714,78 @@ function answerCorrect4(){
     </button>
 
   `;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PREGUNTA 4
-===================================================== */
+========================================================= */
 
 function showQuestion4(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>🔎 INVESTIGACIÓN AVANZADA</h1>
+      <h1>
+        🔎 INVESTIGACIÓN AVANZADA
+      </h1>
 
-      <h2>Pregunta 4</h2>
+      <h2>
+        Pregunta 4
+      </h2>
 
       <p>
-        ¿Qué es lo que más valoro de la persona que eres?
+        ¿Qué es lo que más valoro
+        de la persona que eres?
       </p>
+
 
       <button onclick="answerWrong()">
         La forma en que me haces reír
       </button>
 
+
       <button onclick="answerWrong()">
-        La manera en que siempre encuentras algo que decir
+        La manera en que siempre
+        encuentras algo que decir
       </button>
+
 
       <button onclick="answerCorrect5()">
         Tu forma de ser
       </button>
 
+
       <button onclick="answerWrong()">
-        La cantidad de recuerdos que hemos creado
+        La cantidad de recuerdos
+        que hemos creado
       </button>
+
 
       <p id="gameMessage"></p>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESPUESTA 4
-===================================================== */
+========================================================= */
 
 function answerCorrect5(){
 
-  document.getElementById("gameMessage").innerHTML = `
+  buttonEffect();
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
 
     RESPUESTA CORRECTA ❤️
 
@@ -2454,66 +3804,84 @@ function answerCorrect5(){
     </button>
 
   `;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    PREGUNTA 5
-===================================================== */
+========================================================= */
 
 function showQuestion5(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>ÚLTIMA FASE</h1>
+      <h1>
+        ÚLTIMA FASE
+      </h1>
 
       <p>
         Esta pregunta determinará si el archivo
         puede considerarse completamente verificado.
       </p>
 
-      <h2>Pregunta 5</h2>
+      <h2>
+        Pregunta 5
+      </h2>
 
       <p>
         Después de todo lo que hemos vivido,
         ¿qué representa nuestra historia?
       </p>
 
+
       <button onclick="answerWrong()">
         Un recuerdo importante
       </button>
+
 
       <button onclick="answerWrong()">
         Una etapa de nuestras vidas
       </button>
 
+
       <button onclick="answerWrong()">
-        Una coincidencia que terminó significando mucho
+        Una coincidencia que terminó
+        significando mucho
       </button>
+
 
       <button onclick="answerFinalCorrect()">
         Algo que todavía estamos escribiendo
       </button>
+
 
       <p id="gameMessage"></p>
 
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESPUESTA FINAL
-===================================================== */
+========================================================= */
 
 function answerFinalCorrect(){
 
+  buttonEffect();
+
   secretMemoryUnlocked = true;
 
-  document.getElementById("gameMessage").innerHTML = `
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
 
     RESPUESTAS VERIFICADAS: 100%
 
@@ -2532,20 +3900,25 @@ function answerFinalCorrect(){
     </button>
 
   `;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    INVESTIGACIÓN COMPLETADA
-===================================================== */
+========================================================= */
 
 function showInvestigationComplete(){
+
+  buttonEffect();
 
   setContent(`
 
     <div class="mainMenu">
 
-      <h1>INVESTIGACIÓN COMPLETADA</h1>
+      <h1>
+        INVESTIGACIÓN COMPLETADA
+      </h1>
 
       <p>
         RESPUESTAS VERIFICADAS: 100%
@@ -2555,26 +3928,35 @@ function showInvestigationComplete(){
         IDENTIDAD CONFIRMADA: HIKARI
       </p>
 
-      <h2>INVESTIGACIÓN FINALIZADA</h2>
+      <h2>
+        INVESTIGACIÓN FINALIZADA
+      </h2>
 
       <p>
         Has demostrado que conoces nuestra historia.
       </p>
 
-      <h2>NUEVO ARCHIVO DESBLOQUEADO</h2>
+      <h2>
+        NUEVO ARCHIVO DESBLOQUEADO
+      </h2>
 
-      <h1>MEMORIA SECRETA</h1>
+      <h1>
+        MEMORIA SECRETA
+      </h1>
 
       <p>
         Existe un último registro
         esperando ser descubierto.
       </p>
 
+
       <button onclick="showMemory5()">
         ABRIR MEMORIA SECRETA
       </button>
 
+
       <br><br>
+
 
       <button onclick="showMainMenu()">
         VOLVER AL MENÚ
@@ -2583,21 +3965,28 @@ function showInvestigationComplete(){
     </div>
 
   `);
+
 }
 
 
-/* =====================================================
+/* =========================================================
    RESPUESTA INCORRECTA
-===================================================== */
+========================================================= */
 
 function answerWrong(){
 
+  buttonEffect();
+
   const message =
-    document.getElementById("gameMessage");
+    document.getElementById(
+      "gameMessage"
+    );
+
 
   if(message){
 
     message.innerHTML = `
+
       ❌ RESPUESTA INCORRECTA
 
       <br><br>
@@ -2607,9 +3996,11 @@ function answerWrong(){
       <br><br>
 
       Vuelve a intentarlo 😭
+
     `;
 
   }
+
 }
 
 </script>
