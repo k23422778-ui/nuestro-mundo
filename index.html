@@ -1358,22 +1358,41 @@ function showArchive2() {
     </div>
   `;
 
+setTimeout(() => {
+  document.getElementById("loadingText").innerHTML =
+    "████░░░░░░░░░░░░ 25%";
+
   setTimeout(() => {
     document.getElementById("loadingText").innerHTML =
-      "████████████████ 100%";
+      "████████░░░░░░░░ 50%";
 
     setTimeout(() => {
       document.getElementById("loadingText").innerHTML =
-        "🔓 MEMORIA RECUPERADA";
+        "████████████░░░░ 75%";
 
       setTimeout(() => {
-        document.getElementById("secretContent").style.display = "block";
+        document.getElementById("loadingText").innerHTML =
+          "████████████████ 100%";
+
+        setTimeout(() => {
+          document.getElementById("loadingText").innerHTML =
+            "🔓 MEMORIA RECUPERADA";
+
+          setTimeout(() => {
+            document.getElementById("secretContent").style.display = "block";
+          }, 1500);
+
+        }, 1000);
+
       }, 1000);
 
     }, 1000);
 
-  }, 2000);
+  }, 1000);
+
+}, 1000);
 }
+
 function openSecretMemory() {
   if (!secretMemoryUnlocked) {
     alert("🔒 MEMORIA BLOQUEADA\n\nCompleta la INVESTIGACIÓN para desbloquearla.");
