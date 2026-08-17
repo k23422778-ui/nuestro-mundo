@@ -679,6 +679,7 @@ ig<!DOCTYPE html>
   <button id="startButton" onclick="showMainMenu()">INICIAR INVESTIGACIÓN</button>
 </div>
 <script>
+  let secretMemoryUnlocked = false;
 const startButton = document.getElementById("startButton");
 
 function showMainMenu() {
@@ -1073,8 +1074,7 @@ function showArchive2() {
       <button onclick="showMemory2()">❤️ PRIMERA CONEXIÓN</button>
       <button onclick="showMemory3()">😂 PRIMERAS RISAS</button>
       <button onclick="showMemory4()">📅 17 / 05 / 2026</button>
-      <button onclick="showMemory5()">🔒 MEMORIA SECRETA</button>
-
+      <button onclick="openSecretMemory()">🔒 MEMORIA SECRETA</button>
       <br><br>
 
       <button onclick="showMainMenu()">← VOLVER</button>
@@ -1350,6 +1350,14 @@ function showArchive2() {
     </div>
   `;
 }
+  function openSecretMemory() {
+  if (!secretMemoryUnlocked) {
+    alert("🔒 MEMORIA BLOQUEADA\n\nCompleta la INVESTIGACIÓN para desbloquearla.");
+    return;
+  }
+
+  showMemory5();
+}
 function showArchive1() {
   document.querySelector(".content").innerHTML = `
     <div class="mainMenu">
@@ -1422,9 +1430,40 @@ function showQuestion2() {
     </div>
   `;
 }
-  function answerCorrect2() {
-  document.getElementById("gameMessage").innerHTML =
-    "✅ RESPUESTA CORRECTA<br><br>¡Exacto! El 17 de mayo de 2026 comenzó nuestra historia. ❤️";
+function answerCorrect2() {
+  secretMemoryUnlocked = true;
+
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>🔓 INVESTIGACIÓN COMPLETADA</h1>
+
+      <p>RESPUESTAS VERIFICADAS: 100%</p>
+      <p>IDENTIDAD CONFIRMADA: HIKARI ❤️</p>
+
+      <h2>✅ INVESTIGACIÓN FINALIZADA</h2>
+
+      <p>Has demostrado que conoces nuestra historia.</p>
+
+      <h2>⚠️ NUEVO ARCHIVO DESBLOQUEADO</h2>
+
+      <h1>🔓 MEMORIA SECRETA</h1>
+
+      <p>
+        Existe un último registro
+        esperando ser descubierto.
+      </p>
+
+      <button onclick="showMemory5()">
+        🔓 ABRIR MEMORIA SECRETA
+      </button>
+
+      <br><br>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER AL MENÚ
+      </button>
+    </div>
+  `;
 }
 
 function answerWrong() {
