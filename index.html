@@ -1,726 +1,821 @@
-ig<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ARCHIVO #001 — HIKARI</title>
+<title>ARCHIVO #001 — HIKARI</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-    }
-
-    body {
-      overflow: hidden;
-      background:
-        radial-gradient(circle at center, #181818 0%, #080808 45%, #020202 100%);
-      color: #d8d8d8;
-      font-family: 'Share Tech Mono', monospace;
-    }
-
-    /* =========================
-       AMBIENTE GENERAL
-       ========================= */
-
-    .room {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .room::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(
-          ellipse at center,
-          rgba(255,255,255,0.05),
-          transparent 65%
-        );
-      pointer-events: none;
-    }
-
-    /* =========================
-       MONITOR
-       ========================= */
-
-    .monitor {
-      position: relative;
-      width: min(900px, 94vw);
-      aspect-ratio: 16 / 10;
-      padding: 18px;
-      border-radius: 22px;
-      background:
-        linear-gradient(
-          145deg,
-          #292929,
-          #111111 45%,
-          #080808
-        );
-
-      box-shadow:
-        0 40px 100px rgba(0,0,0,0.9),
-        inset 0 0 0 2px #303030,
-        inset 0 0 30px rgba(0,0,0,0.9);
-
-      animation: monitorAppear 1.8s ease-out;
-    }
-
-    .monitor::before {
-      content: "";
-      position: absolute;
-      inset: -5px;
-      border-radius: 26px;
-      border: 1px solid #343434;
-      pointer-events: none;
-    }
-
-    .screen {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      border-radius: 12px;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          #242424 0%,
-          #101010 55%,
-          #050505 100%
-        );
-
-      box-shadow:
-        inset 0 0 50px rgba(0,0,0,0.95),
-        inset 0 0 12px rgba(255,255,255,0.04);
-
-      animation: screenFlicker 5s infinite;
-    }
-
-    /* =========================
-       CURVATURA CRT
-       ========================= */
-
-    .screen::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 10;
-      pointer-events: none;
-
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,0.025) 0px,
-          rgba(255,255,255,0.025) 1px,
-          transparent 2px,
-          transparent 4px
-        );
-
-      mix-blend-mode: screen;
-    }
-
-    .screen::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 11;
-      pointer-events: none;
-
-      background:
-        radial-gradient(
-          ellipse at center,
-          transparent 45%,
-          rgba(0,0,0,0.75) 100%
-        );
-    }
-
-    /* =========================
-       GLITCH / RUIDO
-       ========================= */
-
-    .noise {
-      position: absolute;
-      inset: 0;
-      z-index: 9;
-      pointer-events: none;
-      opacity: 0.06;
-
-      background-image:
-        repeating-linear-gradient(
-          0deg,
-          transparent 0px,
-          rgba(255,255,255,0.3) 1px,
-          transparent 2px
-        );
-
-      animation: noiseMove 0.15s infinite;
-    }
-
-    .scanline {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      z-index: 8;
-
-      background: rgba(220,220,220,0.08);
-
-      box-shadow:
-        0 0 12px rgba(255,255,255,0.08);
-
-      animation: scan 6s linear infinite;
-    }
-
-    /* =========================
-       INTERFAZ
-       ========================= */
-
-    .interface {
-      position: relative;
-      z-index: 5;
-      height: 100%;
-      padding: 6% 8%;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      font-size: clamp(0.65rem, 1.5vw, 0.9rem);
-      letter-spacing: 2px;
-
-      color: #aaa;
-    }
-
-    .online {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .indicator {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #8f1717;
-
-      box-shadow:
-        0 0 8px rgba(180,20,20,0.8);
-
-      animation: blink 2s infinite;
-    }
-
-    /* =========================
-       CONTENIDO PRINCIPAL
-       ========================= */
-
-.content {
-  text-align: center;
-  transform: translateY(0);
-  max-height: 100%;
-  overflow-y: auto;
-  padding: 20px;
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
-    .classification {
-      color: #888;
-      font-size: clamp(0.7rem, 2vw, 1rem);
-      letter-spacing: 4px;
-      margin-bottom: 18px;
-    }
 
-    .file-number {
-      color: #b7b7b7;
-      font-size: clamp(0.65rem, 1.5vw, 0.9rem);
-      letter-spacing: 3px;
-      margin-bottom: 8px;
-    }
-
-    .subject {
-      position: relative;
-      display: inline-block;
-
-      font-size: clamp(2.8rem, 11vw, 6rem);
-      letter-spacing: 8px;
-      font-weight: normal;
-
-      color: #d7d7d7;
-
-      text-shadow:
-        0 0 10px rgba(255,255,255,0.08),
-        2px 0 rgba(120,0,0,0.35);
-
-      animation: subtleGlitch 6s infinite;
-    }
-
-    .status {
-      margin-top: 12px;
-
-      font-size: clamp(0.7rem, 2vw, 1rem);
-      letter-spacing: 3px;
-
-      color: #a7a7a7;
-    }
-
-    .status strong {
-      color: #9d2020;
-      font-weight: normal;
-    }
-
-    /* =========================
-       ANOMALÍA
-       ========================= */
-
-    .warning {
-      margin-top: 35px;
-
-      display: inline-block;
-
-      border: 1px solid #541717;
-      padding: 14px 25px;
-
-      color: #aaa;
-
-      background: rgba(70,0,0,0.08);
-
-      box-shadow:
-        inset 0 0 20px rgba(100,0,0,0.08),
-        0 0 15px rgba(80,0,0,0.08);
-
-      animation: warningPulse 3s infinite;
-    }
-
-    .warning-title {
-      color: #9d2020;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
-      margin-bottom: 8px;
-    }
-
-    .warning-text {
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      letter-spacing: 1px;
-    }
-
-    /* =========================
-       BOTÓN
-       ========================= */
-
-    .start {
-      align-self: center;
-
-      padding: 13px 30px;
-
-      border: 1px solid #666;
-      background: rgba(0,0,0,0.55);
-
-      color: #cfcfcf;
-
-      font-family: inherit;
-      font-size: clamp(0.7rem, 2vw, 0.95rem);
-      letter-spacing: 3px;
-
-      cursor: pointer;
-
-      transition:
-        background 0.25s ease,
-        border 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-    .start:hover {
-      background: rgba(110,0,0,0.2);
-      border-color: #9d2020;
-
-      box-shadow:
-        0 0 18px rgba(120,0,0,0.25);
-
-      transform: translateY(-2px);
-    }
-
-    .start:active {
-      transform: scale(0.97);
-    }
-
-    /* =========================
-       PARTE INFERIOR
-       ========================= */
-
-    .bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      color: #666;
-
-      font-size: clamp(0.55rem, 1.3vw, 0.75rem);
-      letter-spacing: 2px;
-    }
-
-    .signal {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .bars {
-      display: flex;
-      gap: 2px;
-    }
-
-    .bar {
-      width: 4px;
-      height: 10px;
-      background: #555;
-    }
-
-    .bar:nth-child(4) {
-      background: #8f1717;
-    }
-
-    /* =========================
-       ANIMACIONES
-       ========================= */
-
-    @keyframes monitorAppear {
-      from {
-        opacity: 0;
-        transform: scale(0.96);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes screenFlicker {
-      0%, 100% {
-        opacity: 1;
-      }
-
-      48% {
-        opacity: 1;
-      }
-
-      49% {
-        opacity: 0.94;
-      }
-
-      50% {
-        opacity: 1;
-      }
-
-      83% {
-        opacity: 1;
-      }
-
-      84% {
-        opacity: 0.96;
-      }
-    }
-
-    @keyframes noiseMove {
-      0% {
-        transform: translateY(0);
-      }
-
-      100% {
-        transform: translateY(4px);
-      }
-    }
-
-    @keyframes scan {
-      from {
-        top: -5%;
-      }
-
-      to {
-        top: 105%;
-      }
-    }
-
-    @keyframes blink {
-      0%, 45% {
-        opacity: 1;
-      }
-
-      50%, 55% {
-        opacity: 0.25;
-      }
-
-      60%, 100% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes warningPulse {
-      0%, 100% {
-        opacity: 0.85;
-      }
-
-      50% {
-        opacity: 1;
-      }
-    }
-
-    @keyframes subtleGlitch {
-      0%, 94%, 100% {
-        transform: translateX(0);
-      }
-
-      95% {
-        transform: translateX(-2px);
-      }
-
-      96% {
-        transform: translateX(2px);
-      }
-
-      97% {
-        transform: translateX(0);
-      }
-    }
-
-    /* =========================
-       MÓVIL
-       ========================= */
-
-    @media (max-width: 600px) {
-
-      .room {
-        padding: 10px;
-      }
-
-      .monitor {
-        width: 96vw;
-        aspect-ratio: 9 / 15;
-        padding: 12px;
-        border-radius: 18px;
-      }
-
-      .screen {
-        border-radius: 9px;
-      }
-
-      .interface {
-        padding: 8% 7%;
-      }
-
-      .top {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      .subject {
-        letter-spacing: 5px;
-      }
-
-      .warning {
-        width: 100%;
-        padding: 13px 10px;
-      }
-
-      .bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-
-      .start {
-        width: 100%;
-      }
-    }
-  </style>
+html,body{
+  width:100%;
+  height:100%;
+}
+
+body{
+  overflow:hidden;
+  background:
+    radial-gradient(circle at center,#181818 0%,#080808 45%,#020202 100%);
+  color:#d8d8d8;
+  font-family:'Share Tech Mono',monospace;
+}
+
+/* =========================
+   AMBIENTE
+========================= */
+
+.room{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.room::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255,255,255,.05),
+      transparent 65%
+    );
+  pointer-events:none;
+}
+
+/* =========================
+   MONITOR
+========================= */
+
+.monitor{
+  position:relative;
+  width:min(900px,94vw);
+  height:min(720px,94vh);
+  padding:18px;
+  border-radius:22px;
+  background:
+    linear-gradient(
+      145deg,
+      #292929,
+      #111 45%,
+      #080808
+    );
+
+  box-shadow:
+    0 40px 100px rgba(0,0,0,.9),
+    inset 0 0 0 2px #303030,
+    inset 0 0 30px rgba(0,0,0,.9);
+
+  animation:monitorAppear 1.8s ease-out;
+}
+
+.monitor::before{
+  content:"";
+  position:absolute;
+  inset:-5px;
+  border-radius:26px;
+  border:1px solid #343434;
+  pointer-events:none;
+}
+
+.screen{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  border-radius:12px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #242424 0%,
+      #101010 55%,
+      #050505 100%
+    );
+
+  box-shadow:
+    inset 0 0 50px rgba(0,0,0,.95),
+    inset 0 0 12px rgba(255,255,255,.04);
+
+  animation:screenFlicker 5s infinite;
+}
+
+.screen::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:10;
+  pointer-events:none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.025) 0px,
+      rgba(255,255,255,.025) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+
+  mix-blend-mode:screen;
+}
+
+.screen::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:11;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(0,0,0,.75) 100%
+    );
+}
+
+/* =========================
+   RUIDO
+========================= */
+
+.noise{
+  position:absolute;
+  inset:0;
+  z-index:9;
+  pointer-events:none;
+  opacity:.06;
+
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(255,255,255,.3) 1px,
+      transparent 2px
+    );
+
+  animation:noiseMove .15s infinite;
+}
+
+.scanline{
+  position:absolute;
+  left:0;
+  width:100%;
+  height:2px;
+  z-index:8;
+
+  background:rgba(220,220,220,.08);
+
+  box-shadow:
+    0 0 12px rgba(255,255,255,.08);
+
+  animation:scan 6s linear infinite;
+}
+
+/* =========================
+   INTERFAZ
+========================= */
+
+.interface{
+  position:relative;
+  z-index:5;
+  height:100%;
+  padding:6% 8%;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  font-size:clamp(.65rem,1.5vw,.9rem);
+  letter-spacing:2px;
+
+  color:#aaa;
+}
+
+.online{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.indicator{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#8f1717;
+
+  box-shadow:
+    0 0 8px rgba(180,20,20,.8);
+
+  animation:blink 2s infinite;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+
+.content{
+  text-align:center;
+  width:100%;
+  height:65%;
+  overflow-y:auto;
+  padding:20px;
+  scrollbar-width:thin;
+  scrollbar-color:#555 transparent;
+}
+
+.content::-webkit-scrollbar{
+  width:5px;
+}
+
+.content::-webkit-scrollbar-thumb{
+  background:#555;
+}
+
+.classification{
+  color:#888;
+  font-size:clamp(.7rem,2vw,1rem);
+  letter-spacing:4px;
+  margin-bottom:18px;
+}
+
+.file-number{
+  color:#b7b7b7;
+  font-size:clamp(.65rem,1.5vw,.9rem);
+  letter-spacing:3px;
+  margin-bottom:8px;
+}
+
+.subject{
+  position:relative;
+  display:inline-block;
+
+  font-size:clamp(2.8rem,11vw,6rem);
+  letter-spacing:8px;
+  font-weight:normal;
+
+  color:#d7d7d7;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,.08),
+    2px 0 rgba(120,0,0,.35);
+
+  animation:subtleGlitch 6s infinite;
+}
+
+.status{
+  margin-top:12px;
+
+  font-size:clamp(.7rem,2vw,1rem);
+  letter-spacing:3px;
+
+  color:#a7a7a7;
+}
+
+.status strong{
+  color:#9d2020;
+  font-weight:normal;
+}
+
+/* =========================
+   WARNING
+========================= */
+
+.warning{
+  margin-top:35px;
+  display:inline-block;
+
+  border:1px solid #541717;
+  padding:14px 25px;
+
+  color:#aaa;
+
+  background:rgba(70,0,0,.08);
+
+  box-shadow:
+    inset 0 0 20px rgba(100,0,0,.08),
+    0 0 15px rgba(80,0,0,.08);
+
+  animation:warningPulse 3s infinite;
+}
+
+.warning-title{
+  color:#9d2020;
+  font-size:.75rem;
+  letter-spacing:3px;
+  margin-bottom:8px;
+}
+
+.warning-text{
+  font-size:clamp(.8rem,2vw,1rem);
+  letter-spacing:1px;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+button{
+  padding:12px 22px;
+  margin:7px;
+
+  border:1px solid #666;
+  background:rgba(0,0,0,.55);
+
+  color:#cfcfcf;
+
+  font-family:inherit;
+  font-size:clamp(.7rem,2vw,.9rem);
+  letter-spacing:2px;
+
+  cursor:pointer;
+
+  transition:
+    background .25s ease,
+    border .25s ease,
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+button:hover{
+  background:rgba(110,0,0,.2);
+  border-color:#9d2020;
+
+  box-shadow:
+    0 0 18px rgba(120,0,0,.25);
+
+  transform:translateY(-2px);
+}
+
+button:active{
+  transform:scale(.97);
+}
+
+/* =========================
+   MENU
+========================= */
+
+.mainMenu{
+  width:100%;
+  max-width:760px;
+  margin:0 auto;
+  padding:10px 5px 40px;
+}
+
+.mainMenu h1{
+  color:#ddd;
+  font-size:clamp(1.5rem,5vw,2.5rem);
+  letter-spacing:3px;
+  margin-bottom:15px;
+}
+
+.mainMenu h2{
+  color:#aaa;
+  font-size:clamp(1rem,3vw,1.5rem);
+  letter-spacing:2px;
+  margin:18px 0;
+}
+
+.mainMenu p{
+  color:#b5b5b5;
+  font-size:clamp(.78rem,2vw,.98rem);
+  line-height:1.8;
+  margin:10px auto;
+  max-width:700px;
+}
+
+.mainMenu button{
+  display:inline-block;
+}
+
+/* =========================
+   PARTE INFERIOR
+========================= */
+
+.bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  color:#666;
+
+  font-size:clamp(.55rem,1.3vw,.75rem);
+  letter-spacing:2px;
+}
+
+.signal{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.bars{
+  display:flex;
+  gap:2px;
+}
+
+.bar{
+  width:4px;
+  height:10px;
+  background:#555;
+}
+
+.bar:nth-child(4){
+  background:#8f1717;
+}
+
+/* =========================
+   ANIMACIONES
+========================= */
+
+@keyframes monitorAppear{
+  from{
+    opacity:0;
+    transform:scale(.96);
+  }
+
+  to{
+    opacity:1;
+    transform:scale(1);
+  }
+}
+
+@keyframes screenFlicker{
+  0%,100%{opacity:1}
+  48%{opacity:1}
+  49%{opacity:.94}
+  50%{opacity:1}
+  83%{opacity:1}
+  84%{opacity:.96}
+}
+
+@keyframes noiseMove{
+  0%{transform:translateY(0)}
+  100%{transform:translateY(4px)}
+}
+
+@keyframes scan{
+  from{top:-5%}
+  to{top:105%}
+}
+
+@keyframes blink{
+  0%,45%{opacity:1}
+  50%,55%{opacity:.25}
+  60%,100%{opacity:1}
+}
+
+@keyframes warningPulse{
+  0%,100%{opacity:.85}
+  50%{opacity:1}
+}
+
+@keyframes subtleGlitch{
+  0%,94%,100%{transform:translateX(0)}
+  95%{transform:translateX(-2px)}
+  96%{transform:translateX(2px)}
+  97%{transform:translateX(0)}
+}
+
+/* =========================
+   MÓVIL
+========================= */
+
+@media(max-width:600px){
+
+  .room{
+    padding:8px;
+  }
+
+  .monitor{
+    width:96vw;
+    height:96vh;
+    padding:12px;
+    border-radius:18px;
+  }
+
+  .screen{
+    border-radius:9px;
+  }
+
+  .interface{
+    padding:8% 5%;
+  }
+
+  .top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+
+  .subject{
+    letter-spacing:5px;
+  }
+
+  .warning{
+    width:100%;
+    padding:13px 10px;
+  }
+
+  .bottom{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:8px;
+  }
+
+  button{
+    width:90%;
+    margin:6px auto;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="room">
+<div class="room">
 
-    <div class="monitor">
+  <div class="monitor">
 
-      <div class="screen">
+    <div class="screen">
 
-        <div class="noise"></div>
-        <div class="scanline"></div>
+      <div class="noise"></div>
+      <div class="scanline"></div>
 
-        <div class="interface">
+      <div class="interface">
 
-          <div class="top">
+        <div class="top">
 
-            <div>
-              SECURE TERMINAL // 01
-            </div>
-
-            <div class="online">
-              <span class="indicator"></span>
-              SYSTEM ONLINE
-            </div>
-
+          <div>
+            SECURE TERMINAL // 01
           </div>
 
-
-          <div class="content">
-
-            <div class="classification">
-              ARCHIVO CLASIFICADO
-            </div>
-
-            <div class="file-number">
-              ARCHIVO #001
-            </div>
-
-            <h1 class="subject">
-              HIKARI
-            </h1>
-
-            <div class="status">
-              ESTADO:
-              <strong>IRREMPLAZABLE</strong>
-            </div>
-
-
-            <div class="warning">
-
-              <div class="warning-title">
-                ⚠ ANOMALÍA DETECTADA
-              </div>
-
-              <div class="warning-text">
-                Una que no quiero curar.
-              </div>
-
-            </div>
-
+          <div class="online">
+            <span class="indicator"></span>
+            SYSTEM ONLINE
           </div>
 
+        </div>
 
-          <button class="start" onclick="showMainMenu()">
-            [ INICIAR INVESTIGACIÓN ]
-          </button>
+        <div class="content" id="content">
 
+          <div class="classification">
+            ARCHIVO CLASIFICADO
+          </div>
 
-          <div class="bottom">
+          <div class="file-number">
+            ARCHIVO #001
+          </div>
 
-            <div>
-              SYSTEM // CLASSIFIED
+          <h1 class="subject">
+            HIKARI
+          </h1>
+
+          <div class="status">
+            ESTADO:
+            <strong>IRREMPLAZABLE</strong>
+          </div>
+
+          <div class="warning">
+
+            <div class="warning-title">
+              ⚠ ANOMALÍA DETECTADA
             </div>
 
-            <div class="signal">
-              SIGNAL
-
-              <div class="bars">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-              </div>
-
-              87%
+            <div class="warning-text">
+              Una que no quiero curar.
             </div>
 
           </div>
 
         </div>
 
+        <button onclick="startGame()">
+          [ INICIAR INVESTIGACIÓN ]
+        </button>
+
+        <div class="bottom">
+
+          <div>
+            SYSTEM // CLASSIFIED
+          </div>
+
+          <div class="signal">
+
+            SIGNAL
+
+            <div class="bars">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </div>
+
+            87%
+
+          </div>
+
+        </div>
+
       </div>
-
     </div>
-
   </div>
-
-
-  <script>
-
-    function startInvestigation() {
-
-      const screen = document.querySelector(".screen");
-
-      screen.style.transition = "filter 0.15s ease";
-      screen.style.filter = "brightness(2) contrast(1.4)";
-
-      setTimeout(() => {
-        screen.style.filter = "brightness(0.2)";
-      }, 120);
-
-      setTimeout(() => {
-        screen.style.filter = "brightness(1)";
-        alert("INVESTIGACIÓN INICIADA // HIKARI ❤️");
-      }, 500);
-
-    }
-
-  </script>
-
-<div id="startMenu">
-  <button id="startButton" onclick="showMainMenu()">INICIAR INVESTIGACIÓN</button>
 </div>
+
 <script>
-  let secretMemoryUnlocked = false;
-const startButton = document.getElementById("startButton");
 
-function showMainMenu() {
-  document.querySelector(".content").innerHTML = `
-    <div class="mainMenu">
-      <h1>HIKARI DATABASE</h1>
-      <p>ARCHIVO CLASIFICADO</p>
+/* =====================================================
+   ESTADO DEL SISTEMA
+===================================================== */
 
-      <button onclick="startGame()">INICIAR INVESTIGACIÓN</button>
-      <button onclick="showArchives()">ARCHIVOS</button>
-     <button onclick="showMemoryDatabase()">MEMORY DATABASE</button>
-    </div>
-  `;
+let secretMemoryUnlocked = false;
+
+
+/* =====================================================
+   UTILIDADES
+===================================================== */
+
+function setContent(html){
+  document.getElementById("content").innerHTML = html;
+  document.getElementById("content").scrollTop = 0;
 }
-function showArchives() {
-  alert("SHOWARCHIVES FUNCIONA");
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MENÚ PRINCIPAL
+===================================================== */
+
+function showMainMenu(){
+
+  setContent(`
+
     <div class="mainMenu">
+
+      <h1>🖥️ HIKARI DATABASE</h1>
+
+      <p>
+        SISTEMA CENTRAL DE ARCHIVOS
+      </p>
+
+      <p>
+        ESTADO: OPERATIVO
+      </p>
+
+      <br>
+
+      <button onclick="startGame()">
+        🔎 INICIAR INVESTIGACIÓN
+      </button>
+
+      <button onclick="showArchives()">
+        📁 ARCHIVOS
+      </button>
+
+      <button onclick="showMemoryDatabase()">
+        🧠 MEMORY DATABASE
+      </button>
+
+      <button onclick="showInventory()">
+        🎒 INVENTORY
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* =====================================================
+   ARCHIVOS
+===================================================== */
+
+function showArchives(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
       <h1>📁 HIKARI DATABASE</h1>
+
       <p>ARCHIVOS DE HISTORIA</p>
 
-      <button onclick="showArchive1()">ARCHIVO #001 — HIKARI</button>
-      <button onclick="showArchive2()">ARCHIVO #002 — EL COMIENZO</button>
-      <button onclick="showArchive3()">ARCHIVO #003 — FRECUENCIA ANORMAL</button>
-      <button onclick="showArchive4()">ARCHIVO #004 — COMPATIBILIDAD</button>
-      <button onclick="showArchive5()">ARCHIVO #005 — CAMBIO DE ESTADO</button>
-<button onclick="showArchive6()">ARCHIVO #006 — SIN DEFINIR</button>
-      <button onclick="showArchive7()">ARCHIVO #007 — PRIMER ENCUENTRO</button>
+      <button onclick="showArchive1()">
+        ARCHIVO #001 — HIKARI
+      </button>
+
+      <button onclick="showArchive2()">
+        ARCHIVO #002 — EL COMIENZO
+      </button>
+
+      <button onclick="showArchive3()">
+        ARCHIVO #003 — FRECUENCIA ANORMAL
+      </button>
+
+      <button onclick="showArchive4()">
+        ARCHIVO #004 — COMPATIBILIDAD
+      </button>
+
+      <button onclick="showArchive5()">
+        ARCHIVO #005 — CAMBIO DE ESTADO
+      </button>
+
+      <button onclick="showArchive6()">
+        ARCHIVO #006 — SIN DEFINIR
+      </button>
+
+      <button onclick="showArchive7()">
+        ARCHIVO #007 — PRIMER ENCUENTRO
+      </button>
+
       <br><br>
-      <button onclick="showMainMenu()">← VOLVER</button>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-function showArchive2() {
-  alert("ARCHIVO 002 FUNCIONA");
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ARCHIVO 001
+===================================================== */
+
+function showArchive1(){
+
+  setContent(`
+
     <div class="mainMenu">
+
+      <h1>📁 ARCHIVO #001</h1>
+
+      <h2>HIKARI</h2>
+
+      <p>ESTADO: IRREMPLAZABLE</p>
+
+      <p>
+        Se intentó identificar una característica específica
+        responsable del vínculo emocional.
+      </p>
+
+      <p>RESULTADO: ERROR.</p>
+
+      <p>
+        Se analizaron sus gestos.<br>
+        Su forma de hablar.<br>
+        Su personalidad.
+      </p>
+
+      <p>CONCLUSIÓN:</p>
+
+      <h2>Es simplemente ella. ❤️</h2>
+
+      <p>RESULTADO: PERFECTA</p>
+
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* =====================================================
+   ARCHIVO 002
+===================================================== */
+
+function showArchive2(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
       <h1>📁 ARCHIVO #002</h1>
+
       <h2>EL COMIENZO</h2>
 
       <p>FECHA: 17 / 05 / 2026</p>
+
       <p>ORIGEN: INSTAGRAM</p>
 
       <p>REGISTRO RECUPERADO:</p>
@@ -736,12 +831,13 @@ function showArchive2() {
       </p>
 
       <p>
-        Hikari me mandó mensaje porque tenía una duda sobre aquella nota.
+        Hikari me mandó mensaje porque tenía una duda
+        sobre aquella nota.
       </p>
 
       <p>
-        Yo probablemente no tenía ni idea de que una simple equivocación
-        iba a terminar llevándome hasta ella.
+        Yo probablemente no tenía ni idea de que una simple
+        equivocación iba a terminar llevándome hasta ella.
       </p>
 
       <p>
@@ -756,17 +852,32 @@ function showArchive2() {
       <h2>Y así comenzó nuestra historia. ❤️</h2>
 
       <p>
-        A veces, los errores terminan siendo lo mejor que nos pudo pasar.
+        A veces, los errores terminan siendo lo mejor
+        que nos pudo pasar.
       </p>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showArchive3() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ARCHIVO 003
+===================================================== */
+
+function showArchive3(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>📁 ARCHIVO #003</h1>
+
       <h2>FRECUENCIA ANORMAL</h2>
 
       <p>ESTADO: ANOMALÍA DETECTADA</p>
@@ -810,14 +921,28 @@ function showArchive2() {
 
       <h2>Seguir queriéndola. ❤️</h2>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showArchive4() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ARCHIVO 004
+===================================================== */
+
+function showArchive4(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>📁 ARCHIVO #004</h1>
+
       <h2>COMPATIBILIDAD</h2>
 
       <p>ESTADO: ANÁLISIS COMPLETADO</p>
@@ -860,17 +985,32 @@ function showArchive2() {
         Definitivamente están hechos el uno para el otro.
       </h2>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showArchive5() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ARCHIVO 005
+===================================================== */
+
+function showArchive5(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>📁 ARCHIVO #005</h1>
+
       <h2>CAMBIO DE ESTADO</h2>
 
       <p>ESTADO INICIAL: DESCONOCIDA</p>
+
       <p>ESTADO ACTUAL: INDISPENSABLE</p>
 
       <p>REGISTRO DE CAMBIOS:</p>
@@ -915,14 +1055,28 @@ function showArchive2() {
 
       <h2>RESULTADO: IRREMPLAZABLE.</h2>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showArchive6() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ARCHIVO 006
+===================================================== */
+
+function showArchive6(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>📁 ARCHIVO #006</h1>
+
       <h2>SIN DEFINIR</h2>
 
       <p>ESTADO: CLASIFICACIÓN IMPOSIBLE</p>
@@ -966,24 +1120,42 @@ function showArchive2() {
         una definición.
       </p>
 
-      <h2>❤️ HIKARI = ALGO QUE NO SE PUEDE EXPLICAR.</h2>
+      <h2>
+        ❤️ HIKARI = ALGO QUE NO SE PUEDE EXPLICAR.
+      </h2>
 
       <p>ESTADO FINAL:</p>
 
       <h2>CLASIFICACIÓN: IMPOSIBLE</h2>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showArchive7() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ARCHIVO 007
+===================================================== */
+
+function showArchive7(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>📁 ARCHIVO #007</h1>
+
       <h2>PRIMER ENCUENTRO</h2>
 
       <p>FECHA: 17 / 05 / 2026</p>
+
       <p>UBICACIÓN DEL REGISTRO: INSTAGRAM</p>
+
       <p>ESTADO: ARCHIVO RECUPERADO</p>
 
       <p>INICIO DEL REGISTRO...</p>
@@ -1058,33 +1230,76 @@ function showArchive2() {
 
       <h2>FIN DEL REGISTRO. ❤️</h2>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showArchives()">
+        ← VOLVER A ARCHIVOS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showMemoryDatabase() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MEMORY DATABASE
+===================================================== */
+
+function showMemoryDatabase(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>🧠 MEMORY DATABASE</h1>
+
       <p>BASE DE DATOS DE RECUERDOS</p>
 
       <p>ESTADO: ACCESO AUTORIZADO ❤️</p>
 
-      <button onclick="showMemory1()">💬 PRIMER CONTACTO</button>
-      <button onclick="showMemory2()">❤️ PRIMERA CONEXIÓN</button>
-      <button onclick="showMemory3()">😂 PRIMERAS RISAS</button>
-      <button onclick="showMemory4()">📅 17 / 05 / 2026</button>
-     <button onclick="openSecretMemory()">
-  ${secretMemoryUnlocked ? "🔓 MEMORIA SECRETA — DESBLOQUEADA" : "🔒 MEMORIA SECRETA — BLOQUEADA"}
-</button>
-      <button onclick="showMainMenu()">← VOLVER</button>
+      <button onclick="showMemory1()">
+        💬 PRIMER CONTACTO
+      </button>
+
+      <button onclick="showMemory2()">
+        ❤️ PRIMERA CONEXIÓN
+      </button>
+
+      <button onclick="showMemory3()">
+        😂 PRIMERAS RISAS
+      </button>
+
+      <button onclick="showMemory4()">
+        📅 17 / 05 / 2026
+      </button>
+
+      <button onclick="openSecretMemory()">
+        ${secretMemoryUnlocked
+          ? "🔓 MEMORIA SECRETA — DESBLOQUEADA"
+          : "🔒 MEMORIA SECRETA — BLOQUEADA"}
+      </button>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showMemory1() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MEMORIA 001
+===================================================== */
+
+function showMemory1(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>🧠 MEMORIA #001</h1>
+
       <h2>💬 PRIMER CONTACTO</h2>
 
       <p>ESTADO: RECUERDO RECUPERADO</p>
@@ -1113,14 +1328,28 @@ function showArchive2() {
 
       <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
 
-      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER A MEMORIAS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showMemory2() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MEMORIA 002
+===================================================== */
+
+function showMemory2(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>MEMORIA #002</h1>
+
       <h2>PRIMERA CONEXIÓN</h2>
 
       <p>ESTADO: RECUERDO RECUPERADO</p>
@@ -1165,15 +1394,29 @@ function showArchive2() {
 
       <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
 
-      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER A MEMORIAS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showMemory3() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MEMORIA 003
+===================================================== */
+
+function showMemory3(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>MEMORIA #003</h1>
-<h2>PRIMERAS RISAS</h2>
+
+      <h2>PRIMERAS RISAS</h2>
 
       <p>ESTADO: RECUERDO RECUPERADO</p>
 
@@ -1200,7 +1443,7 @@ function showArchive2() {
         no pudo ignorar:
       </p>
 
-     <h2>SONRISAS FRECUENTES.</h2>
+      <h2>SONRISAS FRECUENTES.</h2>
 
       <p>
         Cada conversación conseguía sacar
@@ -1217,14 +1460,28 @@ function showArchive2() {
 
       <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
 
-      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER A MEMORIAS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showMemory4() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MEMORIA 004
+===================================================== */
+
+function showMemory4(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>MEMORIA #004</h1>
+
       <h2>📅 17 / 05 / 2026</h2>
 
       <p>ESTADO: EVENTO FUNDAMENTAL</p>
@@ -1256,7 +1513,8 @@ function showArchive2() {
         el comienzo de nuestra historia.
       </p>
 
-     <h2>FECHA REGISTRADA</h2>
+      <h2>FECHA REGISTRADA</h2>
+
       <p>
         17 DE MAYO DE 2026
       </p>
@@ -1265,25 +1523,58 @@ function showArchive2() {
         IMPORTANCIA DEL EVENTO: INFINITA.
       </p>
 
-     <h2>ESTE DÍA NO SE OLVIDA.</h2>
+      <h2>ESTE DÍA NO SE OLVIDA.</h2>
 
-      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER A MEMORIAS
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function showMemory5() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   MEMORIA SECRETA
+===================================================== */
+
+function openSecretMemory(){
+
+  if(!secretMemoryUnlocked){
+
+    alert(
+      "🔒 MEMORIA BLOQUEADA\n\n" +
+      "Completa la INVESTIGACIÓN para desbloquearla."
+    );
+
+    return;
+  }
+
+  showMemory5();
+}
+
+
+function showMemory5(){
+
+  setContent(`
+
     <div class="mainMenu">
-     <h1>ACCESS GRANTED</h1>
+
+      <h1>ACCESS GRANTED</h1>
+
       <p>CLASSIFIED MEMORY</p>
 
-      <p id="loadingText">RECUPERANDO MEMORIA...</p>
+      <p id="loadingText">
+        RECUPERANDO MEMORIA...
+      </p>
 
       <div id="secretContent" style="display:none;">
 
-       <h2>ARCHIVO SECRETO</h2>
+        <h2>ARCHIVO SECRETO</h2>
 
         <p>ACCESO: AUTORIZADO</p>
+
         <p>ESTADO: MEMORIA DESBLOQUEADA</p>
 
         <p>
@@ -1351,63 +1642,82 @@ function showArchive2() {
 
         <p>ESTADO: ❤️ SIEMPRE.</p>
 
-        <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+        <button onclick="showMemoryDatabase()">
+          ← VOLVER A MEMORIAS
+        </button>
 
-<br><br>
+        <br><br>
 
-<button onclick="showFinalSystem()">
-  ❤️ CONTINUAR
-</button>
+        <button onclick="showFinalSystem()">
+          ❤️ CONTINUAR
+        </button>
 
       </div>
+
     </div>
-  `;
 
-setTimeout(() => {
-  document.getElementById("loadingText").innerHTML =
-    "████░░░░░░░░░░░░ 25%";
+  `);
 
-  setTimeout(() => {
-    document.getElementById("loadingText").innerHTML =
-      "████████░░░░░░░░ 50%";
+  let progress = 0;
 
-    setTimeout(() => {
-      document.getElementById("loadingText").innerHTML =
-        "████████████░░░░ 75%";
+  const interval = setInterval(() => {
+
+    progress += 25;
+
+    const bars =
+      "█".repeat(progress / 6.25) +
+      "░".repeat(16 - progress / 6.25);
+
+    const loading = document.getElementById("loadingText");
+
+    if(!loading){
+      clearInterval(interval);
+      return;
+    }
+
+    loading.innerHTML =
+      bars + " " + progress + "%";
+
+    if(progress >= 100){
+
+      clearInterval(interval);
 
       setTimeout(() => {
-        document.getElementById("loadingText").innerHTML =
-          "████████████████ 100%";
+
+        const loadingFinal =
+          document.getElementById("loadingText");
+
+        if(loadingFinal){
+          loadingFinal.innerHTML =
+            "🔓 MEMORIA RECUPERADA";
+        }
 
         setTimeout(() => {
-          document.getElementById("loadingText").innerHTML =
-            "🔓 MEMORIA RECUPERADA";
 
-          setTimeout(() => {
-            document.getElementById("secretContent").style.display = "block";
-          }, 1500);
+          const secret =
+            document.getElementById("secretContent");
 
-        }, 1000);
+          if(secret){
+            secret.style.display = "block";
+          }
 
-      }, 1000);
+        },1200);
 
-    }, 1000);
+      },700);
+    }
 
-  }, 1000);
-
-}, 1000);
+  },1000);
 }
 
-function openSecretMemory() {
-  if (!secretMemoryUnlocked) {
-    alert("🔒 MEMORIA BLOQUEADA\n\nCompleta la INVESTIGACIÓN para desbloquearla.");
-    return;
-  }
 
-  showMemory5();
-}
-  function showFinalSystem() {
-  document.querySelector(".content").innerHTML = `
+/* =====================================================
+   SISTEMA FINAL
+===================================================== */
+
+function showFinalSystem(){
+
+  setContent(`
+
     <div class="mainMenu">
 
       <h1>🖥️ SISTEMA FINAL</h1>
@@ -1466,111 +1776,130 @@ function openSecretMemory() {
           Y esta historia todavía se está escribiendo.
         </p>
 
-<h2>⚠️ ERROR CRÍTICO</h2>
+        <h2>⚠️ ERROR CRÍTICO</h2>
 
-<p>
-  VARIABLE NO RECONOCIDA:
-</p>
+        <p>
+          VARIABLE NO RECONOCIDA:
+        </p>
 
-<h1>❤️ AMOR</h1>
+        <h1>❤️ AMOR</h1>
 
-<p>
-  El sistema intentó calcular
-  la importancia de Hikari.
-</p>
+        <p>
+          El sistema intentó calcular
+          la importancia de Hikari.
+        </p>
 
-<p>
-  Se analizaron todos los recuerdos.<br>
-  Todas las conversaciones.<br>
-  Todos los momentos.
-</p>
+        <p>
+          Se analizaron todos los recuerdos.<br>
+          Todas las conversaciones.<br>
+          Todos los momentos.
+        </p>
 
-<p>
-  RESULTADO:
-</p>
+        <p>RESULTADO:</p>
 
-<h1>❌ IMPOSIBLE DE CALCULAR</h1>
+        <h1>❌ IMPOSIBLE DE CALCULAR</h1>
 
-<p>
-  No existe una unidad de medida
-  suficientemente grande para expresar
-  lo importante que es.
-</p>
+        <p>
+          No existe una unidad de medida
+          suficientemente grande para expresar
+          lo importante que es.
+        </p>
 
-<h2>💗 CONCLUSIÓN</h2>
+        <h2>💗 CONCLUSIÓN</h2>
 
-<p>
-  Hikari no puede ser clasificada
-  como una simple memoria.
-</p>
+        <p>
+          Hikari no puede ser clasificada
+          como una simple memoria.
+        </p>
 
-<p>
-  Ella es parte de la historia.
-</p>
+        <p>
+          Ella es parte de la historia.
+        </p>
 
-<p>
-  Y esta historia todavía
-  se está escribiendo.
-</p>
+        <p>
+          Y esta historia todavía
+          se está escribiendo.
+        </p>
 
-<h2>⚠️ SISTEMA INESTABLE</h2>
+        <h2>⚠️ SISTEMA INESTABLE</h2>
 
-<p>
-  Se ha detectado un último registro.
-</p>
+        <p>
+          Se ha detectado un último registro.
+        </p>
 
-<br>
+        <br>
 
-<button onclick="showFinalMessage()">
-  💌 ABRIR ÚLTIMO REGISTRO
-</button>
+        <button onclick="showFinalMessage()">
+          💌 ABRIR ÚLTIMO REGISTRO
+        </button>
+
       </div>
+
     </div>
-  `;
 
-  setTimeout(() => {
-    document.getElementById("finalLoading").innerHTML =
-      "████░░░░░░░░░░░░ 25%";
+  `);
 
-    setTimeout(() => {
-      document.getElementById("finalLoading").innerHTML =
-        "████████░░░░░░░░ 50%";
+  let progress = 0;
+
+  const interval = setInterval(() => {
+
+    progress += 25;
+
+    const bars =
+      "█".repeat(progress / 6.25) +
+      "░".repeat(16 - progress / 6.25);
+
+    const loading =
+      document.getElementById("finalLoading");
+
+    if(!loading){
+      clearInterval(interval);
+      return;
+    }
+
+    loading.innerHTML =
+      bars + " " + progress + "%";
+
+    if(progress >= 100){
+
+      clearInterval(interval);
 
       setTimeout(() => {
-        document.getElementById("finalLoading").innerHTML =
-          "████████████░░░░ 75%";
+
+        loading.innerHTML =
+          "✅ ANÁLISIS COMPLETADO";
 
         setTimeout(() => {
-          document.getElementById("finalLoading").innerHTML =
-            "████████████████ 100%";
 
-          setTimeout(() => {
-            document.getElementById("finalLoading").innerHTML =
-              "✅ ANÁLISIS COMPLETADO";
+          document.getElementById(
+            "finalContent"
+          ).style.display = "block";
 
-            setTimeout(() => {
-              document.getElementById("finalContent").style.display =
-                "block";
-            }, 1500);
+        },1200);
 
-          }, 1000);
+      },700);
+    }
 
-        }, 1000);
-
-      }, 1000);
-
-    }, 1000);
-
-  }, 1000);
+  },1000);
 }
-  function showFinalMessage() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   ÚLTIMO REGISTRO
+===================================================== */
+
+function showFinalMessage(){
+
+  setContent(`
+
     <div class="mainMenu">
 
       <h1>💌 ÚLTIMO REGISTRO</h1>
 
       <p>ARCHIVO: FINAL_001</p>
+
       <p>DESTINATARIA: HIKARI ❤️</p>
+
       <p>ESTADO: REGISTRO PERMANENTE</p>
 
       <br>
@@ -1669,80 +1998,238 @@ function openSecretMemory() {
       </button>
 
     </div>
-  `;
+
+  `);
 }
-  function showArchive1() {
-  document.querySelector(".content").innerHTML = `
+
+
+/* =====================================================
+   INVENTORY
+===================================================== */
+
+function showInventory(){
+
+  setContent(`
+
     <div class="mainMenu">
-      <h1>📁 ARCHIVO #001</h1>
-      <h2>HIKARI</h2>
 
-      <p>ESTADO: IRREMPLAZABLE</p>
+      <h1>INVENTORY</h1>
 
-      <p>
-        Se intentó identificar una característica específica
-        responsable del vínculo emocional.
-      </p>
+      <p>BIOHAZARD ARCHIVE SYSTEM</p>
 
-      <p>RESULTADO: ERROR.</p>
+      <p>ITEMS: 04</p>
 
-      <p>
-        Se analizaron sus gestos.<br>
-        Su forma de hablar.<br>
-        Su personalidad.
-      </p>
+      <br>
 
-      <p>CONCLUSIÓN:</p>
+      <button onclick="showItem1()">
+        ITEM #001 — PHOTOGRAPH
+      </button>
 
-      <h2>Es simplemente ella. ❤️</h2>
+      <button onclick="showItem2()">
+        ITEM #002 — FIRST MESSAGE
+      </button>
 
-      <p>RESULTADO: PERFECTA</p>
+      <button onclick="showItem3()">
+        ITEM #003 — MEMORY FILE
+      </button>
 
-      <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+      <button onclick="showItem4()">
+        ITEM #004 — UNKNOWN
+      </button>
+
+      <br><br>
+
+      <button onclick="showMainMenu()">
+        ← RETURN TO SYSTEM
+      </button>
+
     </div>
-  `;
+
+  `);
 }
-  function startGame() {
-  
-document.querySelector(".content").innerHTML = `
-  <div class="mainMenu">
-    <h1>🔎 INVESTIGACIÓN INICIADA</h1>
-    <p>Has encontrado un archivo clasificado.</p>
-
-    <h2>Pregunta 1</h2>
-    <p>¿Qué es lo que más me gusta de ti?</p>
-
-    <button onclick="answerCorrect()">Tu forma de ser ❤️</button>
-    <button onclick="answerWrong()">Tu dinero 💰</button>
-    <button onclick="answerWrong()">Tus memes 😂</button>
 
 
-    <p id="gameMessage"></p>
-  `;
-}
-  function startGame() {
-  document.querySelector(".content").innerHTML = `
+/* =====================================================
+   INVENTORY ITEMS
+===================================================== */
+
+function showItem1(){
+
+  setContent(`
+
     <div class="mainMenu">
+
+      <h1>ITEM #001</h1>
+
+      <h2>PHOTOGRAPH</h2>
+
+      <p>ESTADO: ARCHIVO PENDIENTE</p>
+
+      <p>
+        Un registro visual será añadido
+        próximamente a la base de datos.
+      </p>
+
+      <button onclick="showInventory()">
+        ← RETURN TO INVENTORY
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+function showItem2(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ITEM #002</h1>
+
+      <h2>FIRST MESSAGE</h2>
+
+      <p>ESTADO: RECUPERADO</p>
+
+      <p>
+        El primer contacto comenzó
+        con una nota de Instagram,
+        una duda y un mensaje.
+      </p>
+
+      <h2>❤️ 17 / 05 / 2026</h2>
+
+      <button onclick="showInventory()">
+        ← RETURN TO INVENTORY
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+function showItem3(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ITEM #003</h1>
+
+      <h2>MEMORY FILE</h2>
+
+      <p>ESTADO: ACTIVO</p>
+
+      <p>
+        Todos los recuerdos relacionados
+        con Hikari permanecen almacenados.
+      </p>
+
+      <button onclick="showMemoryDatabase()">
+        ABRIR MEMORY DATABASE
+      </button>
+
+      <button onclick="showInventory()">
+        ← RETURN TO INVENTORY
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+function showItem4(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ITEM #004</h1>
+
+      <h2>UNKNOWN</h2>
+
+      <p>ESTADO: DESCONOCIDO</p>
+
+      <p>
+        El sistema no puede determinar
+        qué contiene este registro.
+      </p>
+
+      <h2>⚠️ ARCHIVO NO CLASIFICADO</h2>
+
+      <button onclick="showInventory()">
+        ← RETURN TO INVENTORY
+      </button>
+
+    </div>
+
+  `);
+}
+
+
+/* =====================================================
+   INVESTIGACIÓN
+===================================================== */
+
+function startGame(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
       <h1>🔎 INVESTIGACIÓN INICIADA</h1>
-      <p>Has encontrado un archivo clasificado.</p>
-      <p>Para acceder al contenido, responde correctamente.</p>
+
+      <p>
+        Has encontrado un archivo clasificado.
+      </p>
+
+      <p>
+        Para acceder al contenido,
+        responde correctamente.
+      </p>
 
       <h2>Pregunta 1</h2>
-      <p>¿Cómo comenzó realmente nuestra historia?</p>
 
-      <button onclick="answerCorrect()">Todo comenzó por una nota de Instagram</button>
-      <button onclick="answerWrong()">Nos conocimos por una conversación que empezó de la nada</button>
-      <button onclick="answerWrong()">Yo fui quien decidió hablarte primero</button>
-      <button onclick="answerWrong()">Nos conocimos gracias a alguien más</button>
+      <p>
+        ¿Cómo comenzó realmente nuestra historia?
+      </p>
+
+      <button onclick="answerCorrect()">
+        Todo comenzó por una nota de Instagram
+      </button>
+
+      <button onclick="answerWrong()">
+        Nos conocimos por una conversación que empezó de la nada
+      </button>
+
+      <button onclick="answerWrong()">
+        Yo fui quien decidió hablarte primero
+      </button>
+
+      <button onclick="answerWrong()">
+        Nos conocimos gracias a alguien más
+      </button>
 
       <p id="gameMessage"></p>
+
     </div>
-  `;
+
+  `);
 }
 
-function answerCorrect() {
+
+/* =====================================================
+   RESPUESTA 1
+===================================================== */
+
+function answerCorrect(){
+
   document.getElementById("gameMessage").innerHTML = `
-    RESPUESTA CORRECTA
+
+    RESPUESTA CORRECTA ❤️
 
     <br><br>
 
@@ -1750,37 +2237,70 @@ function answerCorrect() {
 
     <br><br>
 
-    <button onclick="showQuestion2()">CONTINUAR</button>
+    <button onclick="showQuestion2()">
+      CONTINUAR
+    </button>
+
   `;
 }
 
-function showQuestion2() {
-  document.querySelector(".content").innerHTML = `
+
+/* =====================================================
+   PREGUNTA 2
+===================================================== */
+
+function showQuestion2(){
+
+  setContent(`
+
     <div class="mainMenu">
 
-      <h1>INVESTIGACIÓN CONTINÚA</h1>
+      <h1>🔎 INVESTIGACIÓN CONTINÚA</h1>
 
       <h2>Pregunta 2</h2>
-      <p>¿Qué fecha quedó registrada como el comienzo de nuestra historia?</p>
 
-      <button onclick="answerWrong()">14 de febrero de 2026</button>
-      <button onclick="answerWrong()">25 de mayo de 2026</button>
-      <button onclick="answerCorrect3()">17 de mayo de 2026</button>
-      <button onclick="answerWrong()">17 de junio de 2026</button>
+      <p>
+        ¿Cuándo nos conocimos?
+      </p>
+
+      <button onclick="answerWrong()">
+        14 de febrero de 2026
+      </button>
+
+      <button onclick="answerCorrect3()">
+        17 de mayo de 2026 ❤️
+      </button>
+
+      <button onclick="answerWrong()">
+        25 de mayo de 2026
+      </button>
+
+      <button onclick="answerWrong()">
+        17 de junio de 2026
+      </button>
 
       <p id="gameMessage"></p>
 
     </div>
-  `;
+
+  `);
 }
 
-function answerCorrect3() {
+
+/* =====================================================
+   RESPUESTA 2
+===================================================== */
+
+function answerCorrect3(){
+
   document.getElementById("gameMessage").innerHTML = `
-    RESPUESTA CORRECTA
+
+    RESPUESTA CORRECTA ❤️
 
     <br><br>
 
-    FECHA CONFIRMADA: 17 DE MAYO DE 2026
+    FECHA CONFIRMADA:
+    17 DE MAYO DE 2026
 
     <br><br>
 
@@ -1788,33 +2308,66 @@ function answerCorrect3() {
 
     <br><br>
 
-    <button onclick="showQuestion3()">CONTINUAR</button>
+    <button onclick="showQuestion3()">
+      CONTINUAR
+    </button>
+
   `;
 }
 
-function showQuestion3() {
-  document.querySelector(".content").innerHTML = `
+
+/* =====================================================
+   PREGUNTA 3
+===================================================== */
+
+function showQuestion3(){
+
+  setContent(`
+
     <div class="mainMenu">
 
-      <h1>INVESTIGACIÓN CONTINÚA</h1>
+      <h1>🔎 INVESTIGACIÓN CONTINÚA</h1>
 
       <h2>Pregunta 3</h2>
-      <p>¿Qué fue lo que hizo que nuestra conversación comenzara a convertirse en algo importante?</p>
 
-      <button onclick="answerWrong()">La curiosidad de conocernos</button>
-      <button onclick="answerCorrect4()">La forma en que empezamos a conectar</button>
-      <button onclick="answerWrong()">Que teníamos muchas cosas en común</button>
-      <button onclick="answerWrong()">Que simplemente coincidimos en el momento correcto</button>
+      <p>
+        ¿Qué fue lo que hizo que nuestra conversación
+        comenzara a convertirse en algo importante?
+      </p>
+
+      <button onclick="answerWrong()">
+        La curiosidad de conocernos
+      </button>
+
+      <button onclick="answerCorrect4()">
+        La forma en que empezamos a conectar
+      </button>
+
+      <button onclick="answerWrong()">
+        Que teníamos muchas cosas en común
+      </button>
+
+      <button onclick="answerWrong()">
+        Que simplemente coincidimos en el momento correcto
+      </button>
 
       <p id="gameMessage"></p>
 
     </div>
-  `;
+
+  `);
 }
 
-function answerCorrect4() {
+
+/* =====================================================
+   RESPUESTA 3
+===================================================== */
+
+function answerCorrect4(){
+
   document.getElementById("gameMessage").innerHTML = `
-    RESPUESTA CORRECTA
+
+    RESPUESTA CORRECTA ❤️
 
     <br><br>
 
@@ -1826,33 +2379,65 @@ function answerCorrect4() {
 
     <br><br>
 
-    <button onclick="showQuestion4()">CONTINUAR</button>
+    <button onclick="showQuestion4()">
+      CONTINUAR
+    </button>
+
   `;
 }
 
-function showQuestion4() {
-  document.querySelector(".content").innerHTML = `
+
+/* =====================================================
+   PREGUNTA 4
+===================================================== */
+
+function showQuestion4(){
+
+  setContent(`
+
     <div class="mainMenu">
 
-      <h1>INVESTIGACIÓN AVANZADA</h1>
+      <h1>🔎 INVESTIGACIÓN AVANZADA</h1>
 
       <h2>Pregunta 4</h2>
-      <p>¿Qué es lo que más valoro de la persona que eres?</p>
 
-      <button onclick="answerWrong()">La forma en que me haces reír</button>
-      <button onclick="answerWrong()">La manera en que siempre encuentras algo que decir</button>
-      <button onclick="answerCorrect5()">Tu forma de ser</button>
-      <button onclick="answerWrong()">La cantidad de recuerdos que hemos creado</button>
+      <p>
+        ¿Qué es lo que más valoro de la persona que eres?
+      </p>
+
+      <button onclick="answerWrong()">
+        La forma en que me haces reír
+      </button>
+
+      <button onclick="answerWrong()">
+        La manera en que siempre encuentras algo que decir
+      </button>
+
+      <button onclick="answerCorrect5()">
+        Tu forma de ser
+      </button>
+
+      <button onclick="answerWrong()">
+        La cantidad de recuerdos que hemos creado
+      </button>
 
       <p id="gameMessage"></p>
 
     </div>
-  `;
+
+  `);
 }
 
-function answerCorrect5() {
+
+/* =====================================================
+   RESPUESTA 4
+===================================================== */
+
+function answerCorrect5(){
+
   document.getElementById("gameMessage").innerHTML = `
-    RESPUESTA CORRECTA
+
+    RESPUESTA CORRECTA ❤️
 
     <br><br>
 
@@ -1864,12 +2449,22 @@ function answerCorrect5() {
 
     <br><br>
 
-    <button onclick="showQuestion5()">CONTINUAR</button>
+    <button onclick="showQuestion5()">
+      CONTINUAR
+    </button>
+
   `;
 }
 
-function showQuestion5() {
-  document.querySelector(".content").innerHTML = `
+
+/* =====================================================
+   PREGUNTA 5
+===================================================== */
+
+function showQuestion5(){
+
+  setContent(`
+
     <div class="mainMenu">
 
       <h1>ÚLTIMA FASE</h1>
@@ -1886,21 +2481,40 @@ function showQuestion5() {
         ¿qué representa nuestra historia?
       </p>
 
-      <button onclick="answerWrong()">Un recuerdo importante</button>
-      <button onclick="answerWrong()">Una etapa de nuestras vidas</button>
-      <button onclick="answerWrong()">Una coincidencia que terminó significando mucho</button>
-      <button onclick="answerFinalCorrect()">Algo que todavía estamos escribiendo</button>
+      <button onclick="answerWrong()">
+        Un recuerdo importante
+      </button>
+
+      <button onclick="answerWrong()">
+        Una etapa de nuestras vidas
+      </button>
+
+      <button onclick="answerWrong()">
+        Una coincidencia que terminó significando mucho
+      </button>
+
+      <button onclick="answerFinalCorrect()">
+        Algo que todavía estamos escribiendo
+      </button>
 
       <p id="gameMessage"></p>
 
     </div>
-  `;
+
+  `);
 }
 
-function answerFinalCorrect() {
+
+/* =====================================================
+   RESPUESTA FINAL
+===================================================== */
+
+function answerFinalCorrect(){
+
   secretMemoryUnlocked = true;
 
   document.getElementById("gameMessage").innerHTML = `
+
     RESPUESTAS VERIFICADAS: 100%
 
     <br><br>
@@ -1916,18 +2530,30 @@ function answerFinalCorrect() {
     <button onclick="showInvestigationComplete()">
       CONTINUAR
     </button>
+
   `;
 }
 
-function showInvestigationComplete() {
-  document.querySelector(".content").innerHTML = `
+
+/* =====================================================
+   INVESTIGACIÓN COMPLETADA
+===================================================== */
+
+function showInvestigationComplete(){
+
+  setContent(`
+
     <div class="mainMenu">
 
       <h1>INVESTIGACIÓN COMPLETADA</h1>
 
-      <p>RESPUESTAS VERIFICADAS: 100%</p>
+      <p>
+        RESPUESTAS VERIFICADAS: 100%
+      </p>
 
-      <p>IDENTIDAD CONFIRMADA: HIKARI</p>
+      <p>
+        IDENTIDAD CONFIRMADA: HIKARI
+      </p>
 
       <h2>INVESTIGACIÓN FINALIZADA</h2>
 
@@ -1955,35 +2581,38 @@ function showInvestigationComplete() {
       </button>
 
     </div>
-  `;
-}
 
-function answerWrong() {
-  document.getElementById("gameMessage").innerHTML =
-    "RESPUESTA INCORRECTA<br><br>El registro no coincide. Vuelve a intentarlo.";
-}
-function showQuestion2() {
-  document.querySelector(".content").innerHTML = `
-    <div class="mainMenu">
-      <h1>🔎 INVESTIGACIÓN CONTINÚA</h1>
-
-      <h2>Pregunta 2</h2>
-      <p>¿Cuándo nos conocimos?</p>
-
-      <button onclick="answerWrong()">14 de febrero de 2026</button>
-      <button onclick="answerCorrect3()">17 de mayo de 2026 ❤️</button>
-      <button onclick="answerWrong()">25 de mayo de 2026</button>
-
-      <p id="gameMessage"></p>
-    </div>
-  `;
+  `);
 }
 
 
-function answerWrong() {
-  document.getElementById("gameMessage").innerHTML =
-    "❌ RESPUESTA INCORRECTA<br><br>Vuelve a intentarlo 😭";
+/* =====================================================
+   RESPUESTA INCORRECTA
+===================================================== */
+
+function answerWrong(){
+
+  const message =
+    document.getElementById("gameMessage");
+
+  if(message){
+
+    message.innerHTML = `
+      ❌ RESPUESTA INCORRECTA
+
+      <br><br>
+
+      El registro no coincide.
+
+      <br><br>
+
+      Vuelve a intentarlo 😭
+    `;
+
+  }
 }
+
 </script>
+
 </body>
 </html>
