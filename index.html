@@ -1354,6 +1354,12 @@ function showArchive2() {
 
         <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
 
+<br><br>
+
+<button onclick="showFinalSystem()">
+  ❤️ CONTINUAR
+</button>
+
       </div>
     </div>
   `;
@@ -1400,6 +1406,117 @@ function openSecretMemory() {
   }
 
   showMemory5();
+}
+  function showFinalSystem() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+
+      <h1>🖥️ SISTEMA FINAL</h1>
+
+      <p>ANALIZANDO TODOS LOS ARCHIVOS...</p>
+
+      <p id="finalLoading">
+        INICIANDO ANÁLISIS...
+      </p>
+
+      <div id="finalContent" style="display:none;">
+
+        <h2>✅ ANÁLISIS COMPLETADO</h2>
+
+        <p>
+          Todos los archivos han sido revisados.
+        </p>
+
+        <p>
+          Todas las conversaciones.<br>
+          Todos los recuerdos.<br>
+          Todas las risas.<br>
+          Todos los momentos.
+        </p>
+
+        <h2>⚠️ RESULTADO FINAL</h2>
+
+        <p>
+          El sistema intentó determinar
+          qué tan importante es Hikari.
+        </p>
+
+        <p>RESULTADO:</p>
+
+        <h1>❤️ INCALCULABLE</h1>
+
+        <p>
+          No existe una cifra suficientemente grande.
+        </p>
+
+        <p>
+          No existe una categoría capaz de describirlo.
+        </p>
+
+        <h2>❤️ CONCLUSIÓN</h2>
+
+        <p>
+          Hikari no es simplemente un recuerdo.
+        </p>
+
+        <p>
+          Es parte de la historia.
+        </p>
+
+        <p>
+          Y esta historia todavía se está escribiendo.
+        </p>
+
+        <h2>💗 ESTADO DEL SISTEMA</h2>
+
+        <h1>SIEMPRE JUNTOS ❤️</h1>
+
+        <p>
+          FIN DEL ANÁLISIS.
+        </p>
+
+        <button onclick="showMainMenu()">
+          ← VOLVER AL MENÚ
+        </button>
+
+      </div>
+    </div>
+  `;
+
+  setTimeout(() => {
+    document.getElementById("finalLoading").innerHTML =
+      "████░░░░░░░░░░░░ 25%";
+
+    setTimeout(() => {
+      document.getElementById("finalLoading").innerHTML =
+        "████████░░░░░░░░ 50%";
+
+      setTimeout(() => {
+        document.getElementById("finalLoading").innerHTML =
+          "████████████░░░░ 75%";
+
+        setTimeout(() => {
+          document.getElementById("finalLoading").innerHTML =
+            "████████████████ 100%";
+
+          setTimeout(() => {
+            document.getElementById("finalLoading").innerHTML =
+              "✅ ANÁLISIS COMPLETADO";
+
+            setTimeout(() => {
+              document.getElementById("finalContent").style.display =
+                "block";
+            }, 1500);
+
+          }, 1000);
+
+        }, 1000);
+
+      }, 1000);
+
+    }, 1000);
+
+  }, 1000);
 }
   function showArchive1() {
   document.querySelector(".content").innerHTML = `
