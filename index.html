@@ -689,7 +689,7 @@ function showMainMenu() {
 
       <button onclick="startGame()">INICIAR INVESTIGACIÓN</button>
       <button onclick="showArchives()">ARCHIVOS</button>
-      <button onclick="alert('MEMORY DATABASE // PRÓXIMAMENTE')">MEMORY DATABASE</button>
+     <button onclick="showMemoryDatabase()">MEMORY DATABASE</button>
     </div>
   `;
 }
@@ -1058,6 +1058,166 @@ function showArchive2() {
       <h2>FIN DEL REGISTRO. ❤️</h2>
 
       <button onclick="showArchives()">← VOLVER A ARCHIVOS</button>
+    </div>
+  `;
+}
+  function showMemoryDatabase() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>🧠 MEMORY DATABASE</h1>
+      <p>BASE DE DATOS DE RECUERDOS</p>
+
+      <p>ESTADO: ACCESO AUTORIZADO ❤️</p>
+
+      <button onclick="showMemory1()">💬 PRIMER CONTACTO</button>
+      <button onclick="showMemory2()">❤️ PRIMERA CONEXIÓN</button>
+      <button onclick="showMemory3()">😂 PRIMERAS RISAS</button>
+      <button onclick="showMemory4()">📅 17 / 05 / 2026</button>
+      <button onclick="showMemory5()">🔒 MEMORIA SECRETA</button>
+
+      <br><br>
+
+      <button onclick="showMainMenu()">← VOLVER</button>
+    </div>
+  `;
+}
+  function showMemory1() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>🧠 MEMORIA #001</h1>
+      <h2>💬 PRIMER CONTACTO</h2>
+
+      <p>ESTADO: RECUERDO RECUPERADO</p>
+
+      <p>
+        Todo comenzó con algo tan pequeño
+        que probablemente ninguno de los dos
+        imaginaba lo que iba a provocar.
+      </p>
+
+      <p>Una nota de Instagram.</p>
+
+      <p>Una duda.</p>
+
+      <p>Un mensaje.</p>
+
+      <p>Y de repente... ahí estaba ella.</p>
+
+      <h2>❤️ EL PRIMER MENSAJE.</h2>
+
+      <p>
+        Un momento aparentemente normal
+        que terminó convirtiéndose
+        en el inicio de algo increíble.
+      </p>
+
+      <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
+
+      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+    </div>
+  `;
+}
+  function showMemory2() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>🧠 MEMORIA #002</h1>
+      <h2>❤️ PRIMERA CONEXIÓN</h2>
+
+      <p>ESTADO: RECUERDO RECUPERADO</p>
+
+      <p>
+        Lo que comenzó como un simple mensaje
+        poco a poco empezó a sentirse diferente.
+      </p>
+
+      <p>
+        Las conversaciones comenzaron a hacerse
+        cada vez más largas.
+      </p>
+
+      <p>
+        Ya no era solamente responder un mensaje.
+      </p>
+
+      <p>
+        Era querer seguir hablando.
+      </p>
+
+      <p>
+        Conocerla un poco más.
+      </p>
+
+      <p>
+        Saber cómo estaba.
+      </p>
+
+      <p>
+        Y encontrar cualquier excusa
+        para continuar la conversación.
+      </p>
+
+      <h2>❤️ CONEXIÓN DETECTADA.</h2>
+
+      <p>
+        Sin darnos cuenta,
+        aquella conversación dejó de ser casual.
+      </p>
+
+      <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
+
+      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
+    </div>
+  `;
+}
+  function showMemory3() {
+  document.querySelector(".content").innerHTML = `
+    <div class="mainMenu">
+      <h1>🧠 MEMORIA #003</h1>
+      <h2>😂 PRIMERAS RISAS</h2>
+
+      <p>ESTADO: RECUERDO RECUPERADO</p>
+
+      <p>
+        En algún momento las conversaciones
+        dejaron de ser solamente conversaciones.
+      </p>
+
+      <p>
+        Empezaron las bromas.
+      </p>
+
+      <p>
+        Los mensajes que hacían reír.
+      </p>
+
+      <p>
+        Las tonterías que solamente nosotros
+        entendíamos.
+      </p>
+
+      <p>
+        Y poco a poco apareció algo que el sistema
+        no pudo ignorar:
+      </p>
+
+      <h2>😂 SONRISAS FRECUENTES.</h2>
+
+      <p>
+        Cada conversación conseguía sacar
+        una sonrisa más.
+      </p>
+
+      <p>
+        Y eso hizo que hablar con Hikari
+        se convirtiera en una de las partes
+        favoritas del día.
+      </p>
+
+      <h2>❤️ RECUERDO GUARDADO.</h2>
+
+      <p>IMPORTANCIA DEL RECUERDO: MÁXIMA.</p>
+
+      <button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>
     </div>
   `;
 }
