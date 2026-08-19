@@ -1,496 +1,206 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resident Evil: Requiem</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Courier Prime', monospace;
-            color: #e0e0e0;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-
-        /* Fondo EXACTO estilo menú de la foto */
-        .menu-fondo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #1b1b1b;
-            background-image: 
-                url('https://www.transparenttextures.com/patterns/old-wall.png'),
-                url('https://www.transparenttextures.com/patterns/grunge-wall.png');
-            background-blend-mode: multiply;
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.65) contrast(1.15) saturate(0.85);
-            z-index: 1;
-        }
-
-        /* Papel tapiz / mapa de la pared */
-        .wall-paper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(0,0,0,0.8) 0%, transparent 50%),
-                radial-gradient(circle at 85% 15%, rgba(0,0,0,0.75) 0%, transparent 45%),
-                linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.3) 100%);
-            z-index: 2;
-        }
-
-        /* Notas y fotos pegadas en la pared */
-        .sticky-note {
-            position: absolute;
-            width: 220px;
-            height: 280px;
-            background: rgba(245, 235, 210, 0.92);
-            border: 1px solid rgba(0,0,0,0.35);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.45);
-            transform: rotate(-2deg);
-            z-index: 3;
-        }
-
-        .sticky-note-1 {
-            top: 8%;
-            right: 5%;
-            width: 240px;
-            height: 300px;
-            transform: rotate(1deg);
-        }
-
-        .sticky-note-2 {
-            top: 35%;
-            right: 8%;
-            width: 200px;
-            height: 260px;
-            transform: rotate(-3deg);
-        }
-
-        .sticky-note-3 {
-            bottom: 10%;
-            right: 4%;
-            width: 230px;
-            height: 290px;
-            transform: rotate(2deg);
-        }
-
-        .sticky-note-4 {
-            top: 15%;
-            left: 12%;
-            width: 180px;
-            height: 240px;
-            transform: rotate(-1deg);
-        }
-
-        .photo {
-            position: absolute;
-            width: 160px;
-            height: 120px;
-            background: #222;
-            border: 4px solid #fff;
-            box-shadow: 0 6px 14px rgba(0,0,0,0.55);
-            z-index: 3;
-        }
-
-        .photo-1 {
-            top: 10%;
-            left: 5%;
-            transform: rotate(-4deg);
-        }
-
-        .photo-2 {
-            top: 45%;
-            left: 8%;
-            transform: rotate(3deg);
-        }
-
-        .photo-3 {
-            bottom: 18%;
-            left: 6%;
-            transform: rotate(-2deg);
-        }
-
-        .photo-4 {
-            top: 25%;
-            right: 2%;
-            transform: rotate(2deg);
-        }
-
-        .photo-5 {
-            bottom: 5%;
-            right: 10%;
-            transform: rotate(-3deg);
-        }
-
-        .tape {
-            position: absolute;
-            width: 60px;
-            height: 18px;
-            background: rgba(245, 220, 160, 0.85);
-            opacity: 0.9;
-            z-index: 4;
-        }
-
-        .tape-1 {
-            top: 6%;
-            right: 13%;
-            transform: rotate(3deg);
-        }
-
-        .tape-2 {
-            top: 33%;
-            right: 15%;
-            transform: rotate(-5deg);
-        }
-
-        .tape-3 {
-            bottom: 8%;
-            right: 12%;
-            transform: rotate(4deg);
-        }
-
-        .tape-4 {
-            top: 13%;
-            left: 10%;
-            transform: rotate(-2deg);
-        }
-
-        /* Cajón oscuro a la izquierda estilo de la foto */
-        .drawer-left {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 140px;
-            height: 100%;
-            background: linear-gradient(180deg, #111 0%, #1a1a1a 100%);
-            border-right: 1px solid rgba(255,255,255,0.08);
-            box-shadow: inset -8px 0 18px rgba(0,0,0,0.7);
-            z-index: 5;
-        }
-
-        .drawer-handle {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 8px;
-            background: rgba(80, 80, 80, 0.8);
-            border-radius: 4px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .drawer-handle-1 { top: 12%; }
-        .drawer-handle-2 { top: 30%; }
-        .drawer-handle-3 { top: 48%; }
-        .drawer-handle-4 { top: 66%; }
-        .drawer-handle-5 { top: 84%; }
-
-        /* Contenido del menú */
-        .contenido-menu {
-            position: relative;
-            z-index: 10;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 4rem 4rem 4rem 180px;
-        }
-
-        .logo-container {
-            margin-bottom: 4rem;
-        }
-
-        .titulo-principal {
-            font-size: 2.3rem;
-            letter-spacing: 0.45em;
-            color: #ffffff;
-            font-weight: 400;
-            text-transform: uppercase;
-            text-shadow: 0 0 8px rgba(255,255,255,0.25);
-        }
-
-        .titulo-requiem {
-            font-size: 4.8rem;
-            font-weight: 700;
-            text-transform: lowercase;
-            color: #f0f0f0;
-            position: relative;
-            display: inline-block;
-            margin-top: 0.5rem;
-            text-shadow: 0 0 10px rgba(255,255,255,0.35);
-        }
-
-        /* Línea tachada como en la foto */
-        .titulo-requiem::after {
-            content: '';
-            position: absolute;
-            left: -8%;
-            top: 22%;
-            width: 116%;
-            height: 65%;
-            background: rgba(35, 35, 35, 0.65);
-            transform: skewX(-10deg);
-            border-top: 2px solid rgba(255,255,255,0.28);
-            border-bottom: 2px solid rgba(255,255,255,0.28);
-            z-index: -1;
-        }
-
-        .modo-container {
-            display: flex;
-            gap: 3rem;
-            align-items: flex-start;
-            margin-bottom: 4rem;
-        }
-
-        .etiqueta-modo {
-            font-size: 1rem;
-            letter-spacing: 0.22em;
-            color: #b0b0b0;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
-
-        .lista-modos {
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-
-        .modo {
-            font-size: 1.15rem;
-            padding: 0.55rem 2rem 0.55rem 0;
-            color: #909090;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            position: relative;
-        }
-
-        .modo.activo {
-            color: #ffffff;
-            font-weight: 700;
-        }
-
-        .modo.activo::before {
-            content: '▶';
-            position: absolute;
-            left: -1.6rem;
-            color: #fff;
-            text-shadow: 0 0 8px rgba(255,255,255,0.4);
-        }
-
-        .modo:hover {
-            color: #ffffff;
-        }
-
-        .descripcion-modo {
-            max-width: 320px;
-            padding-top: 0.5rem;
-        }
-
-        .descripcion-modo p {
-            color: #a0a0a0;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .acciones-menu {
-            margin-top: 2rem;
-        }
-
-        .btn-menu {
-            font-family: 'Courier Prime', monospace;
-            font-size: 1.25rem;
-            letter-spacing: 0.18em;
-            background: transparent;
-            border: 1px solid #666;
-            color: #e0e0e0;
-            padding: 1.1rem 3.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .btn-menu:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #fff;
-            color: #ffffff;
-        }
-
-        .controles-pie {
-            position: absolute;
-            bottom: 2.5rem;
-            left: 180px;
-            display: flex;
-            gap: 2.5rem;
-            font-size: 0.85rem;
-            color: #777;
-        }
-
-        .controles-pie span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .drawer-left {
-                width: 100px;
-            }
-
-            .contenido-menu {
-                padding: 2rem 2rem 2rem 120px;
-            }
-
-            .titulo-principal {
-                font-size: 1.6rem;
-            }
-
-            .titulo-requiem {
-                font-size: 3.2rem;
-            }
-
-            .modo-container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            .controles-pie {
-                left: 120px;
-                bottom: 1.5rem;
-            }
-
-            .sticky-note,
-            .photo {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resident Evil: Requiem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Courier Prime', monospace;
+    background-color: #1a1a1a;
+    color: #ccc;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+/* Fondo limpio estilo de la foto */
+.fondo {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #181818 0%, #222 50%, #151515 100%);
+    z-index: 1;
+}
+/* Panel izquierdo oscuro */
+.panel-izq {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130px;
+    height: 100%;
+    background: linear-gradient(90deg, #111, #1a1a1a);
+    border-right: 1px solid #2a2a2a;
+    z-index: 2;
+}
+/* Contenido alineado igual que la foto */
+.contenido {
+    position: relative;
+    z-index: 3;
+    padding: 80px 60px 60px 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* Títulos */
+.titulo-superior {
+    font-size: 24px;
+    letter-spacing: 0.45em;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.titulo-principal {
+    font-size: 72px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 60px;
+}
+/* Línea tachada sobre "requiem" IGUAL A LA FOTO */
+.titulo-principal::after {
+    content: '';
+    position: absolute;
+    left: -6%;
+    top: 18%;
+    width: 112%;
+    height: 64%;
+    background: rgba(42,42,42,0.75);
+    transform: skewX(-10deg);
+    border-top: 2px solid rgba(255,255,255,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.25);
+}
+/* Etiqueta Game Mode */
+.etiqueta {
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+/* Dos columnas: lista + descripción */
+.fila {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.opcion {
+    font-size: 18px;
+    color: #777;
+    cursor: pointer;
+    padding: 6px 0;
+    transition: color 0.2s;
+}
+.opcion.activa {
+    color: #fff;
+}
+.opcion.activa::before {
+    content: '▶';
+    position: absolute;
+    margin-left: -28px;
+}
+.descripcion {
+    max-width: 320px;
+    padding-top: 6px;
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.6;
+}
+/* Pie controles */
+.pie {
+    margin-top: auto;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: #666;
+}
+/* Botón empezar */
+.boton-empezar {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    background: transparent;
+    border: 1px solid #555;
+    color: #ddd;
+    padding: 12px 36px;
+    margin-top: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+.boton-empezar:hover {
+    border-color: #fff;
+    color: #fff;
+}
+</style>
 </head>
 <body>
-    <div class="menu-fondo"></div>
-    <div class="wall-paper"></div>
+    <div class="fondo"></div>
+    <div class="panel-izq"></div>
 
-    <!-- Cajón oscuro izquierda -->
-    <div class="drawer-left">
-        <div class="drawer-handle drawer-handle-1"></div>
-        <div class="drawer-handle drawer-handle-2"></div>
-        <div class="drawer-handle drawer-handle-3"></div>
-        <div class="drawer-handle drawer-handle-4"></div>
-        <div class="drawer-handle drawer-handle-5"></div>
-    </div>
+    <div class="contenido">
+        <h2 class="titulo-superior">Resident Evil</h2>
+        <h1 class="titulo-principal">requiem</h1>
 
-    <!-- Notas de papel -->
-    <div class="sticky-note sticky-note-1"></div>
-    <div class="sticky-note sticky-note-2"></div>
-    <div class="sticky-note sticky-note-3"></div>
-    <div class="sticky-note sticky-note-4"></div>
+        <div class="etiqueta">Game Mode</div>
 
-    <!-- Fotos -->
-    <div class="photo photo-1"></div>
-    <div class="photo photo-2"></div>
-    <div class="photo photo-3"></div>
-    <div class="photo photo-4"></div>
-    <div class="photo photo-5"></div>
-
-    <!-- Cinta de pegar -->
-    <div class="tape tape-1"></div>
-    <div class="tape tape-2"></div>
-    <div class="tape tape-3"></div>
-    <div class="tape tape-4"></div>
-
-    <!-- Menú -->
-    <div class="contenido-menu">
-        <div class="logo-container">
-            <h1 class="titulo-principal">RESIDENT EVIL</h1>
-            <h2 class="titulo-requiem">requiem</h2>
-        </div>
-
-        <div class="modo-container">
-            <div>
-                <p class="etiqueta-modo">GAME MODE</p>
-                <div class="lista-modos">
-                    <div class="modo activo" data-modo="casual"><span>Casual</span></div>
-                    <div class="modo" data-modo="standard-moderno"><span>Standard (Modern)</span></div>
-                    <div class="modo" data-modo="standard-clasico"><span>Standard (Classic)</span></div>
-                    <div class="modo" data-modo="insanity"><span>Insanity</span></div>
-                </div>
+        <div class="fila">
+            <div class="lista">
+                <div class="opcion activa" data-desc="Relax while enjoying the story and puzzles.">Casual</div>
+                <div class="opcion" data-desc="Modern survival experience with balanced challenge.">Standard (Modern)</div>
+                <div class="opcion" data-desc="Classic survival horror — limited resources and danger.">Standard (Classic)</div>
+                <div class="opcion" data-desc="Unforgiving. Enemies are faster, resources are scarce. Only for the brave.">Insanity</div>
             </div>
-            <div class="descripcion-modo">
-                <p id="texto-descripcion">Relax while enjoying the story and puzzles.</p>
-            </div>
+            <div class="descripcion" id="texto-desc">Relax while enjoying the story and puzzles.</div>
         </div>
 
-        <div class="acciones-menu">
-            <button id="btn-jugar" class="btn-menu">▶ EMPEZAR AVENTURA</button>
-        </div>
+        <button class="boton-empezar" onclick="window.location.href='juego.html'">▶ Empezar Aventura</button>
 
-        <div class="controles-pie">
+        <div class="pie">
             <span>X Confirm</span>
             <span>O Back</span>
         </div>
     </div>
 
-    <script>
-        const modos = document.querySelectorAll('.modo');
-        const textoDescripcion = document.getElementById('texto-descripcion');
-        const btnJugar = document.getElementById('btn-jugar');
+<script>
+const opciones = document.querySelectorAll('.opcion');
+const textoDesc = document.getElementById('texto-desc');
 
-        const descripciones = {
-            casual: 'Relax while enjoying the story and puzzles.',
-            'standard-moderno': 'Modern survival experience with balanced challenge.',
-            'standard-clasico': 'Classic survival horror — limited resources and danger.',
-            insanity: 'Unforgiving. Enemies are faster, resources are scarce. Only for the brave.'
-        };
+opciones.forEach(op => {
+    op.addEventListener('click', () => {
+        opciones.forEach(o => o.classList.remove('activa'));
+        op.classList.add('activa');
+        textoDesc.textContent = op.getAttribute('data-desc');
+    });
+});
 
-        modos.forEach(modo => {
-            modo.addEventListener('click', () => {
-                modos.forEach(m => m.classList.remove('activo'));
-                modo.classList.add('activo');
-                textoDescripcion.textContent = descripciones[modo.getAttribute('data-modo')];
-            });
-        });
-
-        btnJugar.addEventListener('click', () => {
-            window.location.href = 'juego.html';
-        });
-
-        document.addEventListener('keydown', (e) => {
-            let activo = Array.from(modos).findIndex(m => m.classList.contains('activo'));
-
-            if (e.key === 'ArrowUp' && activo > 0) {
-                modos[activo].classList.remove('activo');
-                modos[--activo].classList.add('activo');
-                textoDescripcion.textContent = descripciones[modos[activo].getAttribute('data-modo')];
-            }
-
-            if (e.key === 'ArrowDown' && activo < modos.length - 1) {
-                modos[activo].classList.remove('activo');
-                modos[++activo].classList.add('activo');
-                textoDescripcion.textContent = descripciones[modos[activo].getAttribute('data-modo')];
-            }
-
-            if (e.key === 'Enter') {
-                btnJugar.click();
-            }
-        });
-    </script>
+// Navegación con flechas
+document.addEventListener('keydown', e => {
+    let idx = Array.from(opciones).findIndex(o => o.classList.contains('activa'));
+    if (e.key==='ArrowUp' && idx>0) {
+        opciones[idx].classList.remove('activa');
+        opciones[--idx].classList.add('activa');
+        textoDesc.textContent = opciones[idx].getAttribute('data-desc');
+    }
+    if (e.key==='ArrowDown' && idx<opciones.length-1) {
+        opciones[idx].classList.remove('activa');
+        opciones[++idx].classList.add('activa');
+        textoDesc.textContent = opciones[idx].getAttribute('data-desc');
+    }
+});
+</script>
 </body>
 </html>
