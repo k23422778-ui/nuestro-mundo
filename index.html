@@ -1,185 +1,3286 @@
-```javascript
+# RESIDENT EVIL CODE: HIKARY — BLOQUE COMPLETO
+
+```html
 <!DOCTYPE html>
 <html lang="es">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>HIKARI DATABASE // BIOHAZARD</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RESIDENT EVIL CODE: HIKARY</title>
+
 <style>
+
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
-*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%}body{overflow:hidden;background:radial-gradient(circle,#181818,#080808 45%,#020202);color:#d8d8d8;font-family:'Share Tech Mono',monospace}.room{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;padding:20px}.monitor{position:relative;width:min(900px,94vw);aspect-ratio:16/10;padding:18px;border-radius:22px;background:linear-gradient(145deg,#292929,#111 45%,#080808);box-shadow:0 40px 100px #000,inset 0 0 0 2px #303030,inset 0 0 30px #000}.screen{position:relative;width:100%;height:100%;overflow:hidden;border-radius:12px;background:radial-gradient(ellipse at center,#242424,#101010 55%,#050505);box-shadow:inset 0 0 50px #000}.screen:before{content:"";position:absolute;inset:0;z-index:10;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.025) 0 1px,transparent 1px 4px)}.screen:after{content:"";position:absolute;inset:0;z-index:11;pointer-events:none;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.75))}.noise{position:absolute;inset:0;z-index:9;pointer-events:none;opacity:.06;background:repeating-linear-gradient(0deg,transparent 0,rgba(255,255,255,.3) 1px,transparent 2px)}.scanline{position:absolute;left:0;width:100%;height:2px;z-index:8;background:rgba(220,220,220,.08);animation:scan 6s linear infinite}.interface{position:relative;z-index:5;height:100%;padding:5% 7%;display:flex;flex-direction:column;justify-content:space-between}.top,.bottom{display:flex;justify-content:space-between;align-items:center;font-size:clamp(.55rem,1.5vw,.85rem);letter-spacing:2px;color:#777}.online,.signal{display:flex;align-items:center;gap:8px}.indicator{width:7px;height:7px;border-radius:50%;background:#8f1717;box-shadow:0 0 8px #b41414;animation:blink 2s infinite}.content{text-align:center;max-height:76%;overflow-y:auto;padding:12px 20px}.content::-webkit-scrollbar{width:5px}.content::-webkit-scrollbar-thumb{background:#641717}.classification{color:#888;font-size:clamp(.65rem,2vw,1rem);letter-spacing:4px;margin-bottom:12px}.file-number{color:#aaa;font-size:.8rem;letter-spacing:3px}.subject{font-size:clamp(2.8rem,11vw,6rem);letter-spacing:8px;font-weight:normal;color:#d7d7d7;text-shadow:0 0 10px rgba(255,255,255,.08),2px 0 rgba(120,0,0,.35)}.status{margin-top:8px;font-size:clamp(.7rem,2vw,1rem);letter-spacing:3px;color:#a7a7a7}.status strong,h2{color:#9d2020;font-weight:normal}.warning{margin:24px auto 0;display:inline-block;border:1px solid #541717;padding:12px 22px;background:rgba(70,0,0,.08)}.warning-title{color:#9d2020;font-size:.75rem;letter-spacing:3px;margin-bottom:8px}.start,.mainMenu button{padding:11px 22px;border:1px solid #666;background:rgba(0,0,0,.55);color:#cfcfcf;font-family:inherit;font-size:clamp(.65rem,1.8vw,.9rem);letter-spacing:2px;cursor:pointer;transition:.2s;margin:5px}.start:hover,.mainMenu button:hover{background:rgba(110,0,0,.2);border-color:#9d2020;box-shadow:0 0 18px rgba(120,0,0,.25);transform:translateY(-2px)}.mainMenu{display:flex;flex-direction:column;align-items:center;gap:9px}.mainMenu h1{font-size:clamp(1.4rem,5vw,2.4rem);font-weight:normal;letter-spacing:3px}.mainMenu h2{font-size:clamp(1rem,3vw,1.4rem);font-weight:normal}.mainMenu p{max-width:700px;line-height:1.65;font-size:clamp(.72rem,1.7vw,.95rem)}.mainMenu button{width:min(650px,95%)}.bar{width:4px;height:10px;background:#555;display:inline-block}.bar:nth-child(4){background:#8f1717}@keyframes scan{from{top:-5%}to{top:105%}}@keyframes blink{0%,45%,60%,100%{opacity:1}50%,55%{opacity:.25}}@media(max-width:600px){.room{padding:8px}.monitor{width:96vw;aspect-ratio:9/15;padding:11px}.interface{padding:7% 6%}.top,.bottom{flex-direction:column;align-items:flex-start;gap:7px}.content{max-height:75%;padding:8px}.subject{letter-spacing:5px}.warning{width:100%}.start{width:100%}}
-</style></head><body>
-<div class="room"><div class="monitor"><div class="screen"><div class="noise"></div><div class="scanline"></div><div class="interface"><div class="top"><div>SECURE TERMINAL // 01</div><div class="online"><span class="indicator"></span>SYSTEM ONLINE</div></div><div class="content"><div class="classification">ARCHIVO CLASIFICADO</div><div class="file-number">ARCHIVO #001</div><h1 class="subject">HIKARI</h1><div class="status">ESTADO: <strong>IRREMPLAZABLE</strong></div><div class="warning"><div class="warning-title">⚠ ANOMALÍA DETECTADA</div><div>Una que no quiero curar.</div></div></div><button class="start" onclick="showMainMenu()">[ INICIAR INVESTIGACIÓN ]</button><div class="bottom"><div>BIOHAZARD // CLASSIFIED</div><div class="signal">SIGNAL <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span> 87%</div></div></div></div></div></div>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  background:#050505;
+  color:#d8d8d8;
+  font-family:'Share Tech Mono',monospace;
+  overflow:hidden;
+}
+
+/* =====================================================
+   PORTADA
+===================================================== */
+
+#cover{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(70,70,70,.20) 0%,
+      rgba(15,15,15,.85) 48%,
+      #020202 100%
+    );
+
+  transition:
+    opacity 1.2s ease,
+    visibility 1.2s ease;
+}
+
+#cover.hidden{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.coverNoise{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.025) 0px,
+      rgba(255,255,255,.025) 1px,
+      transparent 2px,
+      transparent 5px
+    );
+
+  opacity:.25;
+  animation:noiseMove .15s infinite;
+}
+
+.coverVignette{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 35%,
+      rgba(0,0,0,.45) 70%,
+      rgba(0,0,0,.95) 100%
+    );
+}
+
+.coverContent{
+  position:relative;
+  z-index:3;
+
+  width:min(850px,92vw);
+  text-align:center;
+
+  padding:30px;
+}
+
+.smallWarning{
+  color:#8d8d8d;
+  font-size:clamp(.65rem,2vw,.9rem);
+  letter-spacing:4px;
+  margin-bottom:35px;
+
+  animation:flicker 5s infinite;
+}
+
+.gameTitle{
+  font-family:'Times New Roman',serif;
+
+  font-size:clamp(2.4rem,9vw,6rem);
+
+  line-height:.9;
+  letter-spacing:2px;
+
+  color:#dedede;
+
+  text-shadow:
+    2px 2px 0 #555,
+    0 0 12px rgba(255,255,255,.08);
+
+  transform:scaleY(1.08);
+
+  animation:titleAppear 2s ease-out;
+}
+
+.gameTitle span{
+  display:block;
+
+  font-size:.48em;
+  letter-spacing:clamp(4px,1.5vw,12px);
+
+  margin-top:18px;
+
+  color:#aaa;
+}
+
+.codeTitle{
+  margin-top:25px;
+
+  font-size:clamp(.7rem,2vw,1rem);
+  letter-spacing:6px;
+
+  color:#777;
+}
+
+.coverLine{
+  width:min(500px,80%);
+  height:1px;
+
+  background:#555;
+
+  margin:35px auto;
+}
+
+.coverWarning{
+  color:#777;
+
+  font-size:clamp(.6rem,1.8vw,.85rem);
+  letter-spacing:3px;
+
+  line-height:2;
+}
+
+.startButton{
+  margin-top:40px;
+
+  padding:15px 38px;
+
+  background:transparent;
+
+  border:1px solid #777;
+
+  color:#ccc;
+
+  font-family:inherit;
+
+  letter-spacing:3px;
+
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.startButton:hover{
+  border-color:#aaa;
+
+  background:rgba(255,255,255,.06);
+
+  box-shadow:
+    0 0 25px rgba(255,255,255,.12);
+
+  transform:translateY(-2px);
+}
+
+.startButton:active{
+  transform:scale(.96);
+}
+
+/* =====================================================
+   SISTEMA
+===================================================== */
+
+#system{
+  position:fixed;
+  inset:0;
+
+  opacity:0;
+
+  transition:opacity 1s ease;
+
+  pointer-events:none;
+}
+
+#system.active{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.room{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:12px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #202020 0%,
+      #0b0b0b 50%,
+      #020202 100%
+    );
+}
+
+.monitor{
+  position:relative;
+
+  width:min(950px,96vw);
+  height:min(740px,96vh);
+
+  padding:14px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #292929,
+      #111 45%,
+      #070707
+    );
+
+  box-shadow:
+    0 35px 90px rgba(0,0,0,.95),
+    inset 0 0 0 2px #333,
+    inset 0 0 35px rgba(0,0,0,.95);
+}
+
+.screen{
+  position:relative;
+
+  width:100%;
+  height:100%;
+
+  overflow:hidden;
+
+  border-radius:10px;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      #1d1d1d,
+      #090909 70%,
+      #030303
+    );
+
+  box-shadow:
+    inset 0 0 55px rgba(0,0,0,.95);
+
+  transition:
+    background .4s,
+    box-shadow .4s;
+}
+
+/* =====================================================
+   EFECTO DE ERROR
+===================================================== */
+
+.screen.error1{
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(95,0,0,.25),
+      #090303 70%
+    );
+}
+
+.screen.error2{
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(130,0,0,.45),
+      #120202 70%
+    );
+}
+
+.screen.error3{
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(180,0,0,.62),
+      #190202 70%
+    );
+}
+
+.screen.error4{
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(220,0,0,.8),
+      #230000 70%
+    );
+}
+
+.screen.shake{
+  animation:screenShake .35s;
+}
+
+.screen.redFlash{
+  animation:redFlash .55s;
+}
+
+.screen::before{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  z-index:20;
+
+  pointer-events:none;
+
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,.025) 0px,
+      rgba(255,255,255,.025) 1px,
+      transparent 2px,
+      transparent 5px
+    );
+}
+
+.screen::after{
+  content:"";
+
+  position:absolute;
+  inset:0;
+
+  z-index:21;
+
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(0,0,0,.8) 100%
+    );
+}
+
+.noise{
+  position:absolute;
+  inset:0;
+
+  z-index:19;
+
+  pointer-events:none;
+
+  opacity:.06;
+
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      rgba(255,255,255,.35) 1px,
+      transparent 2px
+    );
+
+  animation:noiseMove .12s infinite;
+}
+
+.scanline{
+  position:absolute;
+
+  left:0;
+
+  width:100%;
+  height:2px;
+
+  z-index:18;
+
+  background:rgba(255,255,255,.08);
+
+  box-shadow:
+    0 0 15px rgba(255,255,255,.1);
+
+  animation:scan 5s linear infinite;
+}
+
+/* =====================================================
+   INTERFAZ
+===================================================== */
+
+.interface{
+  position:relative;
+
+  z-index:10;
+
+  height:100%;
+
+  padding:5% 7%;
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:space-between;
+}
+
+.top{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  color:#777;
+
+  font-size:clamp(.6rem,1.5vw,.85rem);
+
+  letter-spacing:2px;
+}
+
+.online{
+  display:flex;
+  align-items:center;
+
+  gap:7px;
+}
+
+.indicator{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+
+  background:#777;
+
+  box-shadow:0 0 8px rgba(255,255,255,.3);
+
+  animation:blink 2s infinite;
+}
+
+.content{
+  width:100%;
+  height:68%;
+
+  overflow-y:auto;
+
+  text-align:center;
+
+  padding:15px;
+
+  scrollbar-width:thin;
+
+  scrollbar-color:#555 transparent;
+}
+
+.content::-webkit-scrollbar{
+  width:5px;
+}
+
+.content::-webkit-scrollbar-thumb{
+  background:#555;
+}
+
+.mainMenu{
+  width:100%;
+  max-width:780px;
+
+  margin:auto;
+
+  padding:10px 5px 35px;
+}
+
+.mainMenu h1{
+  color:#ddd;
+
+  font-size:clamp(1.5rem,5vw,2.6rem);
+
+  letter-spacing:3px;
+
+  margin-bottom:16px;
+}
+
+.mainMenu h2{
+  color:#aaa;
+
+  font-size:clamp(1rem,3vw,1.5rem);
+
+  letter-spacing:2px;
+
+  margin:20px 0;
+}
+
+.mainMenu p{
+  color:#aaa;
+
+  font-size:clamp(.76rem,2vw,.98rem);
+
+  line-height:1.85;
+
+  margin:11px auto;
+
+  max-width:720px;
+}
+
+.mainMenu .danger{
+  color:#a52b2b;
+}
+
+.mainMenu .love{
+  color:#ddd;
+}
+
+/* =====================================================
+   BOTONES
+===================================================== */
+
+button{
+  padding:12px 20px;
+
+  margin:6px;
+
+  border:1px solid #555;
+
+  background:
+    rgba(0,0,0,.7);
+
+  color:#cfcfcf;
+
+  font-family:inherit;
+
+  font-size:clamp(.65rem,1.8vw,.88rem);
+
+  letter-spacing:2px;
+
+  cursor:pointer;
+
+  transition:
+    .25s ease;
+}
+
+button:hover{
+  border-color:#999;
+
+  background:
+    rgba(100,100,100,.12);
+
+  box-shadow:
+    0 0 18px rgba(255,255,255,.08);
+
+  transform:translateY(-2px);
+}
+
+button:active{
+  transform:scale(.96);
+}
+
+.menuButton{
+  display:block;
+
+  width:min(500px,90%);
+
+  margin:10px auto;
+}
+
+/* =====================================================
+   BARRA INFERIOR
+===================================================== */
+
+.bottom{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  color:#555;
+
+  font-size:clamp(.5rem,1.2vw,.7rem);
+
+  letter-spacing:2px;
+}
+
+.signal{
+  display:flex;
+  align-items:center;
+
+  gap:7px;
+}
+
+.bars{
+  display:flex;
+  gap:2px;
+}
+
+.bar{
+  width:4px;
+  height:10px;
+
+  background:#555;
+}
+
+.bar:last-child{
+  background:#888;
+}
+
+/* =====================================================
+   ANIMACIONES
+===================================================== */
+
+@keyframes titleAppear{
+
+  from{
+    opacity:0;
+    transform:scale(.9);
+  }
+
+  to{
+    opacity:1;
+    transform:scaleY(1.08);
+  }
+
+}
+
+@keyframes flicker{
+
+  0%,95%,100%{
+    opacity:1;
+  }
+
+  96%{
+    opacity:.4;
+  }
+
+  97%{
+    opacity:1;
+  }
+
+}
+
+@keyframes noiseMove{
+
+  0%{
+    transform:translateY(0);
+  }
+
+  100%{
+    transform:translateY(5px);
+  }
+
+}
+
+@keyframes scan{
+
+  from{
+    top:-5%;
+  }
+
+  to{
+    top:105%;
+  }
+
+}
+
+@keyframes blink{
+
+  0%,45%,100%{
+    opacity:1;
+  }
+
+  50%,55%{
+    opacity:.2;
+  }
+
+}
+
+@keyframes screenShake{
+
+  0%,100%{
+    transform:translate(0);
+  }
+
+  20%{
+    transform:translate(-7px,2px);
+  }
+
+  40%{
+    transform:translate(7px,-2px);
+  }
+
+  60%{
+    transform:translate(-4px,1px);
+  }
+
+  80%{
+    transform:translate(4px,-1px);
+  }
+
+}
+
+@keyframes redFlash{
+
+  0%{
+    filter:brightness(1);
+  }
+
+  30%{
+    filter:brightness(1.8);
+  }
+
+  100%{
+    filter:brightness(1);
+  }
+
+}
+
+/* =====================================================
+   MÓVIL
+===================================================== */
+
+@media(max-width:600px){
+
+  .room{
+    padding:6px;
+  }
+
+  .monitor{
+    width:97vw;
+    height:97vh;
+
+    padding:9px;
+
+    border-radius:15px;
+  }
+
+  .interface{
+    padding:7% 4%;
+  }
+
+  .top{
+    flex-direction:column;
+    align-items:flex-start;
+
+    gap:8px;
+  }
+
+  .bottom{
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:7px;
+  }
+
+  button{
+    width:92%;
+  }
+
+  .gameTitle{
+    letter-spacing:1px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     PORTADA
+===================================================== -->
+
+<div id="cover">
+
+  <div class="coverNoise"></div>
+  <div class="coverVignette"></div>
+
+  <div class="coverContent">
+
+    <div class="smallWarning">
+      CAPCOM PRESENTS
+    </div>
+
+    <div class="gameTitle">
+
+      RESIDENT EVIL
+
+      <span>CODE: HIKARY</span>
+
+    </div>
+
+    <div class="codeTitle">
+      CLASSIFIED PERSONAL ARCHIVE
+    </div>
+
+    <div class="coverLine"></div>
+
+    <div class="coverWarning">
+
+      BIOHAZARD ARCHIVE SYSTEM<br>
+      PERSONAL DATABASE // HIKARY<br>
+      ACCESS RESTRICTED
+
+    </div>
+
+    <button
+      class="startButton"
+      onclick="enterSystem()">
+
+      [ ENTER ]
+
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     SISTEMA PRINCIPAL
+===================================================== -->
+
+<div id="system">
+
+  <div class="room">
+
+    <div class="monitor">
+
+      <div class="screen" id="screen">
+
+        <div class="noise"></div>
+        <div class="scanline"></div>
+
+        <div class="interface">
+
+          <div class="top">
+
+            <div>
+              RESIDENT EVIL CODE: HIKARY // 01
+            </div>
+
+            <div class="online">
+
+              <span class="indicator"></span>
+
+              SYSTEM ONLINE
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="content"
+            id="content">
+
+          </div>
+
+
+          <div class="bottom">
+
+            <div>
+              CLASSIFIED // PERSONAL
+            </div>
+
+            <div class="signal">
+
+              SIGNAL
+
+              <div class="bars">
+
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+
+              </div>
+
+              87%
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <script>
-let secretMemoryUnlocked=false;const C=()=>document.querySelector('.content');function page(x){C().innerHTML='<div class="mainMenu">'+x+'</div>'}function showMainMenu(){page('<h1>HIKARI DATABASE</h1><p>ARCHIVO CLASIFICADO // BIOHAZARD ARCHIVE SYSTEM</p><p>ESTADO: SYSTEM ONLINE</p><button onclick="startGame()">🔎 INICIAR INVESTIGACIÓN</button><button onclick="showArchives()">📁 ARCHIVOS</button><button onclick="showMemoryDatabase()">🧠 MEMORY DATABASE</button><button onclick="showInventory()">🎒 INVENTORY</button>')}
-function showArchives(){page('<h1>📁 HIKARI DATABASE</h1><p>ARCHIVOS DE HISTORIA</p>'+['HIKARI','EL COMIENZO','FRECUENCIA ANORMAL','COMPATIBILIDAD','CAMBIO DE ESTADO','SIN DEFINIR','PRIMER ENCUENTRO'].map((x,i)=>'<button onclick="showArchive'+(i+1)+'()">ARCHIVO #00'+(i+1)+' — '+x+'</button>').join('')+'<button onclick="showMainMenu()">← VOLVER</button>')}function A(n,t,b){page('<h1>📁 ARCHIVO #00'+n+'</h1><h2>'+t+'</h2>'+b+'<button onclick="showArchives()">← VOLVER A ARCHIVOS</button>')}
-function showArchive1(){A(1,'HIKARI','<p>ESTADO: IRREMPLAZABLE</p><p>Se analizaron sus gestos, su forma de hablar y su personalidad.</p><p>RESULTADO: ERROR.</p><h2>Es simplemente ella. ❤️</h2><p>RESULTADO: PERFECTA</p>')}function showArchive2(){A(2,'EL COMIENZO','<p>FECHA: 17 / 05 / 2026</p><p>ORIGEN: INSTAGRAM</p><p>Una nota. Una duda. Un mensaje.</p><p>Una pregunta se convirtió en una conversación. La conversación se convirtió en muchas más.</p><h2>Y así comenzó nuestra historia. ❤️</h2><p>A veces, los errores terminan siendo lo mejor que nos pudo pasar.</p>')}function showArchive3(){A(3,'FRECUENCIA ANORMAL','<p>ESTADO: ANOMALÍA DETECTADA</p><p>Frecuencia de pensamiento: CONSTANTE.<br>Frecuencia de sonrisas: ELEVADA.<br>Necesidad de hablar con Hikari: INCONTROLABLE.</p><h2>⚠️ DIAGNÓSTICO: ENAMORAMIENTO SEVERO. ❤️</h2><p>TRATAMIENTO RECOMENDADO: Seguir queriéndola.</p>')}function showArchive4(){A(4,'COMPATIBILIDAD','<p>Compatibilidad emocional: 100% ❤️<br>Confianza: 100%<br>Comunicación: 98%<br>Capacidad de hacerse reír: 100% 😂<br>Capacidad de extrañarse: 100%<br>Capacidad de quererse: INFINITA.</p><h2>COMPATIBILIDAD: 100% ❤️</h2><p>VEREDICTO: HECHOS EL UNO PARA EL OTRO.</p>')}function showArchive5(){A(5,'CAMBIO DE ESTADO','<p>ESTADO INICIAL: DESCONOCIDA</p><p>ESTADO ACTUAL: INDISPENSABLE</p><p>Día 1: Persona desconocida.<br>Primeras conversaciones: INTERÉS DETECTADO.<br>Primeras risas: CONEXIÓN DETECTADA.<br>Más conversaciones: VÍNCULO EN AUMENTO.</p><h2>PERSONA ESPECIAL ❤️</h2><p>Nivel de importancia: MÁXIMO.</p><h2>RESULTADO: IRREMPLAZABLE.</h2>')}function showArchive6(){A(6,'SIN DEFINIR','<p>ESTADO: CLASIFICACIÓN IMPOSIBLE</p><p>Amiga: INCOMPLETO.<br>Persona especial: INCOMPLETO.<br>Amor: INSUFICIENTE.<br>Persona favorita: DATOS INSUFICIENTES.</p><h2>⚠️ ERROR</h2><p>Ninguna categoría es suficiente.</p><h2>❤️ HIKARI = ALGO QUE NO SE PUEDE EXPLICAR.</h2>')}function showArchive7(){A(7,'PRIMER ENCUENTRO','<p>FECHA: 17 / 05 / 2026</p><p>UBICACIÓN: INSTAGRAM</p><p>Una nota, una equivocación y una pregunta terminaron abriendo una conversación.</p><p>Después llegó otra. Y otra. Y otra más.</p><h2>❤️ EVENTO IRREPETIBLE</h2><p>Ese día comenzó nuestra historia.</p>')}
-function showMemoryDatabase(){page('<h1>🧠 MEMORY DATABASE</h1><p>BASE DE DATOS DE RECUERDOS</p><p>ESTADO: ACCESO AUTORIZADO ❤️</p><button onclick="M1()">💬 PRIMER CONTACTO</button><button onclick="M2()">❤️ PRIMERA CONEXIÓN</button><button onclick="M3()">😂 PRIMERAS RISAS</button><button onclick="M4()">📅 17 / 05 / 2026</button><button onclick="openSecretMemory()">'+(secretMemoryUnlocked?'🔓 MEMORIA SECRETA — DESBLOQUEADA':'🔒 MEMORIA SECRETA — BLOQUEADA')+'</button><button onclick="showMainMenu()">← VOLVER</button>')}function M(t,b){page('<h1>'+t+'</h1>'+b+'<button onclick="showMemoryDatabase()">← VOLVER A MEMORIAS</button>')}function M1(){M('🧠 MEMORIA #001','<h2>💬 PRIMER CONTACTO</h2><p>Una nota de Instagram. Una duda. Un mensaje.</p><p>Y de repente... ahí estaba ella.</p><h2>❤️ EL PRIMER MENSAJE.</h2>')}function M2(){M('🧠 MEMORIA #002','<h2>PRIMERA CONEXIÓN</h2><p>Las conversaciones comenzaron a hacerse cada vez más largas. Ya no era solamente responder: era querer seguir hablando, conocerla y saber cómo estaba.</p><h2>❤️ CONEXIÓN DETECTADA.</h2>')}function M3(){M('🧠 MEMORIA #003','<h2>PRIMERAS RISAS</h2><p>Empezaron las bromas, los mensajes que hacían reír y las tonterías que solamente nosotros entendíamos.</p><h2>SONRISAS FRECUENTES.</h2>')}function M4(){M('🧠 MEMORIA #004','<h2>📅 17 / 05 / 2026</h2><p>Ese día comenzó una conversación que ninguno sabía hasta dónde iba a llegar.</p><h2>ESTE DÍA NO SE OLVIDA.</h2>')}
-function openSecretMemory(){if(!secretMemoryUnlocked){alert('🔒 MEMORIA BLOQUEADA\n\nCompleta la INVESTIGACIÓN para desbloquearla.');return}showMemory5()}function showMemory5(){page('<h1>ACCESS GRANTED</h1><p id="load">RECUPERANDO MEMORIA...</p><div id="secret" style="display:none"><h2>ARCHIVO SECRETO</h2><p>Se analizaron todos los recuerdos registrados.</p><h2>⚠️ ANOMALÍA DETECTADA</h2><p>El recuerdo más importante todavía no ha terminado de escribirse.</p><p>Nuestra historia no terminó el 17 de mayo de 2026. Ese día solamente fue el comienzo.</p><h2>MEMORIA SECRETA: ❤️ TÚ.</h2><p>No pertenece al pasado. Sigue ocurriendo.</p><h2>ESTADO: ❤️ SIEMPRE.</h2><button onclick="showFinalSystem()">❤️ CONTINUAR</button><button onclick="showMemoryDatabase()">← VOLVER</button></div>');let n=0,t=setInterval(()=>{n+=25;document.getElementById('load').textContent='█'.repeat(n/6.25)+'░'.repeat(16-n/6.25)+' '+n+'%';if(n>=100){clearInterval(t);document.getElementById('load').textContent='🔓 MEMORIA RECUPERADA';document.getElementById('secret').style.display='block'}},700)}
-function showInventory(){page('<h1>INVENTORY</h1><p>BIOHAZARD ARCHIVE SYSTEM</p><p>ITEMS: 04</p><button onclick="I1()">ITEM #001 — PHOTOGRAPH</button><button onclick="I2()">ITEM #002 — FIRST MESSAGE</button><button onclick="I3()">ITEM #003 — MEMORY FILE</button><button onclick="I4()">ITEM #004 — UNKNOWN</button><button onclick="showMainMenu()">← RETURN TO SYSTEM</button>')}function I(t,s,b){page('<h1>'+t+'</h1><h2>'+s+'</h2>'+b+'<button onclick="showInventory()">← RETURN TO INVENTORY</button>')}function I1(){I('ITEM #001','PHOTOGRAPH','<p>TYPE: MEMORY OBJECT</p><p>STATUS: PRESERVED</p><p>Una fotografía que representa uno de los momentos importantes de nuestra historia.</p><h2>VALUATION: INCALCULABLE ❤️</h2>')}function I2(){I('ITEM #002','FIRST MESSAGE','<p>TYPE: ORIGINAL CONTACT</p><p>DATE: 17 / 05 / 2026</p><p>ORIGIN: INSTAGRAM</p><p>Una nota. Una duda. Un mensaje.</p><h2>EVENTO CRÍTICO: CONFIRMADO ❤️</h2>')}function I3(){I('ITEM #003','MEMORY FILE','<p>TYPE: BIOHAZARD MEMORY RECORD</p><p>STATUS: CRITICAL</p><p>Primeras conversaciones, primeras risas y momentos importantes.</p><h2>ARCHIVE VALUE: MAXIMUM ❤️</h2>')}function I4(){I('ITEM #004','UNKNOWN','<p>TYPE: UNIDENTIFIED OBJECT</p><p>STATUS: LOCKED</p><h2>⚠ ANOMALÍA DETECTADA</h2><p>El objeto parece estar relacionado con un recuerdo que todavía no ha sido registrado.</p><p>RECOMMENDATION: CONTINUAR LA INVESTIGACIÓN.</p>')}
-const qs=[['¿Cómo comenzó realmente nuestra historia?',['Todo comenzó por una nota de Instagram','Nos conocimos por una conversación que empezó de la nada','Yo fui quien decidió hablarte primero','Nos conocimos gracias a alguien más'],0],['¿Qué fecha quedó registrada como el comienzo de nuestra historia?',['14 de febrero de 2026','25 de mayo de 2026','17 de mayo de 2026','17 de junio de 2026'],2],['¿Qué hizo que nuestra conversación comenzara a convertirse en algo importante?',['La curiosidad de conocernos','La forma en que empezamos a conectar','Que teníamos muchas cosas en común','Que simplemente coincidimos en el momento correcto'],1],['¿Qué es lo que más valoro de la persona que eres?',['La forma en que me haces reír','La manera en que siempre encuentras algo que decir','Tu forma de ser','La cantidad de recuerdos que hemos creado'],2],['Después de todo lo que hemos vivido, ¿qué representa nuestra historia?',['Un recuerdo importante','Una etapa de nuestras vidas','Una coincidencia que terminó significando mucho','Algo que todavía estamos escribiendo'],3]];function startGame(){Q(0)}function Q(i){let q=qs[i];page('<h1>'+('🔎 INVESTIGACIÓN '+(i+1))+'</h1><p>BIOHAZARD SECURITY CHECK // ARCHIVE VERIFICATION</p><h2>Pregunta '+(i+1)+'</h2><p>'+q[0]+'</p>'+q[1].map((x,j)=>'<button onclick="ans('+i+','+j+')">'+x+'</button>').join('')+'<p id="msg"></p>')}function ans(i,j){let m=document.getElementById('msg');if(j!==qs[i][2]){m.innerHTML='❌ RESPUESTA INCORRECTA<br><br>El registro no coincide. Vuelve a intentarlo.';return}if(i===4){secretMemoryUnlocked=true;m.innerHTML='✅ RESPUESTAS VERIFICADAS: 100%<br><br>IDENTIDAD CONFIRMADA: HIKARI<br><br><button onclick="showInvestigationComplete()">CONTINUAR</button>'}else m.innerHTML='✅ RESPUESTA CORRECTA<br><br>REGISTRO CONFIRMADO.<br><br><button onclick="Q('+(i+1)+')">CONTINUAR</button>'}function showInvestigationComplete(){page('<h1>INVESTIGACIÓN COMPLETADA</h1><p>RESPUESTAS VERIFICADAS: 100%</p><p>IDENTIDAD CONFIRMADA: HIKARI</p><h2>NUEVO ARCHIVO DESBLOQUEADO</h2><h1>MEMORIA SECRETA</h1><button onclick="showMemory5()">ABRIR MEMORIA SECRETA</button><button onclick="showMainMenu()">VOLVER AL MENÚ</button>')}
-function showFinalSystem(){page('<h1>🖥️ SISTEMA FINAL</h1><p id="fl">INICIANDO ANÁLISIS...</p><div id="fc" style="display:none"><h2>✅ ANÁLISIS COMPLETADO</h2><p>Todas las conversaciones. Todos los recuerdos. Todas las risas. Todos los momentos.</p><h2>⚠️ RESULTADO FINAL</h2><h1>❤️ INCALCULABLE</h1><p>No existe una cifra suficientemente grande para expresar lo importante que es.</p><h2>💗 CONCLUSIÓN</h2><p>Hikari no es simplemente un recuerdo. Es parte de la historia. Y esta historia todavía se está escribiendo.</p><h2>⚠️ ERROR CRÍTICO</h2><h1>❤️ AMOR</h1><h1>❌ IMPOSIBLE DE CALCULAR</h1><button onclick="showFinalMessage()">💌 ABRIR ÚLTIMO REGISTRO</button></div>');let n=0,t=setInterval(()=>{n+=25;document.getElementById('fl').textContent='█'.repeat(n/6.25)+'░'.repeat(16-n/6.25)+' '+n+'%';if(n>=100){clearInterval(t);document.getElementById('fl').textContent='✅ ANÁLISIS COMPLETADO';document.getElementById('fc').style.display='block'}},700)}function showFinalMessage(){page('<h1>💌 ÚLTIMO REGISTRO</h1><p>ARCHIVO: FINAL_001</p><p>DESTINATARIA: HIKARI ❤️</p><h2>❤️ PARA TI</h2><p>Si llegaste hasta aquí, significa que encontraste todos los archivos.</p><p>Pero hay algo que ningún sistema, ninguna memoria y ningún archivo puede explicar: lo mucho que te quiero.</p><p>Desde aquel 17 de mayo de 2026, cuando todo comenzó con una conversación, jamás imaginé que terminarías siendo una persona tan importante para mí.</p><p>Hemos creado recuerdos, hemos reído, hemos hablado durante horas y hemos vivido momentos que quiero guardar para siempre.</p><h2>❤️ PORQUE TE ELIJO A TI.</h2><p>No porque nuestra historia sea perfecta, sino porque es nuestra.</p><p>Y todavía nos quedan muchísimos recuerdos por crear.</p><h1>❤️ HIKARI ❤️</h1><p>Gracias por existir.</p><p>Gracias por formar parte de mi vida.</p><p>Y sobre todo... gracias por ser tú.</p><h2>TE AMO. ❤️</h2><h1>❤️ SIEMPRE</h1><button onclick="showMainMenu()">← VOLVER AL MENÚ</button>')}
-</script></body></html>
-  document.querySelector(".content").innerHTML = `
-    <div class="mainMenu">
-      <h1>INVENTORY</h1>
-      <p>BIOHAZARD ARCHIVE SYSTEM</p>
-      <p>ITEMS: 04</p>
-      <br>
-      <button onclick="showItem1()">ITEM #001 — PHOTOGRAPH</button>
-      <button onclick="showItem2()">ITEM #002 — FIRST MESSAGE</button>
-      <button onclick="showItem3()">ITEM #003 — MEMORY FILE</button>
-      <button onclick="showItem4()">ITEM #004 — UNKNOWN</button>
-      <br><br>
-      <button onclick="showMainMenu()">← RETURN TO SYSTEM</button>
-    </div>
-  `;
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let secretMemoryUnlocked = false;
+
+let mistakes = 0;
+
+
+/* =====================================================
+   ENTRAR
+===================================================== */
+
+function enterSystem(){
+
+  const cover =
+    document.getElementById("cover");
+
+  const system =
+    document.getElementById("system");
+
+  cover.classList.add("hidden");
+
+  setTimeout(() => {
+
+    system.classList.add("active");
+
+    showMainMenu();
+
+  },700);
+
 }
 
-function showItem1() {
-  document.querySelector(".content").innerHTML = `
+
+/* =====================================================
+   UTILIDAD
+===================================================== */
+
+function setContent(html){
+
+  const content =
+    document.getElementById("content");
+
+  content.innerHTML = html;
+
+  content.scrollTop = 0;
+
+}
+
+
+/* =====================================================
+   ERROR VISUAL
+===================================================== */
+
+function triggerMistake(){
+
+  mistakes++;
+
+  const screen =
+    document.getElementById("screen");
+
+  screen.classList.remove(
+    "error1",
+    "error2",
+    "error3",
+    "error4",
+    "shake",
+    "redFlash"
+  );
+
+  void screen.offsetWidth;
+
+  if(mistakes === 1){
+
+    screen.classList.add("error1");
+
+  }
+
+  else if(mistakes === 2){
+
+    screen.classList.add("error2");
+
+  }
+
+  else if(mistakes === 3){
+
+    screen.classList.add("error3");
+
+  }
+
+  else{
+
+    screen.classList.add("error4");
+
+  }
+
+  screen.classList.add("shake");
+  screen.classList.add("redFlash");
+
+}
+
+
+/* =====================================================
+   MENÚ PRINCIPAL
+===================================================== */
+
+function showMainMenu(){
+
+  setContent(`
+
     <div class="mainMenu">
+
+      <h1>
+        HIKARY DATABASE
+      </h1>
+
+      <p>
+        PERSONAL ARCHIVE SYSTEM
+      </p>
+
+      <p>
+        SUBJECT:
+        <strong>HIKARI</strong>
+      </p>
+
+      <p>
+        STATUS:
+        <span class="love">
+          IRREMPLAZABLE ❤️
+        </span>
+      </p>
+
+      <br>
+
+      <button
+        class="menuButton"
+        onclick="showArchives()">
+
+        📁 ARCHIVES
+
+      </button>
+
+      <button
+        class="menuButton"
+        onclick="showMemoryDatabase()">
+
+        🧠 MEMORY DATABASE
+
+      </button>
+
+      <button
+        class="menuButton"
+        onclick="startGame()">
+
+        🔎 INVESTIGATION
+
+      </button>
+
+      <button
+        class="menuButton"
+        onclick="showInventory()">
+
+        🎒 INVENTORY
+
+      </button>
+
+      <button
+        class="menuButton"
+        onclick="showHikariProfile()">
+
+        👤 HIKARI PROFILE
+
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   PERFIL HIKARI
+===================================================== */
+
+function showHikariProfile(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        👤 SUBJECT PROFILE
+      </h1>
+
+      <h2>
+        HIKARI
+      </h2>
+
+      <p>
+        ESTADO:
+        <span class="love">
+          IRREMPLAZABLE ❤️
+        </span>
+      </p>
+
+      <p>
+        ALIAS DETECTADO:
+        NUVSITA
+      </p>
+
+      <p>
+        PERSONALIDAD:
+        ÚNICA
+      </p>
+
+      <p>
+        CARACTERÍSTICAS DESTACADAS:
+      </p>
+
+      <p>
+        Sus ojos.<br>
+        Su sonrisa.<br>
+        Ese lunar debajo de uno de sus ojos.
+      </p>
+
+      <p>
+        Le gustan los videojuegos.
+      </p>
+
+      <p>
+        También le gusta el anime.
+      </p>
+
+      <p>
+        Y tiene una debilidad especial
+        por los gatos. 🐈
+      </p>
+
+      <h2>
+        ANIME DATABASE
+      </h2>
+
+      <p>
+        CHAINSAW MAN
+      </p>
+
+      <p>
+        PERSONAJE DESTACADO:
+        DENJI
+      </p>
+
+      <p>
+        PAREJAS FAVORITAS DETECTADAS:
+      </p>
+
+      <p>
+        DENJI × REZE ❤️
+      </p>
+
+      <p>
+        DENJI × YORU ❤️
+      </p>
+
+      <h2>
+        DIAGNÓSTICO
+      </h2>
+
+      <p>
+        El sistema intentó encontrar
+        una explicación lógica para
+        determinar por qué Hikari
+        resulta tan especial.
+      </p>
+
+      <p>
+        RESULTADO:
+        IMPOSIBLE.
+      </p>
+
+      <h2>
+        ❤️ ES SIMPLEMENTE ELLA.
+      </h2>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER AL MENÚ
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVOS
+===================================================== */
+
+function showArchives(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        📁 ARCHIVES
+      </h1>
+
+      <p>
+        HISTORICAL DATABASE
+      </p>
+
+      <button onclick="showArchive1()">
+        ARCHIVO #001 — HIKARI
+      </button>
+
+      <button onclick="showArchive2()">
+        ARCHIVO #002 — EL COMIENZO
+      </button>
+
+      <button onclick="showArchive3()">
+        ARCHIVO #003 — FRECUENCIA ANORMAL
+      </button>
+
+      <button onclick="showArchive4()">
+        ARCHIVO #004 — COMPATIBILIDAD
+      </button>
+
+      <button onclick="showArchive5()">
+        ARCHIVO #005 — CAMBIO DE ESTADO
+      </button>
+
+      <button onclick="showArchive6()">
+        ARCHIVO #006 — SIN DEFINIR
+      </button>
+
+      <button onclick="showArchive7()">
+        ARCHIVO #007 — PRIMER ENCUENTRO
+      </button>
+
+      <br>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 001
+===================================================== */
+
+function showArchive1(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #001</h1>
+
+      <h2>HIKARI</h2>
+
+      <p>
+        ESTADO:
+        IRREMPLAZABLE
+      </p>
+
+      <p>
+        Se intentó identificar una característica
+        específica responsable del vínculo emocional.
+      </p>
+
+      <p>
+        Se analizaron sus gestos.
+      </p>
+
+      <p>
+        Su forma de hablar.
+      </p>
+
+      <p>
+        Su personalidad.
+      </p>
+
+      <p>
+        Sus ojos.
+      </p>
+
+      <p>
+        Su sonrisa.
+      </p>
+
+      <p>
+        El lunar debajo de uno de sus ojos.
+      </p>
+
+      <p>
+        RESULTADO:
+        ERROR.
+      </p>
+
+      <h2>
+        Es simplemente ella. ❤️
+      </h2>
+
+      <p>
+        RESULTADO FINAL:
+        PERFECTA.
+      </p>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 002
+===================================================== */
+
+function showArchive2(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #002</h1>
+
+      <h2>EL COMIENZO</h2>
+
+      <p>
+        FECHA:
+        17 / 05 / 2026
+      </p>
+
+      <p>
+        ORIGEN:
+        INSTAGRAM
+      </p>
+
+      <p>
+        Todo comenzó de una manera
+        completamente inesperada.
+      </p>
+
+      <p>
+        Una nota.
+      </p>
+
+      <p>
+        Una palabra escrita por error.
+      </p>
+
+      <p>
+        Y una persona que decidió preguntar
+        qué significaba.
+      </p>
+
+      <p>
+        Hikari mandó mensaje porque tenía
+        una duda sobre aquella nota.
+      </p>
+
+      <p>
+        Una pregunta se convirtió
+        en una conversación.
+      </p>
+
+      <p>
+        La conversación se convirtió
+        en muchas más.
+      </p>
+
+      <h2>
+        Y así comenzó nuestra historia. ❤️
+      </h2>
+
+      <p>
+        A veces, los errores terminan siendo
+        lo mejor que nos pudo pasar.
+      </p>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 003
+===================================================== */
+
+function showArchive3(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #003</h1>
+
+      <h2>FRECUENCIA ANORMAL</h2>
+
+      <p>
+        ESTADO:
+        ANOMALÍA DETECTADA
+      </p>
+
+      <p>
+        Después del primer contacto comenzó
+        a registrarse actividad fuera
+        de los parámetros normales.
+      </p>
+
+      <p>
+        Frecuencia de pensamiento:
+        CONSTANTE.
+      </p>
+
+      <p>
+        Frecuencia de sonrisas:
+        ELEVADA.
+      </p>
+
+      <p>
+        Necesidad de hablar con Hikari:
+        INCONTROLABLE.
+      </p>
+
+      <p>
+        RESULTADO:
+        SIN EXPLICACIÓN LÓGICA.
+      </p>
+
+      <h2>
+        ⚠️ DIAGNÓSTICO
+      </h2>
+
+      <p>
+        ENAMORAMIENTO SEVERO. ❤️
+      </p>
+
+      <p>
+        TRATAMIENTO RECOMENDADO:
+      </p>
+
+      <h2>
+        Seguir queriéndola. ❤️
+      </h2>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 004
+===================================================== */
+
+function showArchive4(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #004</h1>
+
+      <h2>COMPATIBILIDAD</h2>
+
+      <p>
+        ESTADO:
+        ANÁLISIS COMPLETADO
+      </p>
+
+      <p>
+        Compatibilidad emocional:
+        100% ❤️
+      </p>
+
+      <p>
+        Confianza:
+        100%
+      </p>
+
+      <p>
+        Comunicación:
+        98%
+      </p>
+
+      <p>
+        Capacidad de hacerse reír:
+        100% 😂
+      </p>
+
+      <p>
+        Capacidad de quererse:
+        INFINITA.
+      </p>
+
+      <p>
+        El sistema intentó encontrar
+        una incompatibilidad significativa.
+      </p>
+
+      <p>
+        RESULTADO:
+        NINGUNA DETECTADA.
+      </p>
+
+      <h2>
+        COMPATIBILIDAD: 100% ❤️
+      </h2>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 005
+===================================================== */
+
+function showArchive5(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #005</h1>
+
+      <h2>CAMBIO DE ESTADO</h2>
+
+      <p>
+        ESTADO INICIAL:
+        DESCONOCIDA
+      </p>
+
+      <p>
+        ESTADO ACTUAL:
+        INDISPENSABLE
+      </p>
+
+      <p>
+        Día 1:
+        Persona desconocida.
+      </p>
+
+      <p>
+        Primeras conversaciones:
+        INTERÉS DETECTADO.
+      </p>
+
+      <p>
+        Primeras risas:
+        CONEXIÓN DETECTADA.
+      </p>
+
+      <p>
+        Más conversaciones:
+        VÍNCULO EN AUMENTO.
+      </p>
+
+      <p>
+        Hikari dejó de ser simplemente alguien.
+      </p>
+
+      <p>
+        Se convirtió en alguien que importa.
+      </p>
+
+      <p>
+        Alguien que hace falta.
+      </p>
+
+      <p>
+        Alguien que provoca sonrisas.
+      </p>
+
+      <p>
+        Alguien que quiero tener a mi lado.
+      </p>
+
+      <h2>
+        PERSONA ESPECIAL ❤️
+      </h2>
+
+      <h2>
+        RESULTADO:
+        IRREMPLAZABLE.
+      </h2>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 006
+===================================================== */
+
+function showArchive6(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #006</h1>
+
+      <h2>SIN DEFINIR</h2>
+
+      <p>
+        ESTADO:
+        CLASIFICACIÓN IMPOSIBLE
+      </p>
+
+      <p>
+        Amiga:
+        RESULTADO INCOMPLETO.
+      </p>
+
+      <p>
+        Persona especial:
+        RESULTADO INCOMPLETO.
+      </p>
+
+      <p>
+        Amor:
+        RESULTADO INSUFICIENTE.
+      </p>
+
+      <p>
+        Persona favorita:
+        DATOS INSUFICIENTES.
+      </p>
+
+      <h2>
+        ⚠️ ERROR
+      </h2>
+
+      <p>
+        Ninguna categoría existente parece
+        suficiente para describir el vínculo.
+      </p>
+
+      <p>
+        Se intentó crear una nueva categoría.
+      </p>
+
+      <p>
+        RESULTADO:
+        IMPOSIBLE.
+      </p>
+
+      <h2>
+        ARCHIVO SIN DEFINIR.
+      </h2>
+
+      <h2>
+        ❤️ HIKARI =
+        ALGO QUE NO SE PUEDE EXPLICAR.
+      </h2>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   ARCHIVO 007
+===================================================== */
+
+function showArchive7(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>ARCHIVO #007</h1>
+
+      <h2>PRIMER ENCUENTRO</h2>
+
+      <p>
+        FECHA:
+        17 / 05 / 2026
+      </p>
+
+      <p>
+        UBICACIÓN:
+        INSTAGRAM
+      </p>
+
+      <p>
+        No hubo una entrada dramática.
+      </p>
+
+      <p>
+        No hubo una señal que anunciara
+        lo que estaba por pasar.
+      </p>
+
+      <p>
+        Solo hubo una nota de Instagram,
+        una pequeña equivocación
+        y una pregunta.
+      </p>
+
+      <p>
+        Hikari preguntó qué significaba
+        aquella nota.
+      </p>
+
+      <p>
+        Y sin saberlo,
+        aquella pregunta terminó abriendo
+        una conversación que cambiaría
+        muchas cosas.
+      </p>
+
+      <p>
+        Después llegó otra conversación.
+      </p>
+
+      <p>
+        Y otra.
+      </p>
+
+      <p>
+        Y otra más.
+      </p>
+
+      <h2>
+        REGISTRO FINAL
+      </h2>
+
+      <p>
+        El 17 de mayo de 2026
+        comenzó nuestra historia.
+      </p>
+
+      <h2>
+        ❤️ EVENTO IRREPETIBLE
+      </h2>
+
+      <button onclick="showArchives()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   MEMORY DATABASE
+===================================================== */
+
+function showMemoryDatabase(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        🧠 MEMORY DATABASE
+      </h1>
+
+      <p>
+        BASE DE DATOS DE RECUERDOS
+      </p>
+
+      <p>
+        ESTADO:
+        ACCESO AUTORIZADO ❤️
+      </p>
+
+      <button onclick="showMemory1()">
+        💬 PRIMER CONTACTO
+      </button>
+
+      <button onclick="showMemory2()">
+        ❤️ PRIMERA CONEXIÓN
+      </button>
+
+      <button onclick="showMemory3()">
+        😂 PRIMERAS RISAS
+      </button>
+
+      <button onclick="showMemory4()">
+        📅 17 / 05 / 2026
+      </button>
+
+      <button onclick="openSecretMemory()">
+        ${
+          secretMemoryUnlocked
+          ? "🔓 MEMORIA SECRETA — DESBLOQUEADA"
+          : "🔒 MEMORIA SECRETA — BLOQUEADA"
+        }
+      </button>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   MEMORIA 001
+===================================================== */
+
+function showMemory1(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>MEMORIA #001</h1>
+
+      <h2>💬 PRIMER CONTACTO</h2>
+
+      <p>
+        Todo comenzó con algo tan pequeño
+        que probablemente ninguno de los dos
+        imaginaba lo que iba a provocar.
+      </p>
+
+      <p>
+        Una nota de Instagram.
+      </p>
+
+      <p>
+        Una duda.
+      </p>
+
+      <p>
+        Un mensaje.
+      </p>
+
+      <p>
+        Y de repente...
+        ahí estaba ella.
+      </p>
+
+      <h2>
+        ❤️ EL PRIMER MENSAJE.
+      </h2>
+
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   MEMORIA 002
+===================================================== */
+
+function showMemory2(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>MEMORIA #002</h1>
+
+      <h2>PRIMERA CONEXIÓN</h2>
+
+      <p>
+        Lo que comenzó como un simple mensaje
+        poco a poco empezó a sentirse diferente.
+      </p>
+
+      <p>
+        Las conversaciones comenzaron
+        a hacerse cada vez más largas.
+      </p>
+
+      <p>
+        Ya no era solamente responder.
+      </p>
+
+      <p>
+        Era querer seguir hablando.
+      </p>
+
+      <p>
+        Conocerla un poco más.
+      </p>
+
+      <p>
+        Saber cómo estaba.
+      </p>
+
+      <p>
+        Y encontrar cualquier excusa
+        para continuar la conversación.
+      </p>
+
+      <h2>
+        ❤️ CONEXIÓN DETECTADA.
+      </h2>
+
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   MEMORIA 003
+===================================================== */
+
+function showMemory3(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>MEMORIA #003</h1>
+
+      <h2>PRIMERAS RISAS</h2>
+
+      <p>
+        En algún momento las conversaciones
+        dejaron de ser solamente conversaciones.
+      </p>
+
+      <p>
+        Empezaron las bromas.
+      </p>
+
+      <p>
+        Los mensajes que hacían reír.
+      </p>
+
+      <p>
+        Las tonterías que solamente
+        nosotros entendíamos.
+      </p>
+
+      <p>
+        Y poco a poco apareció algo
+        que el sistema no pudo ignorar:
+      </p>
+
+      <h2>
+        SONRISAS FRECUENTES.
+      </h2>
+
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   MEMORIA 004
+===================================================== */
+
+function showMemory4(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>MEMORIA #004</h1>
+
+      <h2>📅 17 / 05 / 2026</h2>
+
+      <p>
+        ESTADO:
+        EVENTO FUNDAMENTAL
+      </p>
+
+      <p>
+        Hay fechas que parecen cualquier día
+        hasta que ocurre algo que cambia
+        completamente su significado.
+      </p>
+
+      <p>
+        El 17 de mayo de 2026 fue una de ellas.
+      </p>
+
+      <p>
+        Ese día comenzó una conversación
+        que ninguno de los dos sabía
+        hasta dónde iba a llegar.
+      </p>
+
+      <h2>
+        FECHA REGISTRADA
+      </h2>
+
+      <p>
+        17 DE MAYO DE 2026
+      </p>
+
+      <h2>
+        ESTE DÍA NO SE OLVIDA.
+      </h2>
+
+      <button onclick="showMemoryDatabase()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   MEMORIA SECRETA
+===================================================== */
+
+function openSecretMemory(){
+
+  if(!secretMemoryUnlocked){
+
+    alert(
+      "🔒 MEMORIA BLOQUEADA\n\n" +
+      "Completa la INVESTIGACIÓN para desbloquearla."
+    );
+
+    return;
+  }
+
+  showMemory5();
+
+}
+
+
+function showMemory5(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        ACCESS GRANTED
+      </h1>
+
+      <p>
+        CLASSIFIED MEMORY
+      </p>
+
+      <p id="loadingText">
+        RECUPERANDO MEMORIA...
+      </p>
+
+      <div
+        id="secretContent"
+        style="display:none;">
+
+        <h2>
+          ARCHIVO SECRETO
+        </h2>
+
+        <p>
+          El primer mensaje.<br>
+          Las primeras conversaciones.<br>
+          Las primeras risas.<br>
+          El día en que comenzó todo.
+        </p>
+
+        <h2>
+          ⚠️ ANOMALÍA DETECTADA
+        </h2>
+
+        <p>
+          El recuerdo más importante
+          todavía no ha terminado de escribirse.
+        </p>
+
+        <p>
+          Nuestra historia no terminó
+          el 17 de mayo de 2026.
+        </p>
+
+        <p>
+          Ese día solamente fue el comienzo.
+        </p>
+
+        <h2>
+          ❤️ TÚ.
+        </h2>
+
+        <p>
+          No existe una fecha para este recuerdo.
+        </p>
+
+        <p>
+          Porque no pertenece al pasado.
+        </p>
+
+        <p>
+          Sigue ocurriendo.
+        </p>
+
+        <h2>
+          FIN DEL ARCHIVO.
+        </h2>
+
+        <p>
+          ESTADO:
+          ❤️ SIEMPRE.
+        </p>
+
+        <button onclick="showMemoryDatabase()">
+          ← VOLVER
+        </button>
+
+        <button onclick="showFinalSystem()">
+          ❤️ CONTINUAR
+        </button>
+
+      </div>
+
+    </div>
+
+  `);
+
+
+  let progress = 0;
+
+  const interval =
+    setInterval(() => {
+
+      progress += 20;
+
+      const loading =
+        document.getElementById(
+          "loadingText"
+        );
+
+      if(!loading){
+
+        clearInterval(interval);
+        return;
+
+      }
+
+      loading.innerHTML =
+        "RECUPERANDO MEMORIA... " +
+        progress +
+        "%";
+
+      if(progress >= 100){
+
+        clearInterval(interval);
+
+        setTimeout(() => {
+
+          loading.innerHTML =
+            "🔓 MEMORIA RECUPERADA";
+
+          setTimeout(() => {
+
+            const secret =
+              document.getElementById(
+                "secretContent"
+              );
+
+            if(secret){
+              secret.style.display = "block";
+            }
+
+          },1000);
+
+        },500);
+
+      }
+
+    },500);
+
+}
+
+
+/* =====================================================
+   INVENTORY
+===================================================== */
+
+function showInventory(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        🎒 INVENTORY
+      </h1>
+
+      <p>
+        PERSONAL ARCHIVE ITEMS
+      </p>
+
+      <p>
+        ITEMS: 04
+      </p>
+
+      <button onclick="showItem1()">
+        ITEM #001 — PHOTOGRAPH
+      </button>
+
+      <button onclick="showItem2()">
+        ITEM #002 — FIRST MESSAGE
+      </button>
+
+      <button onclick="showItem3()">
+        ITEM #003 — MEMORY FILE
+      </button>
+
+      <button onclick="showItem4()">
+        ITEM #004 — UNKNOWN
+      </button>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+function showItem1(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
       <h1>ITEM #001</h1>
+
       <h2>PHOTOGRAPH</h2>
-      <p>TYPE: MEMORY OBJECT</p>
-      <p>STATUS: PRESERVED</p>
-      <br>
-      <p>Una fotografía que representa uno de los momentos importantes de nuestra historia.</p>
-      <p>El sistema no puede determinar su valor emocional.</p>
-      <p>VALUATION:</p>
-      <h2>INCALCULABLE ❤️</h2>
-      <br>
-      <button onclick="showInventory()">← RETURN TO INVENTORY</button>
+
+      <p>
+        ESTADO:
+        ARCHIVO PENDIENTE
+      </p>
+
+      <p>
+        Un registro visual será añadido
+        próximamente.
+      </p>
+
+      <button onclick="showInventory()">
+        ← VOLVER
+      </button>
+
     </div>
-  `;
+
+  `);
+
 }
 
-function showItem2() {
-  document.querySelector(".content").innerHTML = `
+
+function showItem2(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>ITEM #002</h1>
+
       <h2>FIRST MESSAGE</h2>
-      <p>TYPE: ORIGINAL CONTACT</p>
-      <p>DATE: 17 / 05 / 2026</p>
-      <p>ORIGIN: INSTAGRAM</p>
-      <br>
-      <p>Una nota. Una duda. Un mensaje.</p>
-      <p>Un pequeño evento que terminó iniciando toda nuestra historia.</p>
-      <h2>EVENTO CRÍTICO: CONFIRMADO ❤️</h2>
-      <br>
-      <button onclick="showInventory()">← RETURN TO INVENTORY</button>
+
+      <p>
+        ESTADO:
+        RECUPERADO
+      </p>
+
+      <p>
+        El primer contacto comenzó
+        con una nota de Instagram,
+        una duda y un mensaje.
+      </p>
+
+      <h2>
+        ❤️ 17 / 05 / 2026
+      </h2>
+
+      <button onclick="showInventory()">
+        ← VOLVER
+      </button>
+
     </div>
-  `;
+
+  `);
+
 }
 
-function showItem3() {
-  document.querySelector(".content").innerHTML = `
+
+function showItem3(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>ITEM #003</h1>
+
       <h2>MEMORY FILE</h2>
-      <p>TYPE: BIOHAZARD MEMORY RECORD</p>
-      <p>STATUS: CRITICAL</p>
-      <br>
-      <p>El sistema contiene registros de nuestras primeras conversaciones, primeras risas y momentos que terminaron convirtiéndose en recuerdos importantes.</p>
-      <p>ARCHIVE VALUE:</p>
-      <h2>MAXIMUM ❤️</h2>
-      <br>
-      <button onclick="showInventory()">← RETURN TO INVENTORY</button>
+
+      <p>
+        ESTADO:
+        ACTIVO
+      </p>
+
+      <p>
+        Todos los recuerdos relacionados
+        con Hikari permanecen almacenados.
+      </p>
+
+      <button onclick="showMemoryDatabase()">
+        ABRIR MEMORY DATABASE
+      </button>
+
+      <button onclick="showInventory()">
+        ← VOLVER
+      </button>
+
     </div>
-  `;
+
+  `);
+
 }
 
-function showItem4() {
-  document.querySelector(".content").innerHTML = `
+
+function showItem4(){
+
+  setContent(`
+
     <div class="mainMenu">
+
       <h1>ITEM #004</h1>
+
       <h2>UNKNOWN</h2>
-      <p>TYPE: UNIDENTIFIED OBJECT</p>
-      <p>STATUS: LOCKED</p>
-      <br>
-      <p>El sistema no puede identificar este objeto.</p>
-      <p>Se detecta una conexión directa con el archivo HIKARI.</p>
-      <h2>⚠ ANOMALÍA DETECTADA</h2>
-      <p>El objeto parece estar relacionado con un recuerdo que todavía no ha sido registrado.</p>
-      <p>RECOMMENDATION: CONTINUAR LA INVESTIGACIÓN.</p>
-      <br>
-      <button onclick="showInventory()">← RETURN TO INVENTORY</button>
+
+      <p>
+        ESTADO:
+        DESCONOCIDO
+      </p>
+
+      <p>
+        El sistema no puede determinar
+        qué contiene este registro.
+      </p>
+
+      <h2>
+        ⚠️ ARCHIVO NO CLASIFICADO
+      </h2>
+
+      <button onclick="showInventory()">
+        ← VOLVER
+      </button>
+
     </div>
-  `;
+
+  `);
+
 }
 
-/* =====================================================
-   EFECTOS BIOHAZARD // NUEVA CAPA
-===================================================== */
-(function(){
-  const style=document.createElement('style');
-  style.textContent=`
-    .bioFlash{position:fixed;inset:0;z-index:9999;pointer-events:none;background:#9b0000;opacity:0}
-    .bioFlash.active{animation:bioFlash .28s ease-out}
-    .bioShake{animation:bioShake .22s ease-out}
-    @keyframes bioFlash{0%{opacity:.28}100%{opacity:0}}
-    @keyframes bioShake{0%,100%{transform:translate(0)}25%{transform:translate(-3px,1px)}50%{transform:translate(3px,-1px)}75%{transform:translate(-2px,0)}}
-    .mainMenu button{position:relative;overflow:hidden}
-    .mainMenu button:after{content:"";position:absolute;left:-120%;top:0;width:70%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.08),transparent);transition:.35s}
-    .mainMenu button:hover:after{left:140%}
-  `;
-  document.head.appendChild(style);
-  const flash=document.createElement('div');flash.className='bioFlash';document.body.appendChild(flash);
-  document.addEventListener('click',function(e){
-    const b=e.target.closest('button');if(!b)return;
-    flash.classList.remove('active');void flash.offsetWidth;flash.classList.add('active');
-    const screen=document.querySelector('.screen');
-    if(screen){screen.classList.remove('bioShake');void screen.offsetWidth;screen.classList.add('bioShake')}
-    if(navigator.vibrate)navigator.vibrate(18);
-  },true);
-})();
 
 /* =====================================================
-   RESIDENT EVIL CODE: HIKARY // PORTADA NUEVA
-   La portada anterior queda visualmente fuera de escena.
-   Se conservan los datos de Hikari y la investigación.
+   INVESTIGACIÓN
 ===================================================== */
-(function(){
-  const css=document.createElement('style');
-  css.textContent=`
-    body{background:#111!important;overflow:hidden!important}
-    .room{display:none!important}
-    .requiemGame{position:fixed;inset:0;overflow:hidden;background:#171715;color:#d5d1c8;font-family:'Share Tech Mono',monospace}
-    .requiemWall{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.18) 43%,rgba(0,0,0,.72)),radial-gradient(circle at 76% 40%,#55544d 0,#292925 34%,#10100f 75%)}
-    .requiemWall:before{content:"";position:absolute;inset:-5%;opacity:.42;background:repeating-linear-gradient(92deg,transparent 0 100px,rgba(0,0,0,.25) 101px 104px),repeating-linear-gradient(4deg,transparent 0 72px,rgba(255,255,255,.025) 73px 75px);filter:blur(1px)}
-    .requiemBoard{position:absolute;right:2%;top:3%;width:min(66vw,850px);height:94%;opacity:.66;transform:rotate(-1deg)}
-    .requiemMap{position:absolute;inset:8% 5%;background:#85847a;box-shadow:0 18px 38px #000;transform:rotate(2deg);opacity:.58;filter:grayscale(1) contrast(.9)}
-    .requiemMap:before{content:"";position:absolute;inset:5%;background:repeating-linear-gradient(24deg,transparent 0 48px,rgba(30,30,28,.22) 49px 51px),repeating-linear-gradient(112deg,transparent 0 68px,rgba(30,30,28,.18) 69px 71px)}
-    .requiemPhoto{position:absolute;width:165px;height:112px;background:linear-gradient(135deg,#5b5b56,#171716 62%,#70706a);border:7px solid #dedbd2;box-shadow:0 9px 22px #000;opacity:.78}.requiemPhoto.p1{right:7%;top:8%;transform:rotate(8deg)}.requiemPhoto.p2{right:29%;bottom:10%;width:185px;transform:rotate(-9deg)}
-    .requiemPaper{position:absolute;width:235px;padding:15px;background:#bdb9a9;color:#2c2b27;font:11px/1.55 'Special Elite',serif;box-shadow:0 8px 18px #000}.requiemPaper:before{content:"CLASSIFIED";display:block;font-size:14px;letter-spacing:2px;margin-bottom:8px}.requiemPaper.p1{left:30%;top:11%;transform:rotate(-6deg)}.requiemPaper.p2{right:17%;top:52%;width:190px;transform:rotate(5deg)}
-    .requiemLine{position:absolute;width:45%;height:2px;background:#771010;box-shadow:0 0 4px #a11616;transform-origin:left;opacity:.82}.requiemLine.l1{right:21%;top:30%;transform:rotate(21deg)}.requiemLine.l2{right:39%;top:57%;transform:rotate(-14deg)}.requiemLine.l3{right:12%;top:69%;transform:rotate(12deg)}
-    .requiemDesk{position:absolute;left:-2%;bottom:-3%;width:63%;height:21%;background:linear-gradient(#292927,#090909);transform:skewX(-8deg);box-shadow:0 -18px 45px #000}
-    .requiemMenu{position:absolute;z-index:8;left:6%;top:5%;width:min(405px,83vw);height:88%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-shadow:2px 2px 4px #000}
-    .requiemLogo{font-family:'Special Elite',serif;line-height:.82;margin-bottom:34px;filter:drop-shadow(3px 3px 1px #000)}
-    .requiemLogo .resident{font-size:clamp(1.7rem,4.8vw,3rem);letter-spacing:2px;text-transform:lowercase}.requiemLogo .code{font-size:clamp(2rem,6.2vw,3.9rem);letter-spacing:1px}.requiemLogo .code span{background:#e8e4da;color:#191917;padding:1px 9px 5px;clip-path:polygon(2% 5%,98% 0,100% 86%,3% 100%,0 55%)}
-    .requiemModeTitle{font-size:.8rem;letter-spacing:2px;color:#bbb7ae;margin-bottom:9px}.requiemModes{list-style:none;margin-bottom:26px}.requiemModes li{font-family:'Special Elite',serif;color:#88857d;font-size:.96rem;margin:7px 0}.requiemModes li.active{color:#eee;font-size:1.06rem}.requiemModes li.active:before{content:'▶ ';color:#ddd}.requiemModes li:not(.active){padding-left:17px}
-    .requiemLinks{display:flex;flex-direction:column;gap:4px;width:100%}.requiemBtn{position:relative;border:0;background:transparent;color:#c9c5bc;text-align:left;font:1rem 'Special Elite',serif;letter-spacing:1px;padding:8px 12px;cursor:pointer;text-shadow:2px 2px 4px #000}.requiemBtn:hover{color:#fff;transform:translateX(7px)}.requiemBtn:hover:before{content:'▶';position:absolute;left:-4px}.requiemBtn:active{transform:translateX(3px)}
-    .requiemStatus{margin-top:27px;color:#747169;font-size:.62rem;letter-spacing:1px}.requiemControls{position:absolute;z-index:9;left:6%;bottom:5%;color:#858078;font-size:.62rem}.requiemGrain{position:absolute;inset:0;z-index:18;pointer-events:none;opacity:.13;background:repeating-linear-gradient(0deg,rgba(255,255,255,.08) 0 1px,transparent 1px 4px);mix-blend-mode:screen}.requiemVignette{position:absolute;inset:0;z-index:19;pointer-events:none;background:radial-gradient(ellipse at center,transparent 35%,rgba(0,0,0,.42) 72%,rgba(0,0,0,.92) 100%)}
-    .requiemPanel{position:absolute;z-index:30;inset:5% 5%;display:none;background:rgba(9,9,8,.94);border:1px solid #555;box-shadow:0 0 70px #000;padding:5%;overflow:auto}.requiemPanel.show{display:block}.requiemPanel h1{font-family:'Special Elite',serif;font-size:clamp(1.7rem,5vw,3rem);margin-bottom:18px}.requiemPanel h2{font-family:'Special Elite',serif;color:#aaa69d;font-weight:normal;margin:20px 0 10px}.requiemPanel p{max-width:850px;line-height:1.8;color:#b9b5ac;margin:10px 0}.requiemPanel button{margin:12px 8px 0 0;padding:10px 16px;background:#171716;border:1px solid #666;color:#ccc;font-family:inherit;cursor:pointer}.requiemPanel button:hover{border-color:#aaa;color:#fff}.requiemCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.requiemCard{padding:16px;border:1px solid #444;background:#151514;cursor:pointer}.requiemCard:hover{border-color:#aaa;background:#20201e}.requiemRed{position:fixed;inset:0;z-index:100;background:#a00000;opacity:0;pointer-events:none}.requiemRed.hit{animation:requiemHit .42s ease-out}.requiemShake{animation:requiemShake .24s ease-out}@keyframes requiemHit{0%{opacity:var(--redStrength,.25)}100%{opacity:0}}@keyframes requiemShake{0%,100%{transform:translate(0)}25%{transform:translate(-4px,2px)}50%{transform:translate(4px,-2px)}75%{transform:translate(-2px,0)}}
-    @media(max-width:650px){.requiemBoard{right:-42%;width:115%;opacity:.38}.requiemMenu{left:7%;top:4%;height:91%;width:76%}.requiemLogo{margin-bottom:27px}.requiemLogo .resident{font-size:1.5rem}.requiemLogo .code{font-size:2.2rem}.requiemModes li{font-size:.86rem}.requiemBtn{font-size:.88rem}.requiemControls{left:7%;bottom:3%}.requiemPanel{inset:3% 3%;padding:7% 6%}}
-  `;
-  document.head.appendChild(css);
 
-  const root=document.createElement('div');root.className='requiemGame';root.id='requiemGame';
-  root.innerHTML=`
-    <div class="requiemWall"></div>
-    <div class="requiemBoard"><div class="requiemMap"></div><div class="requiemPaper p1">SUBJECT: HIKARI<br>STATUS: IRREMPLAZABLE<br>ORIGIN: INSTAGRAM<br>DATE: 17 / 05 / 2026</div><div class="requiemPaper p2">ANOMALY<br>EMOTIONAL RESPONSE: MAXIMUM<br>CLASSIFICATION: IMPOSSIBLE</div><div class="requiemPhoto p1"></div><div class="requiemPhoto p2"></div><div class="requiemLine l1"></div><div class="requiemLine l2"></div><div class="requiemLine l3"></div></div>
-    <div class="requiemDesk"></div>
-    <div class="requiemMenu"><div class="requiemLogo"><div class="resident">resident evil</div><div class="code"><span>code: HIKARY</span></div></div><div class="requiemModeTitle">GAME MODE</div><ul class="requiemModes"><li class="active">Casual</li><li>Standard (Modern)</li><li>Standard (Classic)</li><li>Insanity</li></ul><div class="requiemLinks"><button class="requiemBtn" onclick="rkStory()">NEW GAME</button><button class="requiemBtn" onclick="rkArchives()">ARCHIVES</button><button class="requiemBtn" onclick="rkMemories()">MEMORIES</button><button class="requiemBtn" onclick="rkInvestigation()">INVESTIGATION</button></div><div class="requiemStatus">FILE STATUS // HIKARI // ONLINE</div></div>
-    <div class="requiemControls">◉ CONFIRM &nbsp;&nbsp; ◉ SELECT &nbsp;&nbsp; © HIKARI ARCHIVE</div><div class="requiemGrain"></div><div class="requiemVignette"></div><div class="requiemRed" id="requiemRed"></div><div class="requiemPanel" id="requiemPanel"></div>`;
-  document.body.appendChild(root);
-  const P=()=>document.getElementById('requiemPanel');
-  function rkOpen(html){P().innerHTML=html;P().classList.add('show')}
-  function rkClose(){P().classList.remove('show')}
-  window.rkStory=function(){rkOpen('<h1>RESIDENT EVIL CODE: HIKARY</h1><p>Un archivo personal clasificado. Una historia que comenzó con una nota de Instagram y terminó convirtiéndose en algo mucho más importante.</p><h2>17 / 05 / 2026</h2><p>ORIGEN: INSTAGRAM<br>EVENTO: PRIMER CONTACTO<br>ESTADO: IRREMPLAZABLE</p><button onclick="rkInvestigation()">INICIAR INVESTIGACIÓN</button><button onclick="rkClose()">VOLVER</button>')}
-  window.rkClose=rkClose;
-  window.rkArchives=function(){rkOpen('<h1>ARCHIVES</h1><p>REGISTROS RECUPERADOS // HIKARI</p><div class="requiemCards">'+['HIKARI','EL COMIENZO','FRECUENCIA ANORMAL','COMPATIBILIDAD','CAMBIO DE ESTADO','SIN DEFINIR','PRIMER ENCUENTRO','GUSTOS Y DETALLES'].map((x,i)=>'<div class="requiemCard" onclick="rkArchive('+i+')">ARCHIVO #00'+(i+1)+'<br><br>'+x+'</div>').join('')+'</div><button onclick="rkClose()">← VOLVER</button>')}
-  window.rkArchive=function(i){const a=[['HIKARI','ESTADO: IRREMPLAZABLE','Se analizaron sus gestos, su forma de hablar y su personalidad.<br><br>RESULTADO: ERROR.<br><br>Es simplemente ella. ❤️'],['EL COMIENZO','FECHA: 17 / 05 / 2026','ORIGEN: INSTAGRAM.<br><br>Una nota. Una duda. Un mensaje.<br><br>Una pregunta se convirtió en una conversación, y la conversación en muchas más.<br><br>A veces, los errores terminan siendo lo mejor que nos pudo pasar.'],['FRECUENCIA ANORMAL','ESTADO: ANOMALÍA DETECTADA','Frecuencia de pensamiento: CONSTANTE.<br>Frecuencia de sonrisas: ELEVADA.<br>Necesidad de hablar con Hikari: INCONTROLABLE.<br><br>DIAGNÓSTICO: ENAMORAMIENTO SEVERO. ❤️'],['COMPATIBILIDAD','ANÁLISIS COMPLETADO','Compatibilidad emocional: 100% ❤️<br>Confianza: 100%<br>Comunicación: 98%<br>Capacidad de hacerse reír: 100%<br>Capacidad de quererse: INFINITA.'],['CAMBIO DE ESTADO','DESCONOCIDA → INDISPENSABLE','Primeras conversaciones: INTERÉS DETECTADO.<br>Primeras risas: CONEXIÓN DETECTADA.<br>Más conversaciones: VÍNCULO EN AUMENTO.<br><br>RESULTADO: IRREMPLAZABLE.'],['SIN DEFINIR','CLASIFICACIÓN IMPOSIBLE','Amiga: INCOMPLETO.<br>Persona especial: INCOMPLETO.<br>Amor: INSUFICIENTE.<br><br>❤️ HIKARI = ALGO QUE NO SE PUEDE EXPLICAR.'],['PRIMER ENCUENTRO','EVENTO IRREPETIBLE','Una nota, una equivocación y una pregunta terminaron abriendo una conversación.<br><br>Después llegó otra. Y otra. Y otra más.<br><br>Ese día comenzó nuestra historia. ❤️'],['GUSTOS Y DETALLES','PERFIL RECUPERADO','Le gustan los videojuegos y los gatos.<br>También le gusta el anime, especialmente Chainsaw Man.<br>Personajes y parejas que le gustan: Denji × Reze y Denji × Yoru.<br><br>DETALLES REGISTRADOS: sus ojos, su sonrisa y ese lunar debajo de uno de sus ojos. ❤️']];rkOpen('<h1>ARCHIVO #00'+(i+1)+'</h1><h2>'+a[i][0]+'</h2><p>'+a[i][1]+'</p><p>'+a[i][2]+'</p><button onclick="rkArchives()">← ARCHIVES</button>')}
-  window.rkMemories=function(){rkOpen('<h1>MEMORIES</h1><p>BASE DE DATOS DE RECUERDOS // ACCESO AUTORIZADO</p><div class="requiemCards">'+['PRIMER CONTACTO','PRIMERA CONEXIÓN','PRIMERAS RISAS','17 / 05 / 2026','MEMORIA SECRETA'].map((x,i)=>'<div class="requiemCard" onclick="rkMemory('+i+')">MEMORIA #00'+(i+1)+'<br><br>'+x+'</div>').join('')+'</div><button onclick="rkClose()">← VOLVER</button>')}
-  window.rkMemory=function(i){if(i===4&&!secretMemoryUnlocked){alert('🔒 MEMORIA BLOQUEADA\n\nCompleta la INVESTIGACIÓN para desbloquearla.');return}const a=[['PRIMER CONTACTO','Una nota de Instagram. Una duda. Un mensaje.<br><br>Y de repente... ahí estaba ella. ❤️'],['PRIMERA CONEXIÓN','Las conversaciones comenzaron a hacerse cada vez más largas. Ya no era solamente responder: era querer seguir hablando, conocerla y saber cómo estaba.'],['PRIMERAS RISAS','Empezaron las bromas, los mensajes que hacían reír y las tonterías que solamente nosotros entendíamos.<br><br>SONRISAS FRECUENTES.'],['17 / 05 / 2026','Una fecha que parece normal hasta que descubres que ahí comenzó nuestra historia.'],['MEMORIA SECRETA','El recuerdo más importante todavía no ha terminado de escribirse.<br><br>Nuestra historia no terminó ese día. Ese día solamente fue el comienzo.<br><br>MEMORIA SECRETA: ❤️ TÚ.']];rkOpen('<h1>MEMORIA #00'+(i+1)+'</h1><h2>'+a[i][0]+'</h2><p>'+a[i][1]+'</p><button onclick="rkMemories()">← MEMORIES</button>')}
-  window.rkInvestigation=function(){rkClose();if(typeof startGame==='function'){startGame()}else{rkStory()}}
-  document.addEventListener('click',e=>{if(!e.target.closest('.requiemBtn'))return;if(navigator.vibrate)navigator.vibrate(15)},true)
-})();
+function startGame(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        🔎 INVESTIGATION
+      </h1>
+
+      <p>
+        ARCHIVO CLASIFICADO DETECTADO.
+      </p>
+
+      <p>
+        Para acceder al contenido,
+        responde correctamente.
+      </p>
+
+      <h2>
+        PREGUNTA 1
+      </h2>
+
+      <p>
+        ¿Cómo comenzó realmente nuestra historia?
+      </p>
+
+      <button onclick="answerCorrect()">
+        Todo comenzó por una nota de Instagram
+      </button>
+
+      <button onclick="answerWrong()">
+        Nos conocimos por una conversación
+        que empezó de la nada
+      </button>
+
+      <button onclick="answerWrong()">
+        Yo fui quien decidió hablarte primero
+      </button>
+
+      <button onclick="answerWrong()">
+        Nos conocimos gracias a alguien más
+      </button>
+
+      <p id="gameMessage"></p>
+
+    </div>
+
+  `);
+
+}
+
+
+function answerCorrect(){
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
+
+    ❤️ RESPUESTA CORRECTA
+
+    <br><br>
+
+    PRIMER REGISTRO CONFIRMADO.
+
+    <br><br>
+
+    <button onclick="showQuestion2()">
+      CONTINUAR
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PREGUNTA 2
+===================================================== */
+
+function showQuestion2(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        INVESTIGATION
+      </h1>
+
+      <h2>
+        PREGUNTA 2
+      </h2>
+
+      <p>
+        ¿Cuándo comenzó nuestra historia?
+      </p>
+
+      <button onclick="answerWrong()">
+        14 de febrero de 2026
+      </button>
+
+      <button onclick="answerCorrect3()">
+        17 de mayo de 2026 ❤️
+      </button>
+
+      <button onclick="answerWrong()">
+        25 de mayo de 2026
+      </button>
+
+      <button onclick="answerWrong()">
+        17 de junio de 2026
+      </button>
+
+      <p id="gameMessage"></p>
+
+    </div>
+
+  `);
+
+}
+
+
+function answerCorrect3(){
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
+
+    ❤️ RESPUESTA CORRECTA
+
+    <br><br>
+
+    FECHA CONFIRMADA:
+    17 DE MAYO DE 2026
+
+    <br><br>
+
+    SEGUNDO REGISTRO CONFIRMADO.
+
+    <br><br>
+
+    <button onclick="showQuestion3()">
+      CONTINUAR
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PREGUNTA 3
+===================================================== */
+
+function showQuestion3(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        INVESTIGATION
+      </h1>
+
+      <h2>
+        PREGUNTA 3
+      </h2>
+
+      <p>
+        ¿Qué hizo que nuestra conversación
+        comenzara a convertirse en algo importante?
+      </p>
+
+      <button onclick="answerWrong()">
+        La curiosidad de conocernos
+      </button>
+
+      <button onclick="answerCorrect4()">
+        La forma en que empezamos a conectar
+      </button>
+
+      <button onclick="answerWrong()">
+        Que teníamos muchas cosas en común
+      </button>
+
+      <button onclick="answerWrong()">
+        Que simplemente coincidimos
+        en el momento correcto
+      </button>
+
+      <p id="gameMessage"></p>
+
+    </div>
+
+  `);
+
+}
+
+
+function answerCorrect4(){
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
+
+    ❤️ RESPUESTA CORRECTA
+
+    <br><br>
+
+    CONEXIÓN EMOCIONAL CONFIRMADA.
+
+    <br><br>
+
+    TERCER REGISTRO CONFIRMADO.
+
+    <br><br>
+
+    <button onclick="showQuestion4()">
+      CONTINUAR
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PREGUNTA 4
+===================================================== */
+
+function showQuestion4(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        ADVANCED INVESTIGATION
+      </h1>
+
+      <h2>
+        PREGUNTA 4
+      </h2>
+
+      <p>
+        ¿Qué es lo que más valoro
+        de la persona que eres?
+      </p>
+
+      <button onclick="answerWrong()">
+        La forma en que me haces reír
+      </button>
+
+      <button onclick="answerWrong()">
+        La manera en que siempre
+        encuentras algo que decir
+      </button>
+
+      <button onclick="answerCorrect5()">
+        Tu forma de ser
+      </button>
+
+      <button onclick="answerWrong()">
+        La cantidad de recuerdos
+        que hemos creado
+      </button>
+
+      <p id="gameMessage"></p>
+
+    </div>
+
+  `);
+
+}
+
+
+function answerCorrect5(){
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
+
+    ❤️ RESPUESTA CORRECTA
+
+    <br><br>
+
+    PERFIL PERSONAL CONFIRMADO.
+
+    <br><br>
+
+    CUARTO REGISTRO CONFIRMADO.
+
+    <br><br>
+
+    <button onclick="showQuestion5()">
+      CONTINUAR
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   PREGUNTA 5
+===================================================== */
+
+function showQuestion5(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        FINAL PHASE
+      </h1>
+
+      <h2>
+        PREGUNTA 5
+      </h2>
+
+      <p>
+        Después de todo lo que hemos vivido,
+        ¿qué representa nuestra historia?
+      </p>
+
+      <button onclick="answerWrong()">
+        Un recuerdo importante
+      </button>
+
+      <button onclick="answerWrong()">
+        Una etapa de nuestras vidas
+      </button>
+
+      <button onclick="answerWrong()">
+        Una coincidencia que terminó
+        significando mucho
+      </button>
+
+      <button onclick="answerFinalCorrect()">
+        Algo que todavía estamos escribiendo
+      </button>
+
+      <p id="gameMessage"></p>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   RESPUESTA FINAL
+===================================================== */
+
+function answerFinalCorrect(){
+
+  secretMemoryUnlocked = true;
+
+  document.getElementById(
+    "gameMessage"
+  ).innerHTML = `
+
+    ❤️ RESPUESTAS VERIFICADAS: 100%
+
+    <br><br>
+
+    IDENTIDAD CONFIRMADA:
+    HIKARI
+
+    <br><br>
+
+    INVESTIGACIÓN COMPLETADA.
+
+    <br><br>
+
+    <button onclick="showInvestigationComplete()">
+      CONTINUAR
+    </button>
+
+  `;
+
+}
+
+
+/* =====================================================
+   INVESTIGACIÓN COMPLETADA
+===================================================== */
+
+function showInvestigationComplete(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        INVESTIGACIÓN COMPLETADA
+      </h1>
+
+      <p>
+        RESPUESTAS VERIFICADAS:
+        100%
+      </p>
+
+      <p>
+        IDENTIDAD CONFIRMADA:
+        HIKARI
+      </p>
+
+      <h2>
+        NUEVO ARCHIVO DESBLOQUEADO
+      </h2>
+
+      <h1>
+        MEMORIA SECRETA
+      </h1>
+
+      <p>
+        Existe un último registro
+        esperando ser descubierto.
+      </p>
+
+      <button onclick="showMemory5()">
+        🔓 ABRIR MEMORIA SECRETA
+      </button>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER AL MENÚ
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+
+/* =====================================================
+   RESPUESTA INCORRECTA
+===================================================== */
+
+function answerWrong(){
+
+  triggerMistake();
+
+  const message =
+    document.getElementById(
+      "gameMessage"
+    );
+
+  if(message){
+
+    let warning = "";
+
+    if(mistakes === 1){
+      warning =
+        "NIVEL DE ALERTA: BAJO";
+    }
+
+    else if(mistakes === 2){
+      warning =
+        "NIVEL DE ALERTA: MEDIO";
+    }
+
+    else if(mistakes === 3){
+      warning =
+        "NIVEL DE ALERTA: ALTO";
+    }
+
+    else{
+      warning =
+        "⚠️ SISTEMA CRÍTICO — ALERTA MÁXIMA";
+    }
+
+    message.innerHTML = `
+
+      <span class="danger">
+
+        ❌ RESPUESTA INCORRECTA
+
+        <br><br>
+
+        ${warning}
+
+        <br><br>
+
+        El registro no coincide.
+
+        <br><br>
+
+        VUELVE A INTENTARLO.
+
+      </span>
+
+    `;
+
+  }
+
+}
+
+
+/* =====================================================
+   SISTEMA FINAL
+===================================================== */
+
+function showFinalSystem(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        FINAL SYSTEM
+      </h1>
+
+      <p>
+        ANALIZANDO TODOS LOS ARCHIVOS...
+      </p>
+
+      <p id="finalLoading">
+        INICIANDO ANÁLISIS...
+      </p>
+
+      <div
+        id="finalContent"
+        style="display:none;">
+
+        <h2>
+          ✅ ANÁLISIS COMPLETADO
+        </h2>
+
+        <p>
+          Todos los archivos han sido revisados.
+        </p>
+
+        <p>
+          Todas las conversaciones.<br>
+          Todos los recuerdos.<br>
+          Todas las risas.<br>
+          Todos los momentos.
+        </p>
+
+        <h2>
+          ⚠️ RESULTADO FINAL
+        </h2>
+
+        <p>
+          El sistema intentó determinar
+          qué tan importante es Hikari.
+        </p>
+
+        <h1>
+          ❤️ INCALCULABLE
+        </h1>
+
+        <p>
+          No existe una cifra suficientemente grande.
+        </p>
+
+        <p>
+          No existe una categoría capaz
+          de describirlo.
+        </p>
+
+        <h2>
+          ❤️ CONCLUSIÓN
+        </h2>
+
+        <p>
+          Hikari no es simplemente un recuerdo.
+        </p>
+
+        <p>
+          Es parte de la historia.
+        </p>
+
+        <p>
+          Y esta historia todavía
+          se está escribiendo.
+        </p>
+
+        <h2>
+          ⚠️ ERROR CRÍTICO
+        </h2>
+
+        <p>
+          VARIABLE NO RECONOCIDA:
+        </p>
+
+        <h1>
+          ❤️ AMOR
+        </h1>
+
+        <p>
+          RESULTADO:
+        </p>
+
+        <h1>
+          ❌ IMPOSIBLE DE CALCULAR
+        </h1>
+
+        <p>
+          No existe una unidad de medida
+          suficientemente grande para expresar
+          lo importante que es.
+        </p>
+
+        <br>
+
+        <button onclick="showFinalMessage()">
+          💌 ABRIR ÚLTIMO REGISTRO
+        </button>
+
+      </div>
+
+    </div>
+
+  `);
+
+
+  let progress = 0;
+
+  const interval =
+    setInterval(() => {
+
+      progress += 20;
+
+      const loading =
+        document.getElementById(
+          "finalLoading"
+        );
+
+      if(!loading){
+
+        clearInterval(interval);
+        return;
+
+      }
+
+      loading.innerHTML =
+        "ANALIZANDO... " +
+        progress +
+        "%";
+
+      if(progress >= 100){
+
+        clearInterval(interval);
+
+        setTimeout(() => {
+
+          loading.innerHTML =
+            "✅ ANÁLISIS COMPLETADO";
+
+          setTimeout(() => {
+
+            const finalContent =
+              document.getElementById(
+                "finalContent"
+              );
+
+            if(finalContent){
+              finalContent.style.display =
+                "block";
+            }
+
+          },1000);
+
+        },500);
+
+      }
+
+    },500);
+
+}
+
+
+/* =====================================================
+   ÚLTIMO REGISTRO
+===================================================== */
+
+function showFinalMessage(){
+
+  setContent(`
+
+    <div class="mainMenu">
+
+      <h1>
+        💌 ÚLTIMO REGISTRO
+      </h1>
+
+      <p>
+        ARCHIVO:
+        FINAL_001
+      </p>
+
+      <p>
+        DESTINATARIA:
+        HIKARI ❤️
+      </p>
+
+      <p>
+        ESTADO:
+        REGISTRO PERMANENTE
+      </p>
+
+      <br>
+
+      <h2>
+        ❤️ PARA TI
+      </h2>
+
+      <p>
+        Si llegaste hasta aquí,
+        significa que encontraste
+        todos los archivos.
+      </p>
+
+      <p>
+        Pero hay algo que ningún sistema,
+        ninguna memoria y ningún archivo
+        puede explicar.
+      </p>
+
+      <p>
+        Lo mucho que te quiero.
+      </p>
+
+      <p>
+        Desde aquel 17 de mayo de 2026,
+        cuando todo comenzó con algo
+        tan pequeño como una conversación,
+        jamás imaginé que terminarías
+        siendo una persona tan importante
+        para mí.
+      </p>
+
+      <p>
+        Hemos creado recuerdos,
+        hemos reído,
+        hemos hablado durante horas
+        y hemos vivido momentos
+        que quiero guardar para siempre.
+      </p>
+
+      <p>
+        Y si pudiera volver al principio
+        y repetir todo otra vez,
+        volvería a elegir conocerte.
+      </p>
+
+      <h2>
+        ❤️ PORQUE TE ELIJO A TI.
+      </h2>
+
+      <p>
+        No porque nuestra historia sea perfecta,
+        sino porque es nuestra.
+      </p>
+
+      <p>
+        Y todavía nos quedan
+        muchísimos recuerdos por crear.
+      </p>
+
+      <p>
+        Así que este archivo no tiene
+        realmente un final.
+      </p>
+
+      <p>
+        Porque mientras sigamos juntos,
+        siempre habrá una nueva página
+        que escribir.
+      </p>
+
+      <br>
+
+      <h1>
+        ❤️ HIKARI ❤️
+      </h1>
+
+      <p>
+        Gracias por existir.
+      </p>
+
+      <p>
+        Gracias por formar parte de mi vida.
+      </p>
+
+      <p>
+        Y sobre todo...
+        gracias por ser tú.
+      </p>
+
+      <h2>
+        TE AMO. ❤️
+      </h2>
+
+      <br>
+
+      <p>
+        ARCHIVO FINALIZADO.
+      </p>
+
+      <h1>
+        ❤️ SIEMPRE
+      </h1>
+
+      <button onclick="showMainMenu()">
+        ← VOLVER AL MENÚ
+      </button>
+
+    </div>
+
+  `);
+
+}
+
+</script>
+
+</body>
+</html>
 ```
