@@ -1,55 +1,203 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjeta de Presentación</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .fondo {
-            position: absolute;
-            inset: 0;
-            background: url('https://i.ytimg.com/vi/MPbS7Whh2K0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGQgZChkMA8=&rs=AOn4CLDByrU_NIcX-Bxbf2o8_s8cCvcouw') center center / cover no-repeat;
-            z-index: 1;
-        }
-
-        .overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 2;
-        }
-
-        .card {
-            position: relative;
-            z-index: 3;
-            background: rgba(25, 25, 25, 0.85);
-            padding: 30px;
-            border-radius: 20px
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resident Evil: Requiem</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Courier Prime', monospace;
+    color: #ccc;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+.fondo {
+    position: absolute;
+    inset: 0;
+    background: url('https://i.ytimg.com/vi/MPbS7Whh2K0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGGQgZChkMA8=&rs=AOn4CLDByrU_NIcX-Bxbf2o8_s8cCvcouw') center center / cover no-repeat;
+    z-index: 1;
+}
+.oscurecer {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 2;
+}
+.panel-izq {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130px;
+    height: 100%;
+    background: linear-gradient(90deg, #111, #1a1a1a);
+    border-right: 1px solid #2a2a2a;
+    z-index: 3;
+}
+.contenido {
+    position: relative;
+    z-index: 4;
+    padding: 80px 60px 60px 200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.titulo-superior {
+    font-size: 24px;
+    letter-spacing: 0.45em;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+.titulo-principal {
+    font-size: 72px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 60px;
+}
+.titulo-principal::after {
+    content: '';
+    position: absolute;
+    left: -6%;
+    top: 18%;
+    width: 112%;
+    height: 64%;
+    background: rgba(42,42,42,0.75);
+    transform: skewX(-10deg);
+    border-top: 2px solid rgba(255,255,255,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.25);
+}
+.etiqueta {
+    font-size: 15px;
+    letter-spacing: 0.25em;
+    color: #999;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+.fila {
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+}
+.lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.opcion {
+    font-size: 18px;
+    color: #777;
+    cursor: pointer;
+    padding: 6px 0 6px 28px;
+    transition: color 0.2s;
+    position: relative;
+}
+.opcion.activa {
+    color: #fff;
+}
+.opcion.activa::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+}
+.descripcion {
+    max-width: 320px;
+    padding-top: 6px;
+    color: #aaa;
+    font-size: 15px;
+    line-height: 1.6;
+}
+.pie {
+    margin-top: auto;
+    display: flex;
+    gap: 30px;
+    font-size: 13px;
+    color: #666;
+}
+.boton-empezar {
+    font-family: 'Courier Prime', monospace;
+    font-size: 16px;
+    letter-spacing: 0.2em;
+    background: transparent;
+    border: 1px solid #555;
+    color: #ddd;
+    padding: 12px 36px;
+    margin-top: 40px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+.boton-empezar:hover {
+    border-color: #fff;
+    color: #fff;
+}
+</style>
 </head>
 <body>
     <div class="fondo"></div>
-    <div class="overlay"></div>
-    <div class="card">
-        <!-- Aquí va tu contenido -->
+    <div class="oscurecer"></div>
+    <div class="panel-izq"></div>
+
+    <div class="contenido">
+        <h2 class="titulo-superior">Resident Evil</h2>
+        <h1 class="titulo-principal">requiem</h1>
+
+        <div class="etiqueta">Game Mode</div>
+
+        <div class="fila">
+            <div class="lista">
+                <div class="opcion activa" data-desc="Relax while enjoying the story and puzzles.">Casual</div>
+                <div class="opcion" data-desc="Modern survival experience with balanced challenge.">Standard (Modern)</div>
+                <div class="opcion" data-desc="Classic survival horror — limited resources and danger.">Standard (Classic)</div>
+                <div class="opcion" data-desc="Unforgiving. Enemies are faster, resources are scarce. Only for the brave.">Insanity</div>
+            </div>
+            <div class="descripcion" id="texto-desc">Relax while enjoying the story and puzzles.</div>
+        </div>
+
+        <button class="boton-empezar" onclick="alert('¡Aventura empezada! 🧟‍♂️❤️')">▶ EMPEZAR AVENTURA</button>
+
+        <div class="pie">
+            <span>X Confirm</span>
+            <span>O Back</span>
+        </div>
     </div>
+
+<script>
+const opciones = document.querySelectorAll('.opcion');
+const textoDesc = document.getElementById('texto-desc');
+
+opciones.forEach(op => {
+    op.addEventListener('click', () => {
+        opciones.forEach(o => o.classList.remove('activa'));
+        op.classList.add('activa');
+        textoDesc.textContent = op.getAttribute('data-desc');
+    });
+});
+
+document.addEventListener('keydown', e => {
+    let idx = Array.from(opciones).findIndex(o => o.classList.contains('activa'));
+    if (e.key==='ArrowUp' && idx>0) {
+        opciones[idx].classList.remove('activa');
+        opciones[--idx].classList.add('activa');
+        textoDesc.textContent = opciones[idx].getAttribute('data-desc');
+    }
+    if (e.key==='ArrowDown' && idx<opciones.length-1) {
+        opciones[idx].classList.remove('activa');
+        opciones[++idx].classList.add('activa');
+        textoDesc.textContent = opciones[idx].getAttribute('data-desc');
+    }
+});
+</script>
 </body>
 </html>
